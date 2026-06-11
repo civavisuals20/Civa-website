@@ -31,7 +31,8 @@
       --dela: 'Dela Gothic One', sans-serif;
       --funnel: 'Funnel Display', sans-serif;
     }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    img, video, a, button, .work-card, .svc-box { -webkit-user-select: none; user-select: none; }
     html { scroll-behavior: smooth; }
     body {
       background: var(--black-abyss);
@@ -1039,7 +1040,6 @@
       .hero-tag-4 { bottom:29%; right:1%; }
       #work, #about, #reviews, #services, #faq, #contact { padding:56px 18px; }
       footer { padding:36px 18px 24px; }
-      .work-grid { grid-template-columns:1fr; gap:12px; }
       #coaching-promo { padding:56px 18px; }
       .coaching-promo-inner { grid-template-columns:1fr; gap:28px; }
       .coaching-promo-title { font-size:28px; }
@@ -1047,13 +1047,29 @@
       .about-photo-sm { width:100%; height:240px; }
       .testi-outer { max-height:500px; }
       .testi-col-2, .testi-col-3 { display:none; }
+      /* Section title sizes on mobile */
+      .section-title, .work-big-title { font-size:38px; }
+      .section-title-italic, .work-big-italic { font-size:38px; }
+      .services-big-title, .services-big-italic { font-size:38px; }
+      .reviews-big-title, .reviews-big-italic { font-size:38px; }
+      .contact-title-main, .contact-title-italic { font-size:34px; }
+      .hero-h1-line1, .hero-h1-shiny { font-size:44px !important; }
+      /* Work grid — single column */
+      .work-grid { grid-template-columns:1fr; gap:16px; }
+      .work-thumb { aspect-ratio:16/9; }
       .services-boxes { grid-template-columns:1fr; }
       .svc-box:last-child { grid-column:auto !important; }
-      /* Change 6 + 14: mobile sizes */
-      .section-title, .services-big-title, .reviews-big-title, .contact-title-main { font-size:34px; }
-      .section-title-italic, .services-big-italic, .reviews-big-italic, .contact-title-italic { font-size:34px; }
       .form-row { grid-template-columns:1fr; }
       .footer-main { flex-direction:column; text-align:center; gap:20px; }
+    }
+    /* Touch devices — disable stuck hover states */
+    @media (hover: none) {
+      .work-card-overlay { opacity:1; }
+      .work-card .work-play { opacity:1; transform:translateY(0); }
+      .work-card:hover img { transform:none; }
+      .work-card .work-play-icon { opacity:1; translate:0 0; }
+      .svc-box:hover { transform:none !important; box-shadow:none !important; border-color:rgba(201,168,76,.12) !important; }
+      .svc-video-wrap:hover img { transform:none; }
     }
   </style>
 </head>
@@ -1117,7 +1133,7 @@
   </div>
   <!-- Change 2: YouTube iframe background -->
   <div class="hero-yt-wrap">
-    <video class="hero-yt-frame" src="./assets/showreel.mp4" autoplay muted loop playsinline></video>
+    <video class="hero-yt-frame" src="./assets/Showreel.mp4" autoplay muted loop playsinline></video>
   </div>
   <div class="hero-video-overlay"></div>
 
@@ -1265,24 +1281,6 @@
     </div>
   </div>
 </section>
-
-<!-- ==============================
-     COACHING PROMO
-============================== -->
-<section id="coaching-promo">
-  <div class="coaching-promo-inner">
-    <div class="reveal">
-      <span class="coaching-promo-label">Coaching</span>
-      <h2 class="coaching-promo-title">Tu veux vivre durablement<br>du montage ?</h2>
-      <p class="coaching-promo-body">Je propose un accompagnement sur-mesure pour les monteurs vidéo et motion designers qui veulent franchir un vrai cap, techniquement et créativement. Pas une formation générique, un suivi personnalisé.</p>
-    </div>
-    <div class="reveal" style="transition-delay:.12s; flex-shrink:0;">
-      <a href="./coaching.html" class="btn-outline" style="white-space:nowrap; display:inline-block;">See the Coaching</a>
-    </div>
-  </div>
-</section>
-
-<div class="sep"></div>
 
 <!-- ==============================
      REVIEWS — scrolling columns
@@ -1706,6 +1704,22 @@
         </div>
         <div class="faq-answer"><div class="faq-answer-inner">Every project includes 2 revision rounds. After that, extra changes may be charged.</div></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==============================
+     COACHING PROMO
+============================== -->
+<section id="coaching-promo">
+  <div class="coaching-promo-inner">
+    <div class="reveal">
+      <span class="coaching-promo-label">Coaching</span>
+      <h2 class="coaching-promo-title">Ready to take your editing<br>to the next level?</h2>
+      <p class="coaching-promo-body">I offer a personalized 1-on-1 coaching for video editors and motion designers who want to seriously level up technically and creatively. Not a generic course. A real mentorship built around you.</p>
+    </div>
+    <div class="reveal" style="transition-delay:.12s; flex-shrink:0;">
+      <a href="./coaching.html" class="btn-outline" style="white-space:nowrap; display:inline-block;">Take me to the Coaching →</a>
     </div>
   </div>
 </section>
