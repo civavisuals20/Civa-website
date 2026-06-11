@@ -32,7 +32,7 @@
       --funnel: 'Funnel Display', sans-serif;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-    img, video, a, button, .work-card, .svc-box { -webkit-user-select: none; user-select: none; }
+    img, video, a, button { -webkit-user-select: none; user-select: none; }
     html { scroll-behavior: smooth; }
     body {
       background: var(--black-abyss);
@@ -979,8 +979,13 @@
       color:var(--gold); opacity:.65; margin-bottom:16px; display:block;
     }
     .coaching-promo-title {
-      font-family:var(--funnel); font-weight:400; font-size:36px;
-      color:var(--ivory); line-height:1.2; letter-spacing:-.02em; margin-bottom:16px;
+      font-family:var(--funnel); font-weight:700; font-size:36px;
+      line-height:1.2; letter-spacing:-.02em; margin-bottom:16px;
+      background:linear-gradient(90deg,#7A5C1E 0%,#C9A84C 16%,#F0D97C 30%,#FFF9E8 46%,#F0D97C 62%,#C9A84C 78%,#7A5C1E 94%,#C9A84C 100%);
+      background-size:200% auto;
+      -webkit-background-clip:text; background-clip:text;
+      color:transparent; -webkit-text-fill-color:transparent;
+      animation:shiny-gold 4s linear infinite;
     }
     .coaching-promo-body {
       font-family:var(--sf); font-size:15px; font-weight:400;
@@ -1197,52 +1202,64 @@
     </div>
     <div class="work-grid">
       <div class="work-card reveal" data-ytid="wYgml-ZvuRI" style="transition-delay:.05s">
-        <img src="https://img.youtube.com/vi/wYgml-ZvuRI/maxresdefault.jpg" alt="Vidéo presentation - Moonky" loading="lazy">
-        <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-        <div class="work-card-overlay">
-          <span class="work-category">Motion Design</span>
-          <span class="work-play">Vidéo presentation - Moonky</span>
-        </div>
+        <a href="https://www.youtube.com/watch?v=wYgml-ZvuRI" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;">
+          <img src="https://img.youtube.com/vi/wYgml-ZvuRI/maxresdefault.jpg" alt="Vidéo presentation - Moonky" loading="lazy">
+          <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          <div class="work-card-overlay">
+            <span class="work-category">Motion Design</span>
+            <span class="work-play">Vidéo presentation - Moonky</span>
+          </div>
+        </a>
       </div>
       <div class="work-card reveal" data-ytid="6E_tLPf5XQ8" style="transition-delay:.1s">
-        <img src="https://img.youtube.com/vi/6E_tLPf5XQ8/maxresdefault.jpg" alt="YouTube Production" loading="lazy">
-        <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-        <div class="work-card-overlay">
-          <span class="work-category">YouTube · Storytelling</span>
-          <span class="work-play">YouTube Production</span>
-        </div>
+        <a href="https://www.youtube.com/watch?v=6E_tLPf5XQ8" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;">
+          <img src="https://img.youtube.com/vi/6E_tLPf5XQ8/maxresdefault.jpg" alt="YouTube Production" loading="lazy">
+          <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          <div class="work-card-overlay">
+            <span class="work-category">YouTube · Storytelling</span>
+            <span class="work-play">YouTube Production</span>
+          </div>
+        </a>
       </div>
       <div class="work-card reveal" data-ytid="Vfv4awsWi3Q" style="transition-delay:.15s">
-        <img src="https://img.youtube.com/vi/Vfv4awsWi3Q/maxresdefault.jpg" alt="Alejni" loading="lazy">
-        <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-        <div class="work-card-overlay">
-          <span class="work-category">SaaS Explainer</span>
-          <span class="work-play">Alejni</span>
-        </div>
+        <a href="https://www.youtube.com/watch?v=Vfv4awsWi3Q" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;">
+          <img src="https://img.youtube.com/vi/Vfv4awsWi3Q/maxresdefault.jpg" alt="Alejni" loading="lazy">
+          <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          <div class="work-card-overlay">
+            <span class="work-category">SaaS Explainer</span>
+            <span class="work-play">Alejni</span>
+          </div>
+        </a>
       </div>
       <div class="work-card reveal" data-ytid="3L8ej0zfCMg" style="transition-delay:.2s">
-        <img src="https://img.youtube.com/vi/3L8ej0zfCMg/maxresdefault.jpg" alt="La boiserie" loading="lazy">
-        <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-        <div class="work-card-overlay">
-          <span class="work-category">Motion Design · Ads</span>
-          <span class="work-play">La boiserie</span>
-        </div>
+        <a href="https://www.youtube.com/watch?v=3L8ej0zfCMg" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;">
+          <img src="https://img.youtube.com/vi/3L8ej0zfCMg/maxresdefault.jpg" alt="La boiserie" loading="lazy">
+          <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          <div class="work-card-overlay">
+            <span class="work-category">Motion Design · Ads</span>
+            <span class="work-play">La boiserie</span>
+          </div>
+        </a>
       </div>
       <div class="work-card reveal" data-ytid="AOU2b5-pxw0" style="transition-delay:.25s">
-        <img src="https://img.youtube.com/vi/AOU2b5-pxw0/maxresdefault.jpg" alt="MxShop" loading="lazy">
-        <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-        <div class="work-card-overlay">
-          <span class="work-category">Motion Design · Video Editing</span>
-          <span class="work-play">MxShop</span>
-        </div>
+        <a href="https://www.youtube.com/watch?v=AOU2b5-pxw0" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;">
+          <img src="https://img.youtube.com/vi/AOU2b5-pxw0/maxresdefault.jpg" alt="MxShop" loading="lazy">
+          <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          <div class="work-card-overlay">
+            <span class="work-category">Motion Design · Video Editing</span>
+            <span class="work-play">MxShop</span>
+          </div>
+        </a>
       </div>
       <div class="work-card reveal" data-ytid="ygjbuLDvwIY" style="transition-delay:.3s">
-        <img src="https://img.youtube.com/vi/ygjbuLDvwIY/maxresdefault.jpg" alt="Pathé" loading="lazy">
-        <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-        <div class="work-card-overlay">
-          <span class="work-category">Motion Design · Ads</span>
-          <span class="work-play">Pathé</span>
-        </div>
+        <a href="https://www.youtube.com/watch?v=ygjbuLDvwIY" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;">
+          <img src="https://img.youtube.com/vi/ygjbuLDvwIY/maxresdefault.jpg" alt="Pathé" loading="lazy">
+          <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          <div class="work-card-overlay">
+            <span class="work-category">Motion Design · Ads</span>
+            <span class="work-play">Pathé</span>
+          </div>
+        </a>
       </div>
     </div>
   </div>
@@ -1558,8 +1575,10 @@
       <!-- Box 01 — VSL -->
       <div class="svc-box reveal" style="transition-delay:.1s">
         <div class="svc-video-wrap" data-ytid="wYgml-ZvuRI">
-          <img src="https://img.youtube.com/vi/wYgml-ZvuRI/maxresdefault.jpg" alt="VSL" loading="lazy">
-          <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          <a href="https://www.youtube.com/watch?v=wYgml-ZvuRI" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;position:absolute;inset:0;">
+            <img src="https://img.youtube.com/vi/wYgml-ZvuRI/maxresdefault.jpg" alt="VSL" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+            <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          </a>
         </div>
         <div class="svc-info">
           <div class="svc-box-num">01</div>
@@ -1576,12 +1595,16 @@
       <div class="svc-box reveal" style="transition-delay:.2s">
         <div class="svc-video-wrap svc-carousel" id="carousel-02">
           <div class="svc-card svc-card-front" data-ytid="FgZUZUY67D8">
-            <img src="https://img.youtube.com/vi/FgZUZUY67D8/maxresdefault.jpg" alt="Motion Design Ads" loading="lazy">
-            <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+            <a href="https://www.youtube.com/watch?v=FgZUZUY67D8" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;position:absolute;inset:0;">
+              <img src="https://img.youtube.com/vi/FgZUZUY67D8/maxresdefault.jpg" alt="Motion Design Ads" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+              <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+            </a>
           </div>
           <div class="svc-card svc-card-back" data-ytid="-m4E5zbTD8A">
-            <img src="https://img.youtube.com/vi/-m4E5zbTD8A/maxresdefault.jpg" alt="Motion Design Ads 2" loading="lazy">
-            <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+            <a href="https://www.youtube.com/watch?v=-m4E5zbTD8A" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;position:absolute;inset:0;">
+              <img src="https://img.youtube.com/vi/-m4E5zbTD8A/maxresdefault.jpg" alt="Motion Design Ads 2" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+              <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+            </a>
           </div>
           <button class="svc-next-btn" onclick="carouselNext(this)" aria-label="Next video">›</button>
         </div>
@@ -1601,8 +1624,10 @@
       <!-- Box 03 — SaaS Explainer -->
       <div class="svc-box reveal" style="transition-delay:.3s">
         <div class="svc-video-wrap" data-ytid="Vfv4awsWi3Q">
-          <img src="https://img.youtube.com/vi/Vfv4awsWi3Q/maxresdefault.jpg" alt="SaaS Explainer" loading="lazy">
-          <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          <a href="https://www.youtube.com/watch?v=Vfv4awsWi3Q" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;position:absolute;inset:0;">
+            <img src="https://img.youtube.com/vi/Vfv4awsWi3Q/maxresdefault.jpg" alt="SaaS Explainer" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+            <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          </a>
         </div>
         <div class="svc-info">
           <div class="svc-box-num">03</div>
@@ -1619,8 +1644,10 @@
       <!-- Box 04 — Reels & Storytelling -->
       <div class="svc-box reveal" style="transition-delay:.4s">
         <div class="svc-video-wrap" data-ytid="uCPJXOlwoxw">
-          <img src="https://img.youtube.com/vi/uCPJXOlwoxw/maxresdefault.jpg" alt="Reels & Storytelling" loading="lazy">
-          <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          <a href="https://www.youtube.com/watch?v=uCPJXOlwoxw" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;position:absolute;inset:0;">
+            <img src="https://img.youtube.com/vi/uCPJXOlwoxw/maxresdefault.jpg" alt="Reels & Storytelling" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+            <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          </a>
         </div>
         <div class="svc-info">
           <div class="svc-box-num">04</div>
@@ -1637,8 +1664,10 @@
       <!-- Box 05 — YouTube Videos (centered in 3-col grid) -->
       <div class="svc-box reveal" style="transition-delay:.5s; grid-column:2/3">
         <div class="svc-video-wrap" data-ytid="6E_tLPf5XQ8">
-          <img src="https://img.youtube.com/vi/6E_tLPf5XQ8/maxresdefault.jpg" alt="YouTube Videos" loading="lazy">
-          <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          <a href="https://www.youtube.com/watch?v=6E_tLPf5XQ8" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;position:absolute;inset:0;">
+            <img src="https://img.youtube.com/vi/6E_tLPf5XQ8/maxresdefault.jpg" alt="YouTube Videos" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+            <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          </a>
         </div>
         <div class="svc-info">
           <div class="svc-box-num">05</div>
@@ -1719,7 +1748,7 @@
       <p class="coaching-promo-body">I offer a personalized 1-on-1 coaching for video editors and motion designers who want to seriously level up technically and creatively. Not a generic course. A real mentorship built around you.</p>
     </div>
     <div class="reveal" style="transition-delay:.12s; flex-shrink:0;">
-      <a href="./coaching.html" class="btn-outline" style="white-space:nowrap; display:inline-block;">Take me to the Coaching →</a>
+      <a href="./coaching.html" class="btn-primary" style="white-space:nowrap;"><span class="shiny-text">Take me to the Coaching</span></a>
     </div>
   </div>
 </section>
@@ -2037,9 +2066,11 @@
     const closeBtn = document.getElementById('vid-modal-close');
 
     function openModal(ytid){
-      /* On touch devices open YouTube directly — avoids iOS iframe/autoplay issues */
       if(window.matchMedia('(hover:none)').matches){
-        window.open('https://www.youtube.com/watch?v='+ytid,'_blank','noopener,noreferrer');
+        const a=document.createElement('a');
+        a.href='https://www.youtube.com/watch?v='+ytid;
+        a.target='_blank'; a.rel='noopener noreferrer';
+        document.body.appendChild(a); a.click(); document.body.removeChild(a);
         return;
       }
       iframe.src='https://www.youtube.com/embed/'+ytid+'?autoplay=1&rel=0&modestbranding=1';
@@ -2055,14 +2086,22 @@
     modal.addEventListener('click', e=>{ if(e.target===modal) closeModal(); });
     document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModal(); });
     document.querySelectorAll('.work-card[data-ytid]').forEach(card=>{
-      card.addEventListener('click', ()=>openModal(card.dataset.ytid));
+      card.addEventListener('click', e=>{
+        e.preventDefault();
+        openModal(card.dataset.ytid);
+      });
     });
     document.querySelectorAll('.svc-video-wrap[data-ytid]').forEach(wrap=>{
-      wrap.addEventListener('click', ()=>openModal(wrap.dataset.ytid));
+      wrap.addEventListener('click', e=>{
+        e.preventDefault();
+        openModal(wrap.dataset.ytid);
+      });
     });
     document.querySelectorAll('.svc-card[data-ytid]').forEach(card=>{
       card.addEventListener('click', e=>{
-        if(!e.target.closest('.svc-next-btn')) openModal(card.dataset.ytid);
+        if(e.target.closest('.svc-next-btn')) return;
+        e.preventDefault();
+        openModal(card.dataset.ytid);
       });
     });
   })();
