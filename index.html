@@ -1118,7 +1118,7 @@
 <div class="mobile-menu" id="mobile-menu">
   <button class="mobile-close" id="mobile-close" aria-label="Close">×</button>
   <a href="#hero"               class="mob-link">Home</a>
-  <a href="./coaching.html"   class="mob-link">Mentorship</a>
+  <a href="./coaching.html"   class="mob-link">Coaching</a>
   <a href="https://calendly.com/civavisuals20/30min" target="_blank" rel="noopener noreferrer" class="mob-cta mob-link"><span class="shiny-text">Book a Call</span></a>
 </div>
 
@@ -2037,6 +2037,11 @@
     const closeBtn = document.getElementById('vid-modal-close');
 
     function openModal(ytid){
+      /* On touch devices open YouTube directly — avoids iOS iframe/autoplay issues */
+      if(window.matchMedia('(hover:none)').matches){
+        window.open('https://www.youtube.com/watch?v='+ytid,'_blank','noopener,noreferrer');
+        return;
+      }
       iframe.src='https://www.youtube.com/embed/'+ytid+'?autoplay=1&rel=0&modestbranding=1';
       modal.style.display='flex';
       requestAnimationFrame(()=>requestAnimationFrame(()=>modal.classList.add('visible')));
