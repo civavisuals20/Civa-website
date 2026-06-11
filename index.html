@@ -530,6 +530,39 @@
       transform:translateY(8px); transition:transform .3s;
     }
     .work-card:hover .work-play { transform:translateY(0); }
+    /* Play icon centered over thumbnail */
+    .work-play-icon {
+      position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+      width:48px; height:48px; border-radius:50%;
+      background:rgba(10,10,10,.55); border:.5px solid rgba(201,168,76,.4);
+      display:flex; align-items:center; justify-content:center;
+      pointer-events:none;
+      opacity:0; transition:opacity .25s, transform .25s;
+      translate:0 4px;
+    }
+    .work-play-icon svg { width:18px; height:18px; fill:var(--gold); margin-left:3px; }
+    .work-card:hover .work-play-icon { opacity:1; translate:0 0; }
+    /* Video lightbox modal */
+    #vid-modal {
+      position:fixed; inset:0; z-index:9000;
+      display:none; align-items:center; justify-content:center;
+      background:rgba(10,10,10,.94); backdrop-filter:blur(10px);
+      opacity:0; transition:opacity .25s;
+    }
+    #vid-modal.open { display:flex; }
+    #vid-modal.visible { opacity:1; }
+    #vid-modal-close {
+      position:fixed; top:22px; right:26px;
+      background:none; border:none; color:var(--ivory); cursor:pointer;
+      opacity:.55; transition:opacity .2s; padding:8px; line-height:1;
+    }
+    #vid-modal-close:hover { opacity:1; }
+    #vid-modal-close svg { width:26px; height:26px; display:block; }
+    #vid-modal-inner {
+      width:90vw; max-width:1100px; aspect-ratio:16/9;
+      border:.5px solid rgba(201,168,76,.18); border-radius:4px; overflow:hidden;
+    }
+    #vid-modal-iframe { width:100%; height:100%; display:block; border:none; }
 
     /* ============================
        ABOUT SECTION — redesigned
@@ -731,12 +764,13 @@
     /* Video area — no shimmer since iframes load their own content */
     .svc-video-wrap {
       width:100%; aspect-ratio:16/9; background:var(--black-surface);
-      position:relative; overflow:hidden; cursor:default;
+      position:relative; overflow:hidden; cursor:pointer;
     }
-    /* Change 11: YouTube iframe CSS */
-    .svc-yt-frame {
-      width:100%; height:100%; border:none; display:block;
+    .svc-video-wrap img {
+      width:100%; height:100%; object-fit:cover; display:block; transition:transform .35s;
     }
+    .svc-video-wrap:hover img { transform:scale(1.03); }
+    .svc-card img { width:100%; height:100%; object-fit:cover; display:block; }
     /* Carousel CSS */
     .svc-carousel { position:relative; }
     .svc-card {
@@ -926,6 +960,33 @@
     }
 
     /* ============================
+       COACHING PROMO
+    ============================ */
+    #coaching-promo {
+      padding:80px 48px;
+      background:var(--black-deep);
+      border-top:.5px solid rgba(201,168,76,.07);
+      border-bottom:.5px solid rgba(201,168,76,.07);
+    }
+    .coaching-promo-inner {
+      max-width:1100px; margin:0 auto;
+      display:grid; grid-template-columns:1fr auto; gap:72px; align-items:center;
+    }
+    .coaching-promo-label {
+      font-family:var(--sf); font-size:10px; font-weight:700;
+      letter-spacing:.2em; text-transform:uppercase;
+      color:var(--gold); opacity:.65; margin-bottom:16px; display:block;
+    }
+    .coaching-promo-title {
+      font-family:var(--funnel); font-weight:400; font-size:36px;
+      color:var(--ivory); line-height:1.2; letter-spacing:-.02em; margin-bottom:16px;
+    }
+    .coaching-promo-body {
+      font-family:var(--sf); font-size:15px; font-weight:400;
+      color:var(--ivory-muted); line-height:1.85; max-width:560px;
+    }
+
+    /* ============================
        RESPONSIVE
     ============================ */
     @media (max-width:1279px) {
@@ -941,14 +1002,26 @@
       .nav-cta { padding:8px 14px; font-size:9px; }
       .services-boxes { grid-template-columns:1fr 1fr; }
     }
+    /* Available badge in hero — mobile only */
+    .hero-available {
+      display:none;
+    }
     @media (max-width:767px) {
       body { cursor:auto; }
       #cursor, #cursor-ring { display:none; }
       #nav { padding:0 14px; }
-      /* Show available badge on mobile — compact */
-      .available-badge { display:flex; padding:4px 9px; gap:5px; }
-      .available-text { font-size:8px; letter-spacing:.1em; }
-      .available-dot { width:5px; height:5px; }
+      /* Hide badge from nav on mobile */
+      .available-badge { display:none; }
+      /* Show badge inside hero, top-left */
+      .hero-available {
+        display:flex; align-items:center; gap:8px;
+        position:absolute; top:88px; left:18px; z-index:5;
+        padding:6px 14px; border-radius:20px;
+        border:.5px solid rgba(201,168,76,.35);
+        background:rgba(201,168,76,.07);
+      }
+      .hero-available .available-dot { width:8px; height:8px; }
+      .hero-available .available-text { font-size:11px; letter-spacing:.12em; }
       /* Shrink wordmark on mobile to make room */
       .nav-wordmark { font-size:12px; letter-spacing:.25em; }
       .nav-cta { padding:7px 11px; font-size:8px; }
@@ -966,7 +1039,10 @@
       .hero-tag-4 { bottom:29%; right:1%; }
       #work, #about, #reviews, #services, #faq, #contact { padding:56px 18px; }
       footer { padding:36px 18px 24px; }
-      .work-grid { grid-template-columns:1fr 1fr; gap:12px; }
+      .work-grid { grid-template-columns:1fr; gap:12px; }
+      #coaching-promo { padding:56px 18px; }
+      .coaching-promo-inner { grid-template-columns:1fr; gap:28px; }
+      .coaching-promo-title { font-size:28px; }
       .about-inner { grid-template-columns:1fr; gap:32px; }
       .about-photo-sm { width:100%; height:240px; }
       .testi-outer { max-height:500px; }
@@ -993,7 +1069,7 @@
 <nav id="nav">
   <div class="nav-left">
     <div class="nav-photo">
-      <img src="./assets/Logo3_1.10.3.png" alt="Civa" style="width:100%;height:100%;object-fit:contain;padding:0;transform:scale(1.5);transform-origin:center;">
+      <img src="./assets/Logo_3.2.1.jpg" alt="Civa" style="width:100%;height:100%;object-fit:contain;padding:0;transform:scale(1.5);transform-origin:center;">
     </div>
     <span class="nav-wordmark">CIVA</span>
     <div class="available-badge">
@@ -1034,9 +1110,14 @@
      HERO
 ============================== -->
 <section id="hero">
+  <!-- Available badge — mobile only, scrolls with hero -->
+  <div class="hero-available">
+    <span class="available-dot"></span>
+    <span class="available-text">Available</span>
+  </div>
   <!-- Change 2: YouTube iframe background -->
   <div class="hero-yt-wrap">
-    <iframe class="hero-yt-frame" src="https://www.youtube.com/embed/_apciDixLLE?autoplay=1&mute=1&loop=1&playlist=_apciDixLLE&controls=0&disablekb=1&fs=0&rel=0&showinfo=0&modestbranding=1&iv_load_policy=3&vq=hd2160" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <video class="hero-yt-frame" src="./assets/showreel.mp4" autoplay muted loop playsinline></video>
   </div>
   <div class="hero-video-overlay"></div>
 
@@ -1099,43 +1180,49 @@
       </div>
     </div>
     <div class="work-grid">
-      <div class="work-card reveal" style="transition-delay:.05s">
-        <iframe src="https://www.youtube.com/embed/wYgml-ZvuRI?rel=0&modestbranding=1" style="width:100%;aspect-ratio:16/9;display:block;border:none;" allowfullscreen loading="lazy" title="Vidéo presentation - Moonky"></iframe>
+      <div class="work-card reveal" data-ytid="wYgml-ZvuRI" style="transition-delay:.05s">
+        <img src="https://img.youtube.com/vi/wYgml-ZvuRI/maxresdefault.jpg" alt="Vidéo presentation - Moonky" loading="lazy">
+        <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
         <div class="work-card-overlay">
           <span class="work-category">Motion Design</span>
           <span class="work-play">Vidéo presentation - Moonky</span>
         </div>
       </div>
-      <div class="work-card reveal" style="transition-delay:.1s">
-        <iframe src="https://www.youtube.com/embed/6E_tLPf5XQ8?rel=0&modestbranding=1" style="width:100%;aspect-ratio:16/9;display:block;border:none;" allowfullscreen loading="lazy" title="YouTube & Storytelling"></iframe>
+      <div class="work-card reveal" data-ytid="6E_tLPf5XQ8" style="transition-delay:.1s">
+        <img src="https://img.youtube.com/vi/6E_tLPf5XQ8/maxresdefault.jpg" alt="YouTube Production" loading="lazy">
+        <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
         <div class="work-card-overlay">
           <span class="work-category">YouTube · Storytelling</span>
           <span class="work-play">YouTube Production</span>
         </div>
       </div>
-      <div class="work-card reveal" style="transition-delay:.15s">
-        <iframe src="https://www.youtube.com/embed/Vfv4awsWi3Q?rel=0&modestbranding=1" style="width:100%;aspect-ratio:16/9;display:block;border:none;" allowfullscreen loading="lazy" title="Alejni"></iframe>
+      <div class="work-card reveal" data-ytid="Vfv4awsWi3Q" style="transition-delay:.15s">
+        <img src="https://img.youtube.com/vi/Vfv4awsWi3Q/maxresdefault.jpg" alt="Alejni" loading="lazy">
+        <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
         <div class="work-card-overlay">
           <span class="work-category">SaaS Explainer</span>
           <span class="work-play">Alejni</span>
         </div>
       </div>
-      <div class="work-card reveal" style="transition-delay:.2s">
-        <iframe src="https://www.youtube.com/embed/3L8ej0zfCMg?rel=0&modestbranding=1" style="width:100%;aspect-ratio:16/9;display:block;border:none;" allowfullscreen loading="lazy" title="La boiserie"></iframe>
+      <div class="work-card reveal" data-ytid="3L8ej0zfCMg" style="transition-delay:.2s">
+        <img src="https://img.youtube.com/vi/3L8ej0zfCMg/maxresdefault.jpg" alt="La boiserie" loading="lazy">
+        <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
         <div class="work-card-overlay">
           <span class="work-category">Motion Design · Ads</span>
           <span class="work-play">La boiserie</span>
         </div>
       </div>
-      <div class="work-card reveal" style="transition-delay:.25s">
-        <iframe src="https://www.youtube.com/embed/AOU2b5-pxw0?rel=0&modestbranding=1" style="width:100%;aspect-ratio:16/9;display:block;border:none;" allowfullscreen loading="lazy" title="MxShop"></iframe>
+      <div class="work-card reveal" data-ytid="AOU2b5-pxw0" style="transition-delay:.25s">
+        <img src="https://img.youtube.com/vi/AOU2b5-pxw0/maxresdefault.jpg" alt="MxShop" loading="lazy">
+        <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
         <div class="work-card-overlay">
           <span class="work-category">Motion Design · Video Editing</span>
           <span class="work-play">MxShop</span>
         </div>
       </div>
-      <div class="work-card reveal" style="transition-delay:.3s">
-        <iframe src="https://www.youtube.com/embed/ygjbuLDvwIY?rel=0&modestbranding=1" style="width:100%;aspect-ratio:16/9;display:block;border:none;" allowfullscreen loading="lazy" title="Pathé"></iframe>
+      <div class="work-card reveal" data-ytid="ygjbuLDvwIY" style="transition-delay:.3s">
+        <img src="https://img.youtube.com/vi/ygjbuLDvwIY/maxresdefault.jpg" alt="Pathé" loading="lazy">
+        <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
         <div class="work-card-overlay">
           <span class="work-category">Motion Design · Ads</span>
           <span class="work-play">Pathé</span>
@@ -1175,6 +1262,22 @@
           Fusion
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==============================
+     COACHING PROMO
+============================== -->
+<section id="coaching-promo">
+  <div class="coaching-promo-inner">
+    <div class="reveal">
+      <span class="coaching-promo-label">Coaching</span>
+      <h2 class="coaching-promo-title">Tu veux vivre durablement<br>du montage ?</h2>
+      <p class="coaching-promo-body">Je propose un accompagnement sur-mesure pour les monteurs vidéo et motion designers qui veulent franchir un vrai cap, techniquement et créativement. Pas une formation générique, un suivi personnalisé.</p>
+    </div>
+    <div class="reveal" style="transition-delay:.12s; flex-shrink:0;">
+      <a href="./coaching.html" class="btn-outline" style="white-space:nowrap; display:inline-block;">See the Coaching</a>
     </div>
   </div>
 </section>
@@ -1456,8 +1559,9 @@
     <div class="services-boxes">
       <!-- Box 01 — VSL -->
       <div class="svc-box reveal" style="transition-delay:.1s">
-        <div class="svc-video-wrap">
-          <iframe class="svc-yt-frame" src="https://www.youtube.com/embed/wYgml-ZvuRI?rel=0&modestbranding=1" allowfullscreen loading="lazy"></iframe>
+        <div class="svc-video-wrap" data-ytid="wYgml-ZvuRI">
+          <img src="https://img.youtube.com/vi/wYgml-ZvuRI/maxresdefault.jpg" alt="VSL" loading="lazy">
+          <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
         </div>
         <div class="svc-info">
           <div class="svc-box-num">01</div>
@@ -1473,11 +1577,13 @@
       <!-- Box 02 — Motion Design Ads (carousel) -->
       <div class="svc-box reveal" style="transition-delay:.2s">
         <div class="svc-video-wrap svc-carousel" id="carousel-02">
-          <div class="svc-card svc-card-front">
-            <iframe class="svc-yt-frame" src="https://www.youtube.com/embed/FgZUZUY67D8?rel=0&modestbranding=1" allowfullscreen loading="lazy"></iframe>
+          <div class="svc-card svc-card-front" data-ytid="FgZUZUY67D8">
+            <img src="https://img.youtube.com/vi/FgZUZUY67D8/maxresdefault.jpg" alt="Motion Design Ads" loading="lazy">
+            <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
           </div>
-          <div class="svc-card svc-card-back">
-            <iframe class="svc-yt-frame" src="https://www.youtube.com/embed/-m4E5zbTD8A?rel=0&modestbranding=1" allowfullscreen loading="lazy"></iframe>
+          <div class="svc-card svc-card-back" data-ytid="-m4E5zbTD8A">
+            <img src="https://img.youtube.com/vi/-m4E5zbTD8A/maxresdefault.jpg" alt="Motion Design Ads 2" loading="lazy">
+            <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
           </div>
           <button class="svc-next-btn" onclick="carouselNext(this)" aria-label="Next video">›</button>
         </div>
@@ -1496,8 +1602,9 @@
 
       <!-- Box 03 — SaaS Explainer -->
       <div class="svc-box reveal" style="transition-delay:.3s">
-        <div class="svc-video-wrap">
-          <iframe class="svc-yt-frame" src="https://www.youtube.com/embed/Vfv4awsWi3Q?rel=0&modestbranding=1" allowfullscreen loading="lazy"></iframe>
+        <div class="svc-video-wrap" data-ytid="Vfv4awsWi3Q">
+          <img src="https://img.youtube.com/vi/Vfv4awsWi3Q/maxresdefault.jpg" alt="SaaS Explainer" loading="lazy">
+          <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
         </div>
         <div class="svc-info">
           <div class="svc-box-num">03</div>
@@ -1513,8 +1620,9 @@
 
       <!-- Box 04 — Reels & Storytelling -->
       <div class="svc-box reveal" style="transition-delay:.4s">
-        <div class="svc-video-wrap">
-          <iframe class="svc-yt-frame" src="https://www.youtube.com/embed/uCPJXOlwoxw?rel=0&modestbranding=1" allowfullscreen loading="lazy"></iframe>
+        <div class="svc-video-wrap" data-ytid="uCPJXOlwoxw">
+          <img src="https://img.youtube.com/vi/uCPJXOlwoxw/maxresdefault.jpg" alt="Reels & Storytelling" loading="lazy">
+          <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
         </div>
         <div class="svc-info">
           <div class="svc-box-num">04</div>
@@ -1530,8 +1638,9 @@
 
       <!-- Box 05 — YouTube Videos (centered in 3-col grid) -->
       <div class="svc-box reveal" style="transition-delay:.5s; grid-column:2/3">
-        <div class="svc-video-wrap">
-          <iframe class="svc-yt-frame" src="https://www.youtube.com/embed/6E_tLPf5XQ8?rel=0&modestbranding=1" allowfullscreen loading="lazy"></iframe>
+        <div class="svc-video-wrap" data-ytid="6E_tLPf5XQ8">
+          <img src="https://img.youtube.com/vi/6E_tLPf5XQ8/maxresdefault.jpg" alt="YouTube Videos" loading="lazy">
+          <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
         </div>
         <div class="svc-info">
           <div class="svc-box-num">05</div>
@@ -1677,7 +1786,7 @@
   <div class="footer-main">
     <div class="footer-left">
       <div class="footer-photo">
-        <img src="./assets/Logo3_1.10.3.png" alt="Civa" style="width:100%;height:100%;object-fit:cover;padding:0;transform:scale(1.25);transform-origin:center;">
+        <img src="./assets/Logo_3.2.1.jpg" alt="Civa" style="width:100%;height:100%;object-fit:cover;padding:0;transform:scale(1.25);transform-origin:center;">
       </div>
       <span class="footer-wordmark">CIVA</span>
     </div>
@@ -1749,7 +1858,7 @@
   const mclose = document.getElementById('mobile-close');
   const openMob =()=>{ mob.style.display='flex'; requestAnimationFrame(()=>mob.classList.add('open')); document.body.style.overflow='hidden'; };
   const closeMob=()=>{ mob.classList.remove('open'); setTimeout(()=>{ mob.style.display='none'; },300); document.body.style.overflow=''; };
-  ham.addEventListener('click', openMob);
+  ham.addEventListener('click', ()=>{ mob.classList.contains('open') ? closeMob() : openMob(); });
   mclose.addEventListener('click', closeMob);
   document.querySelectorAll('.mob-link').forEach(a=>a.addEventListener('click', closeMob));
 
@@ -1905,6 +2014,40 @@
     obs.observe(wrap);
   })();
 
+  /* ===========================
+     VIDEO LIGHTBOX
+  =========================== */
+  (function(){
+    const modal  = document.getElementById('vid-modal');
+    const iframe = document.getElementById('vid-modal-iframe');
+    const closeBtn = document.getElementById('vid-modal-close');
+
+    function openModal(ytid){
+      iframe.src='https://www.youtube.com/embed/'+ytid+'?autoplay=1&rel=0&modestbranding=1';
+      modal.style.display='flex';
+      requestAnimationFrame(()=>requestAnimationFrame(()=>modal.classList.add('visible')));
+      document.body.style.overflow='hidden';
+    }
+    function closeModal(){
+      modal.classList.remove('visible');
+      setTimeout(()=>{ modal.style.display='none'; iframe.src=''; document.body.style.overflow=''; },250);
+    }
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', e=>{ if(e.target===modal) closeModal(); });
+    document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModal(); });
+    document.querySelectorAll('.work-card[data-ytid]').forEach(card=>{
+      card.addEventListener('click', ()=>openModal(card.dataset.ytid));
+    });
+    document.querySelectorAll('.svc-video-wrap[data-ytid]').forEach(wrap=>{
+      wrap.addEventListener('click', ()=>openModal(wrap.dataset.ytid));
+    });
+    document.querySelectorAll('.svc-card[data-ytid]').forEach(card=>{
+      card.addEventListener('click', e=>{
+        if(!e.target.closest('.svc-next-btn')) openModal(card.dataset.ytid);
+      });
+    });
+  })();
+
   document.getElementById('contact-form').addEventListener('submit',async e=>{
     e.preventDefault();
     const fn  = document.getElementById('f-firstname').value.trim();
@@ -1944,6 +2087,18 @@
     } catch(_){}
   });
 </script>
+
+<!-- Video lightbox modal -->
+<div id="vid-modal">
+  <button id="vid-modal-close" aria-label="Close">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+  </button>
+  <div id="vid-modal-inner">
+    <iframe id="vid-modal-iframe" src="" allow="autoplay;encrypted-media;fullscreen" allowfullscreen></iframe>
+  </div>
+</div>
 
 </body>
 </html>

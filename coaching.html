@@ -267,7 +267,7 @@
     /* ============================
        SECTION TITLES
     ============================ */
-    .sec-title { font-family:var(--dela); font-size:50px; color:var(--ivory); line-height:1.15; letter-spacing:-.02em; display:block; }
+    .sec-title { font-family:var(--funnel); font-weight:400; font-size:50px; color:var(--ivory); line-height:1.15; letter-spacing:-.02em; display:block; }
     .sec-title-italic {
       font-family:var(--funnel); font-size:50px; font-weight:300; font-style:italic; line-height:1.15; display:block;
       background:linear-gradient(90deg,#7A5C1E 0%,#C9A84C 16%,#F0D97C 30%,#FFF9E8 46%,#F0D97C 62%,#C9A84C 78%,#7A5C1E 94%,#C9A84C 100%);
@@ -301,66 +301,6 @@
     ============================ */
     .section-inner { max-width:1100px; margin:0 auto; }
 
-    /* ============================
-       HERO PARALLAX FLOATING IMAGES
-    ============================ */
-    .hero-parallax-layer {
-      position:absolute;
-      top:72px; left:0; right:0; bottom:0;
-      pointer-events:none; z-index:0; overflow:hidden;
-    }
-    /* JS translates this outer wrapper — position + size live here */
-    .hero-float-wrap {
-      position:absolute;
-      will-change:transform;
-      opacity:0;
-      transition:opacity 1s ease;
-      pointer-events:auto;
-      cursor:default;
-    }
-    .hero-float-wrap.f-visible { opacity:1; }
-    /* Visual card — the whole rectangle (border included) scales on hover */
-    .hero-float-vid {
-      width:100%; height:100%;
-      border-radius:8px; overflow:hidden;
-      border:.5px solid rgba(201,168,76,.22);
-      transition:transform 0.3s ease, box-shadow 0.3s ease;
-      transform-origin:center center;
-    }
-    .hero-float-wrap:hover .hero-float-vid {
-      transform:scale(1.14);
-      box-shadow:0 0 28px rgba(201,168,76,0.4);
-    }
-    .hero-float-wrap iframe {
-      width:100%; height:100%; border:none; display:block;
-      pointer-events:none; /* hover passes to wrap, scale works */
-    }
-    /* Mobile: show only 4 videos, smaller sizes */
-    @media (max-width:767px) {
-      .hero-float-wrap { display:none; }
-      /* 2 landscape — top & bottom center */
-      .hero-float-wrap[data-vid="airpods"] {
-        display:block;
-        width:148px !important; height:83px !important;
-        top:8% !important; left:calc(50% - 74px) !important; right:auto !important; bottom:auto !important;
-      }
-      .hero-float-wrap[data-vid="cv"] {
-        display:block;
-        width:148px !important; height:83px !important;
-        bottom:7% !important; left:calc(50% - 74px) !important; right:auto !important; top:auto !important;
-      }
-      /* 2 portrait — left & right sides */
-      .hero-float-wrap[data-vid="arsacre"] {
-        display:block;
-        width:64px !important; height:114px !important;
-        top:30% !important; left:4% !important; right:auto !important; bottom:auto !important;
-      }
-      .hero-float-wrap[data-vid="caseyfaris"] {
-        display:block;
-        width:64px !important; height:114px !important;
-        top:30% !important; right:4% !important; left:auto !important; bottom:auto !important;
-      }
-    }
 
     /* ============================
        HERO SECTION
@@ -449,23 +389,6 @@
       padding:28px 24px;
       transition: border-color .35s, box-shadow .35s, opacity .35s, transform .35s;
     }
-    /* Focus effect: when hovering the grid, dim others and scale up the hovered one */
-    .who-cards:hover .who-card {
-      opacity:0.4;
-      transform:scale(0.97);
-    }
-    .who-cards:hover .who-card:hover,
-    .who-card.touch-focus {
-      opacity:1;
-      transform:scale(1.04);
-      border-color:rgba(201,168,76,0.55);
-      box-shadow:0 0 36px rgba(201,168,76,0.22), 0 0 72px rgba(201,168,76,0.08);
-    }
-    /* When a card has touch-focus, dim siblings */
-    .who-card.touch-focus ~ .who-card,
-    .who-cards:has(.touch-focus) .who-card:not(.touch-focus) {
-      opacity:0.4; transform:scale(0.97);
-    }
     .who-card-icon { color:var(--gold); font-size:18px; margin-bottom:14px; }
     .who-card-text { font-family:var(--sf); font-weight:500; font-size:15px; color:var(--ivory-muted); line-height:1.7; }
 
@@ -483,14 +406,19 @@
     .pillar-text {}
     .pillar-num {
       font-family:var(--dela); font-size:52px; font-weight:400;
-      letter-spacing:0; color:var(--gold); margin-bottom:16px; line-height:1;
+      letter-spacing:0; margin-bottom:16px; line-height:1;
+      background:linear-gradient(90deg,#7A5C1E 0%,#C9A84C 16%,#F0D97C 30%,#FFF9E8 46%,#F0D97C 62%,#C9A84C 78%,#7A5C1E 94%,#C9A84C 100%);
+      background-size:200% auto;
+      -webkit-background-clip:text; background-clip:text;
+      color:transparent; -webkit-text-fill-color:transparent;
+      animation:shiny-gold 3s linear infinite;
     }
     .pillar-gold-line {
       width:60px; height:.5px; margin-bottom:20px;
       background:linear-gradient(90deg,var(--gold),transparent);
     }
     .pillar-title {
-      font-family:var(--funnel); font-size:26px; font-weight:700;
+      font-family:var(--funnel); font-size:34px; font-weight:700;
       letter-spacing:.04em; text-transform:none;
       margin-bottom:20px;
       background:linear-gradient(90deg,#7A5C1E 0%,#C9A84C 16%,#F0D97C 30%,#FFF9E8 46%,#F0D97C 62%,#C9A84C 78%,#7A5C1E 94%,#C9A84C 100%);
@@ -502,6 +430,7 @@
     .pillar-desc {
       font-family:var(--sf); font-size:16px; font-weight:500;
       color:var(--ivory-muted); line-height:1.8; margin-bottom:28px;
+      text-align:left;
     }
     .pillar-desc .gold-em {
       color:var(--gold); font-style:italic; font-family:var(--funnel);
@@ -603,7 +532,7 @@
       max-width:760px; margin:0 auto; grid-column:1/-1;
     }
     .pillar-center .pillar-gold-line { margin:0 auto 20px; }
-    .pillar-center .pillar-desc { font-size:18px; }
+    .pillar-center .pillar-desc { font-size:18px; max-width:520px; margin-left:auto; margin-right:auto; text-align:left; }
     .pillar-center .pillar-points { align-items:flex-start; text-align:left; max-width:520px; margin:0 auto; }
     .pillar-center .pillar-points li { font-size:16px; justify-content:flex-start; }
 
@@ -843,7 +772,7 @@
   <div class="nav-left">
     <a href="./index.html">
       <div class="nav-photo">
-        <img src="./assets/Logo3_1.10.3.png" alt="Civa" style="width:100%;height:100%;object-fit:contain;padding:0;transform:scale(1.5);transform-origin:center;">
+        <img src="./assets/Logo_3.2.1.jpg" alt="Civa" style="width:100%;height:100%;object-fit:contain;padding:0;transform:scale(1.5);transform-origin:center;">
       </div>
     </a>
     <a href="./index.html"><span class="nav-wordmark">CIVA</span></a>
@@ -881,92 +810,6 @@
      HERO
 ============================== -->
 <section id="hero-mentor">
-
-  <!-- Parallax floating videos — mouse-reactive depth layers (9 unique clips) -->
-  <div class="hero-parallax-layer" id="heroParallax">
-
-    <!-- micipsa — landscape 16:9 | small/far — top-left -->
-    <div class="hero-float-wrap" data-vid="micipsa" data-depth="0.8"
-         style="top:5%;left:5%;width:172px;height:97px;">
-      <div class="hero-float-vid">
-        <iframe src="https://www.youtube.com/embed/oXFzZYj5gAc?autoplay=1&mute=1&loop=1&playlist=oXFzZYj5gAc&controls=0&modestbranding=1&playsinline=1&rel=0"
-                allow="autoplay; encrypted-media" allowfullscreen loading="lazy"></iframe>
-      </div>
-    </div>
-
-    <!-- airpods — landscape 16:9 | medium — top centre-left -->
-    <div class="hero-float-wrap" data-vid="airpods" data-depth="1.5"
-         style="top:5%;left:21%;width:210px;height:118px;">
-      <div class="hero-float-vid">
-        <iframe src="https://www.youtube.com/embed/HT6SO0ka9So?autoplay=1&mute=1&loop=1&playlist=HT6SO0ka9So&controls=0&modestbranding=1&playsinline=1&rel=0"
-                allow="autoplay; encrypted-media" allowfullscreen loading="lazy"></iframe>
-      </div>
-    </div>
-
-    <!-- foot — landscape 16:9 | small — top centre-right -->
-    <div class="hero-float-wrap" data-vid="foot" data-depth="1.0"
-         style="top:5%;right:21%;width:182px;height:102px;">
-      <div class="hero-float-vid">
-        <iframe src="https://www.youtube.com/embed/BB92FuBHUnQ?autoplay=1&mute=1&loop=1&playlist=BB92FuBHUnQ&controls=0&modestbranding=1&playsinline=1&rel=0"
-                allow="autoplay; encrypted-media" allowfullscreen loading="lazy"></iframe>
-      </div>
-    </div>
-
-    <!-- arsacre — portrait 9:16 | small/far — top-right -->
-    <div class="hero-float-wrap" data-vid="arsacre" data-depth="0.6"
-         style="top:5%;right:5%;width:86px;height:153px;">
-      <div class="hero-float-vid">
-        <iframe src="https://www.youtube.com/embed/RFW7SN63uj0?autoplay=1&mute=1&loop=1&playlist=RFW7SN63uj0&controls=0&modestbranding=1&playsinline=1&rel=0"
-                allow="autoplay; encrypted-media" allowfullscreen loading="lazy"></iframe>
-      </div>
-    </div>
-
-    <!-- capable — portrait 9:16 | large/close — mid-left -->
-    <div class="hero-float-wrap" data-vid="capable" data-depth="3.0"
-         style="top:32%;left:5%;width:150px;height:267px;">
-      <div class="hero-float-vid">
-        <iframe src="https://www.youtube.com/embed/ZTa_oWHG7QM?autoplay=1&mute=1&loop=1&playlist=ZTa_oWHG7QM&controls=0&modestbranding=1&playsinline=1&rel=0"
-                allow="autoplay; encrypted-media" allowfullscreen loading="lazy"></iframe>
-      </div>
-    </div>
-
-    <!-- caseyfaris — portrait 9:16 | medium — mid-right -->
-    <div class="hero-float-wrap" data-vid="caseyfaris" data-depth="1.8"
-         style="top:37%;right:5%;width:120px;height:213px;">
-      <div class="hero-float-vid">
-        <iframe src="https://www.youtube.com/embed/zpFtKY5VBmo?autoplay=1&mute=1&loop=1&playlist=zpFtKY5VBmo&controls=0&modestbranding=1&playsinline=1&rel=0"
-                allow="autoplay; encrypted-media" allowfullscreen loading="lazy"></iframe>
-      </div>
-    </div>
-
-    <!-- cv — landscape 16:9 | medium — bottom-left -->
-    <div class="hero-float-wrap" data-vid="cv" data-depth="2.0"
-         style="bottom:6%;left:5%;width:215px;height:121px;">
-      <div class="hero-float-vid">
-        <iframe src="https://www.youtube.com/embed/EeZcqsYGlJU?autoplay=1&mute=1&loop=1&playlist=EeZcqsYGlJU&controls=0&modestbranding=1&playsinline=1&rel=0"
-                allow="autoplay; encrypted-media" allowfullscreen loading="lazy"></iframe>
-      </div>
-    </div>
-
-    <!-- stoplistening — portrait 9:16 | very large/close — bottom centre-left -->
-    <div class="hero-float-wrap" data-vid="stoplistening" data-depth="3.5"
-         style="bottom:5%;left:30%;width:162px;height:288px;">
-      <div class="hero-float-vid">
-        <iframe src="https://www.youtube.com/embed/dMJlTnctOhg?autoplay=1&mute=1&loop=1&playlist=dMJlTnctOhg&controls=0&modestbranding=1&playsinline=1&rel=0"
-                allow="autoplay; encrypted-media" allowfullscreen loading="lazy"></iframe>
-      </div>
-    </div>
-
-    <!-- colorgrading — landscape 16:9 | large/close — bottom-right -->
-    <div class="hero-float-wrap" data-vid="colorgrading" data-depth="2.8"
-         style="bottom:6%;right:5%;width:244px;height:137px;">
-      <div class="hero-float-vid">
-        <iframe src="https://www.youtube.com/embed/VUF1MHDB10k?autoplay=1&mute=1&loop=1&playlist=VUF1MHDB10k&controls=0&modestbranding=1&playsinline=1&rel=0"
-                allow="autoplay; encrypted-media" allowfullscreen loading="lazy"></iframe>
-      </div>
-    </div>
-
-  </div>
 
   <div class="section-inner" style="position:relative;z-index:1;">
 
@@ -1076,8 +919,7 @@
         <p class="pillar-desc">
           This is where your videos go from good to unforgettable. We dive deep into
           Fusion's node system, advanced compositing, and cinematic color grading,
-          the techniques behind the visuals people ask you about.<br>
-          <span class="gold-em">All of this exclusively on DaVinci Resolve &amp; Fusion.</span>
+          the techniques behind the visuals people ask you about.
         </p>
         <ul class="pillar-points">
           <li>Advanced motion design in DaVinci Fusion</li>
@@ -1101,9 +943,9 @@
           <p class="slider-label">Drag to see the difference</p>
           <div class="color-slider-wrap" id="colorSlider">
             <!-- Before — bottom layer, always full width -->
-            <img class="color-before" src="./assets/colo/Colo_before.jpg" alt="Before color grade">
+            <img class="color-before" src="./assets/Colo/Colo_before.jpg" alt="Before color grade">
             <!-- After — top layer, revealed left-to-right via clip-path (image stays fixed) -->
-            <img class="color-after" src="./assets/colo/Colo_after.jpg" alt="After color grade" id="colorAfter">
+            <img class="color-after" src="./assets/Colo/Colo_after.jpg" alt="After color grade" id="colorAfter">
             <div class="color-slider-handle" id="colorHandle"></div>
           </div>
         </div>
@@ -1255,7 +1097,7 @@
   <div class="footer-main">
     <div class="footer-left">
       <div class="footer-photo">
-        <img src="./assets/Logo3_1.10.3.png" alt="Civa" style="width:100%;height:100%;object-fit:contain;padding:0;transform:scale(1.5);transform-origin:center;">
+        <img src="./assets/Logo_3.2.1.jpg" alt="Civa" style="width:100%;height:100%;object-fit:contain;padding:0;transform:scale(1.5);transform-origin:center;">
       </div>
       <span class="footer-wordmark">CIVA</span>
     </div>
@@ -1295,7 +1137,7 @@
   const mclose = document.getElementById('mobile-close');
   const openMob  = () => { mob.style.display='flex'; requestAnimationFrame(()=>mob.classList.add('open')); document.body.style.overflow='hidden'; };
   const closeMob = () => { mob.classList.remove('open'); setTimeout(()=>{ mob.style.display='none'; }, 300); document.body.style.overflow=''; };
-  ham.addEventListener('click', openMob);
+  ham.addEventListener('click', ()=>{ mob.classList.contains('open') ? closeMob() : openMob(); });
   mclose.addEventListener('click', closeMob);
   document.querySelectorAll('.mob-link').forEach(a => a.addEventListener('click', closeMob));
 
@@ -1370,54 +1212,6 @@
     }, { passive:true });
   })();
 
-  /* ===========================
-     HERO PARALLAX FLOATING VIDEOS
-  =========================== */
-  (function() {
-    const hero  = document.getElementById('hero-mentor');
-    const layer = document.getElementById('heroParallax');
-    if (!hero || !layer) return;
-
-    const vids    = Array.from(layer.querySelectorAll('.hero-float-wrap'));
-    const cur     = vids.map(() => ({ x: 0, y: 0 }));
-    const easing  = 0.035;
-    const sensitivity = -1;  // negative = opposite direction → classic parallax depth
-    let mouse = { x: 0, y: 0 };
-
-    // Track mouse relative to TOP-LEFT of hero container (same as useMousePositionRef)
-    window.addEventListener('mousemove', e => {
-      const r = hero.getBoundingClientRect();
-      mouse.x = e.clientX - r.left;
-      mouse.y = e.clientY - r.top;
-    });
-
-    // Touch support
-    hero.addEventListener('touchmove', e => {
-      const r = hero.getBoundingClientRect();
-      const t = e.touches[0];
-      mouse.x = t.clientX - r.left;
-      mouse.y = t.clientY - r.top;
-    }, { passive: true });
-
-    // Stagger fade-in on load
-    vids.forEach((el, i) => setTimeout(() => el.classList.add('f-visible'), 300 + i * 150));
-
-    // rAF loop — exact translation of useAnimationFrame + elementsMap logic
-    (function tick() {
-      vids.forEach((el, i) => {
-        const depth    = parseFloat(el.dataset.depth) || 1;
-        const strength = (depth * sensitivity) / 35;  // −20% amplitude (was /28)
-        const targetX  = mouse.x * strength;           // same as newTargetX
-        const targetY  = mouse.y * strength;           // same as newTargetY
-        const dx = targetX - cur[i].x;
-        const dy = targetY - cur[i].y;
-        cur[i].x += dx * easing;                       // same easing formula
-        cur[i].y += dy * easing;
-        el.style.transform = `translate3d(${cur[i].x}px,${cur[i].y}px,0)`;
-      });
-      requestAnimationFrame(tick);
-    })();
-  })();
 </script>
 </body>
 </html>
