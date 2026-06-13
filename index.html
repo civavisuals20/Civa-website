@@ -787,29 +787,24 @@
       transition: background .2s, border-color .2s;
     }
     .svc-next-btn:hover { background:rgba(201,168,76,.15); border-color:rgba(201,168,76,.8); }
-    /* Change 11: reduced svc-info padding */
-    .svc-info { padding:16px 18px 18px; }
-    .svc-box-num {
-      font-family:var(--sf); font-weight:700; font-size:10px;
-      color:var(--ivory-ghost); letter-spacing:.2em; margin-bottom:6px;
-    }
-    /* Change 11: svc-box-title smaller */
+    .svc-info { padding:20px 20px 22px; position:relative; overflow:hidden; }
+
     .svc-box-title {
-      font-family:var(--funnel); font-weight:700; font-size:12px;
-      text-transform:uppercase; letter-spacing:.12em; color:var(--gold); margin-bottom:14px;
+      font-family:var(--funnel); font-weight:700; font-size:26px;
+      text-transform:uppercase; letter-spacing:.06em; margin-bottom:14px;
+      line-height:1.1;
+      background:linear-gradient(90deg,#7A5C1E 0%,#C9A84C 16%,#F0D97C 30%,#FFF9E8 46%,#F0D97C 62%,#C9A84C 78%,#7A5C1E 94%,#C9A84C 100%);
+      background-size:200% auto;
+      -webkit-background-clip:text; background-clip:text;
+      color:transparent; -webkit-text-fill-color:transparent;
+      animation:shiny-gold 3s linear infinite;
+      position:relative; z-index:1;
     }
-    /* Gold accent line */
-    .svc-accent-line {
-      width:36px; height:1px;
-      background:linear-gradient(90deg,var(--gold),transparent);
-      opacity:.6; margin-bottom:14px;
-    }
-    .svc-points { list-style:none; display:flex; flex-direction:column; gap:7px; }
-    /* Change 10: svc-points li font size +20% */
+    .svc-points { list-style:none; display:flex; flex-direction:column; gap:7px; position:relative; z-index:1; }
     .svc-points li {
       display:flex; align-items:center; gap:8px;
       font-family:var(--sf); font-size:14px; font-weight:400;
-      color:var(--ivory-muted); line-height:1.5;
+      color:var(--ivory); line-height:1.5;
     }
     .svc-points li::before {
       content:''; display:inline-block;
@@ -1590,8 +1585,6 @@
           </div>
         </div>
         <div class="svc-info">
-          <div class="svc-box-num">01</div>
-          <div class="svc-accent-line"></div>
           <div class="svc-box-title">VSL</div>
           <ul class="svc-points">
             <li>Premium 2D motion design</li>
@@ -1618,8 +1611,6 @@
           <button class="svc-next-btn" onclick="carouselNext(this)" aria-label="Next video">›</button>
         </div>
         <div class="svc-info">
-          <div class="svc-box-num">02</div>
-          <div class="svc-accent-line"></div>
           <div class="svc-box-title">Motion Design Ads</div>
           <ul class="svc-points" id="carousel-02-points">
             <li>Premium motion design</li>
@@ -1639,8 +1630,6 @@
           </div>
         </div>
         <div class="svc-info">
-          <div class="svc-box-num">03</div>
-          <div class="svc-accent-line"></div>
           <div class="svc-box-title">SaaS Explainer</div>
           <ul class="svc-points">
             <li>Clear visual storytelling</li>
@@ -1659,8 +1648,6 @@
           </div>
         </div>
         <div class="svc-info">
-          <div class="svc-box-num">04</div>
-          <div class="svc-accent-line"></div>
           <div class="svc-box-title">Reels &amp; Storytelling</div>
           <ul class="svc-points">
             <li>Cinematic color grading</li>
@@ -1679,8 +1666,6 @@
           </div>
         </div>
         <div class="svc-info">
-          <div class="svc-box-num">05</div>
-          <div class="svc-accent-line"></div>
           <div class="svc-box-title">YouTube Videos</div>
           <ul class="svc-points">
             <li>Retention-focused pacing</li>
@@ -1869,6 +1854,18 @@
   </div>
   <div class="footer-bottom">© 2025 Civa · All rights reserved</div>
 </footer>
+
+<!-- Video lightbox modal -->
+<div id="vid-modal">
+  <button id="vid-modal-close" aria-label="Close">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+  </button>
+  <div id="vid-modal-inner">
+    <iframe id="vid-modal-iframe" src="" allow="autoplay;encrypted-media;fullscreen" allowfullscreen></iframe>
+  </div>
+</div>
 
 <script>
   /* ===========================
@@ -2140,17 +2137,6 @@
   });
 </script>
 
-<!-- Video lightbox modal -->
-<div id="vid-modal">
-  <button id="vid-modal-close" aria-label="Close">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-      <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-    </svg>
-  </button>
-  <div id="vid-modal-inner">
-    <iframe id="vid-modal-iframe" src="" allow="autoplay;encrypted-media;fullscreen" allowfullscreen></iframe>
-  </div>
-</div>
 
 </body>
 </html>
