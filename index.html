@@ -428,13 +428,14 @@
       backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
     }
     .location-icon {
-      font-size:13px; display:inline-block;
-      animation:location-pulse 2s ease-in-out infinite;
+      width:12.6px; height:12.6px; flex-shrink:0;
+      color:#00B4C4;
+      transform-origin:bottom center;
+      animation:pin-pulse 1.8s ease-in-out infinite;
     }
-    @keyframes location-pulse {
-      0%,100% { transform:translateY(0px); }
-      40%     { transform:translateY(-4px); }
-      60%     { transform:translateY(-4px); }
+    @keyframes pin-pulse {
+      0%,100% { transform:scale(1); }
+      50%     { transform:scale(1.3); }
     }
     .hero-stats-row {
       display:flex; gap:32px; align-items:flex-start;
@@ -1142,7 +1143,7 @@
       <div class="hero-pill">Video Editor</div>
       <div class="hero-pill">Motion Designer</div>
       <div class="hero-pill location-pill">
-        <span class="location-icon">📍</span>
+        <svg class="location-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5 14.5 7.62 14.5 9 13.38 11.5 12 11.5z"/></svg>
         France
       </div>
     </div>
@@ -1210,7 +1211,7 @@
     </div>
     <div class="work-grid">
       <div class="work-card reveal" data-ytid="wYgml-ZvuRI" style="transition-delay:.05s">
-        <a href="https://www.youtube.com/watch?v=wYgml-ZvuRI" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;">
+        <a href="javascript:void(0)" style="display:block;text-decoration:none;">
           <img src="https://img.youtube.com/vi/wYgml-ZvuRI/maxresdefault.jpg" alt="Vidéo presentation - Moonky" loading="lazy">
           <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
           <div class="work-card-overlay">
@@ -1220,7 +1221,7 @@
         </a>
       </div>
       <div class="work-card reveal" data-ytid="6E_tLPf5XQ8" style="transition-delay:.1s">
-        <a href="https://www.youtube.com/watch?v=6E_tLPf5XQ8" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;">
+        <a href="javascript:void(0)" style="display:block;text-decoration:none;">
           <img src="https://img.youtube.com/vi/6E_tLPf5XQ8/maxresdefault.jpg" alt="YouTube Production" loading="lazy">
           <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
           <div class="work-card-overlay">
@@ -1230,7 +1231,7 @@
         </a>
       </div>
       <div class="work-card reveal" data-ytid="Vfv4awsWi3Q" style="transition-delay:.15s">
-        <a href="https://www.youtube.com/watch?v=Vfv4awsWi3Q" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;">
+        <a href="javascript:void(0)" style="display:block;text-decoration:none;">
           <img src="https://img.youtube.com/vi/Vfv4awsWi3Q/maxresdefault.jpg" alt="Alejni" loading="lazy">
           <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
           <div class="work-card-overlay">
@@ -1240,7 +1241,7 @@
         </a>
       </div>
       <div class="work-card reveal" data-ytid="3L8ej0zfCMg" style="transition-delay:.2s">
-        <a href="https://www.youtube.com/watch?v=3L8ej0zfCMg" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;">
+        <a href="javascript:void(0)" style="display:block;text-decoration:none;">
           <img src="https://img.youtube.com/vi/3L8ej0zfCMg/maxresdefault.jpg" alt="La boiserie" loading="lazy">
           <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
           <div class="work-card-overlay">
@@ -1250,7 +1251,7 @@
         </a>
       </div>
       <div class="work-card reveal" data-ytid="AOU2b5-pxw0" style="transition-delay:.25s">
-        <a href="https://www.youtube.com/watch?v=AOU2b5-pxw0" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;">
+        <a href="javascript:void(0)" style="display:block;text-decoration:none;">
           <img src="https://img.youtube.com/vi/AOU2b5-pxw0/maxresdefault.jpg" alt="MxShop" loading="lazy">
           <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
           <div class="work-card-overlay">
@@ -1260,7 +1261,7 @@
         </a>
       </div>
       <div class="work-card reveal" data-ytid="ygjbuLDvwIY" style="transition-delay:.3s">
-        <a href="https://www.youtube.com/watch?v=ygjbuLDvwIY" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;">
+        <a href="javascript:void(0)" style="display:block;text-decoration:none;">
           <img src="https://img.youtube.com/vi/ygjbuLDvwIY/maxresdefault.jpg" alt="Pathé" loading="lazy">
           <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
           <div class="work-card-overlay">
@@ -1583,7 +1584,7 @@
       <!-- Box 01 — VSL -->
       <div class="svc-box reveal" style="transition-delay:.1s">
         <div class="svc-video-wrap" data-ytid="wYgml-ZvuRI">
-          <a href="https://www.youtube.com/watch?v=wYgml-ZvuRI" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;position:absolute;inset:0;">
+          <a href="javascript:void(0)" style="display:block;text-decoration:none;position:absolute;inset:0;">
             <img src="https://img.youtube.com/vi/wYgml-ZvuRI/maxresdefault.jpg" alt="VSL" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
             <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
           </a>
@@ -1603,13 +1604,13 @@
       <div class="svc-box reveal" style="transition-delay:.2s">
         <div class="svc-video-wrap svc-carousel" id="carousel-02">
           <div class="svc-card svc-card-front" data-ytid="FgZUZUY67D8">
-            <a href="https://www.youtube.com/watch?v=FgZUZUY67D8" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;position:absolute;inset:0;">
+            <a href="javascript:void(0)" style="display:block;text-decoration:none;position:absolute;inset:0;">
               <img src="https://img.youtube.com/vi/FgZUZUY67D8/maxresdefault.jpg" alt="Motion Design Ads" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
               <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
             </a>
           </div>
           <div class="svc-card svc-card-back" data-ytid="-m4E5zbTD8A">
-            <a href="https://www.youtube.com/watch?v=-m4E5zbTD8A" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;position:absolute;inset:0;">
+            <a href="javascript:void(0)" style="display:block;text-decoration:none;position:absolute;inset:0;">
               <img src="https://img.youtube.com/vi/-m4E5zbTD8A/maxresdefault.jpg" alt="Motion Design Ads 2" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
               <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
             </a>
@@ -1632,7 +1633,7 @@
       <!-- Box 03 — SaaS Explainer -->
       <div class="svc-box reveal" style="transition-delay:.3s">
         <div class="svc-video-wrap" data-ytid="Vfv4awsWi3Q">
-          <a href="https://www.youtube.com/watch?v=Vfv4awsWi3Q" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;position:absolute;inset:0;">
+          <a href="javascript:void(0)" style="display:block;text-decoration:none;position:absolute;inset:0;">
             <img src="https://img.youtube.com/vi/Vfv4awsWi3Q/maxresdefault.jpg" alt="SaaS Explainer" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
             <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
           </a>
@@ -1652,7 +1653,7 @@
       <!-- Box 04 — Reels & Storytelling -->
       <div class="svc-box reveal" style="transition-delay:.4s">
         <div class="svc-video-wrap" data-ytid="uCPJXOlwoxw">
-          <a href="https://www.youtube.com/watch?v=uCPJXOlwoxw" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;position:absolute;inset:0;">
+          <a href="javascript:void(0)" style="display:block;text-decoration:none;position:absolute;inset:0;">
             <img src="https://img.youtube.com/vi/uCPJXOlwoxw/maxresdefault.jpg" alt="Reels & Storytelling" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
             <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
           </a>
@@ -1672,7 +1673,7 @@
       <!-- Box 05 — YouTube Videos (centered in 3-col grid) -->
       <div class="svc-box reveal" style="transition-delay:.5s; grid-column:2/3">
         <div class="svc-video-wrap" data-ytid="6E_tLPf5XQ8">
-          <a href="https://www.youtube.com/watch?v=6E_tLPf5XQ8" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;position:absolute;inset:0;">
+          <a href="javascript:void(0)" style="display:block;text-decoration:none;position:absolute;inset:0;">
             <img src="https://img.youtube.com/vi/6E_tLPf5XQ8/maxresdefault.jpg" alt="YouTube Videos" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
             <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
           </a>
@@ -1725,7 +1726,7 @@
           <span>How long does delivery take?</span>
           <span class="faq-icon">+</span>
         </div>
-        <div class="faq-answer"><div class="faq-answer-inner">1 to 4 days for a simple edit. Up to 2 to 3 weeks for complex productions. A precise deadline is always confirmed before we start.</div></div>
+        <div class="faq-answer"><div class="faq-answer-inner">1 to 3 days for a simple edit. Up to 2 to 3 weeks for complex productions. A precise deadline is always confirmed before we start.</div></div>
       </div>
       <div class="faq-item reveal" style="transition-delay:.25s">
         <div class="faq-question" data-faq>
@@ -2077,6 +2078,10 @@
     closeBtn.addEventListener('click', closeModal);
     modal.addEventListener('click', e=>{ if(e.target===modal) closeModal(); });
     document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModal(); });
+    // Prevent fallback <a> tags from navigating — modal handles all clicks
+    document.querySelectorAll('.work-card[data-ytid] a, .svc-video-wrap[data-ytid] a, .svc-card[data-ytid] a').forEach(a=>{
+      a.addEventListener('click', e=>e.preventDefault());
+    });
     document.querySelectorAll('.work-card[data-ytid]').forEach(card=>{
       card.addEventListener('click', e=>{
         e.preventDefault();
