@@ -405,22 +405,20 @@
     .pillar-reverse > * { direction:ltr; }
     .pillar-text {}
     .pillar-num {
-      font-family:var(--dela); font-size:52px; font-weight:400;
-      letter-spacing:0; margin-bottom:16px; line-height:1;
+      font-family:var(--dela); font-size:62px; font-weight:400;
+      letter-spacing:0; margin-bottom:20px; line-height:1;
+      text-align:center;
       background:linear-gradient(90deg,#7A5C1E 0%,#C9A84C 16%,#F0D97C 30%,#FFF9E8 46%,#F0D97C 62%,#C9A84C 78%,#7A5C1E 94%,#C9A84C 100%);
       background-size:200% auto;
       -webkit-background-clip:text; background-clip:text;
       color:transparent; -webkit-text-fill-color:transparent;
       animation:shiny-gold 3s linear infinite;
     }
-    .pillar-gold-line {
-      width:60px; height:.5px; margin-bottom:20px;
-      background:linear-gradient(90deg,var(--gold),transparent);
-    }
+    .pillar-gold-line { display:none; }
     .pillar-title {
       font-family:var(--funnel); font-size:34px; font-weight:700;
       letter-spacing:.04em; text-transform:none;
-      margin-bottom:20px;
+      line-height:1.05; margin-bottom:20px;
       background:linear-gradient(90deg,#7A5C1E 0%,#C9A84C 16%,#F0D97C 30%,#FFF9E8 46%,#F0D97C 62%,#C9A84C 78%,#7A5C1E 94%,#C9A84C 100%);
       background-size:200% auto;
       -webkit-background-clip:text; background-clip:text;
@@ -535,6 +533,72 @@
     .pillar-center .pillar-desc { font-size:18px; max-width:520px; margin-left:auto; margin-right:auto; text-align:left; }
     .pillar-center .pillar-points { align-items:flex-start; text-align:left; max-width:520px; margin:0 auto; }
     .pillar-center .pillar-points li { font-size:16px; justify-content:flex-start; }
+
+    /* Coaching videos grid — Pillar 03 */
+    .coaching-videos-grid {
+      display:grid; grid-template-columns:repeat(3,1fr); gap:10px;
+      width:100%; margin:32px 0 40px;
+    }
+    .coaching-video-card {
+      position:relative; aspect-ratio:9/16; border-radius:8px; overflow:hidden;
+      cursor:pointer; border:.5px solid rgba(201,168,76,.18);
+      background:var(--black-surface);
+    }
+    .coaching-video-card video {
+      width:100%; height:100%; object-fit:cover; display:block;
+    }
+    .coaching-video-overlay {
+      position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+      background:rgba(10,10,10,.4); transition:opacity .25s;
+    }
+    .coaching-video-overlay svg { width:38px; height:38px; fill:var(--ivory); }
+    .coaching-video-card.playing .coaching-video-overlay { opacity:0; }
+
+    /* Voice message player */
+    .voice-message-block { width:100%; max-width:460px; margin:0 auto 8px; }
+    .voice-message-label {
+      font-family:var(--sf); font-size:10px; letter-spacing:.18em; text-transform:uppercase;
+      color:var(--ivory-ghost); margin-bottom:14px; text-align:center;
+    }
+    .voice-transcript {
+      background:rgba(201,168,76,.05); border:.5px solid rgba(201,168,76,.2);
+      border-radius:10px 10px 0 0; padding:16px 18px;
+      font-family:var(--sf); font-size:14px; line-height:1.65; color:var(--ivory-muted);
+      font-style:italic; min-height:58px; display:none;
+    }
+    .voice-transcript.active { display:block; }
+    .voice-cursor {
+      display:inline-block; width:2px; height:13px; background:var(--gold);
+      vertical-align:text-bottom; margin-left:2px;
+      animation:vcursor .7s step-end infinite;
+    }
+    @keyframes vcursor { 0%,100%{opacity:1} 50%{opacity:0} }
+    .voice-bubble {
+      display:flex; align-items:center; gap:14px;
+      background:rgba(201,168,76,.08); border:.5px solid rgba(201,168,76,.22);
+      border-radius:10px; padding:14px 18px; transition:border-radius .2s;
+    }
+    .voice-transcript.active + .voice-bubble { border-radius:0 0 10px 10px; }
+    .voice-play-btn {
+      width:38px; height:38px; border-radius:50%; flex-shrink:0;
+      background:var(--gold); border:none; cursor:pointer;
+      display:flex; align-items:center; justify-content:center;
+      transition:transform .15s;
+    }
+    .voice-play-btn:hover { transform:scale(1.1); }
+    .voice-play-btn svg { width:14px; height:14px; fill:#0A0A0A; }
+    .voice-waveform {
+      flex:1; display:flex; align-items:center; gap:2.5px; height:28px;
+    }
+    .voice-bar {
+      flex:1; border-radius:2px; background:rgba(201,168,76,.28);
+      transition:background .1s;
+    }
+    .voice-bar.passed { background:var(--gold); }
+    .voice-duration {
+      font-family:var(--sf); font-size:11px; color:var(--ivory-ghost);
+      flex-shrink:0; letter-spacing:.04em; min-width:36px; text-align:right;
+    }
 
     /* ============================
        HOW IT WORKS
@@ -968,6 +1032,37 @@
           <li>Building and applying a consistent creative direction</li>
           <li>How to get and keep clients all year long</li>
         </ul>
+
+        <!-- Motion videos -->
+        <div class="coaching-videos-grid">
+          <div class="coaching-video-card" onclick="toggleCoachingVideo(this)">
+            <video src="assets/Video_Coaching/arsacre.mp4" loop playsinline muted></video>
+            <div class="coaching-video-overlay"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          </div>
+          <div class="coaching-video-card" onclick="toggleCoachingVideo(this)">
+            <video src="assets/Video_Coaching/capable.mp4" loop playsinline muted></video>
+            <div class="coaching-video-overlay"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          </div>
+          <div class="coaching-video-card" onclick="toggleCoachingVideo(this)">
+            <video src="assets/Video_Coaching/caseyfaris.mp4" loop playsinline muted></video>
+            <div class="coaching-video-overlay"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          </div>
+        </div>
+
+        <!-- Client voice message -->
+        <div class="voice-message-block">
+          <p class="voice-message-label">A client, after working with me</p>
+          <div class="voice-transcript" id="voice-transcript"></div>
+          <div class="voice-bubble">
+            <button class="voice-play-btn" id="voice-play-btn" aria-label="Play message" onclick="toggleVoice()">
+              <svg id="voice-play-icon" viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+            </button>
+            <div class="voice-waveform" id="voice-waveform"></div>
+            <span class="voice-duration" id="voice-duration">0:00</span>
+          </div>
+          <audio id="voice-audio" src="assets/client_review.mp3" preload="metadata"></audio>
+        </div>
+
       </div>
     </div>
 
@@ -1210,6 +1305,117 @@
         cards.forEach(c => c.classList.remove('touch-focus'));
       }
     }, { passive:true });
+  })();
+
+  /* ===========================
+     COACHING VIDEOS — click to play/pause
+  =========================== */
+  function toggleCoachingVideo(card) {
+    const video = card.querySelector('video');
+    if (video.paused) {
+      // Pause all other coaching videos first
+      document.querySelectorAll('.coaching-video-card').forEach(c => {
+        if (c !== card) { c.querySelector('video').pause(); c.classList.remove('playing'); }
+      });
+      video.play();
+      card.classList.add('playing');
+    } else {
+      video.pause();
+      card.classList.remove('playing');
+    }
+  }
+
+  /* ===========================
+     VOICE MESSAGE PLAYER
+  =========================== */
+  (function(){
+    const audio     = document.getElementById('voice-audio');
+    const playBtn   = document.getElementById('voice-play-btn');
+    const playIcon  = document.getElementById('voice-play-icon');
+    const waveform  = document.getElementById('voice-waveform');
+    const durationEl= document.getElementById('voice-duration');
+    const transcript= document.getElementById('voice-transcript');
+
+    // ── REPLACE THIS TEXT with the actual client message ──
+    const TRANSCRIPT_TEXT = "Remplace ce texte par la transcription du message vocal du client.";
+
+    // Build waveform bars with natural-looking heights
+    const heights = [20,35,55,70,45,80,60,40,75,50,90,65,35,55,80,70,45,60,85,50,40,70,55,30,65,80,45,35,60,75];
+    heights.forEach(h => {
+      const bar = document.createElement('div');
+      bar.className = 'voice-bar';
+      bar.style.height = h + '%';
+      waveform.appendChild(bar);
+    });
+    const bars = waveform.querySelectorAll('.voice-bar');
+
+    function fmt(s) {
+      const m = Math.floor(s / 60), sec = Math.floor(s % 60);
+      return m + ':' + String(sec).padStart(2,'0');
+    }
+
+    // Show duration once metadata loaded
+    audio.addEventListener('loadedmetadata', () => {
+      durationEl.textContent = fmt(audio.duration);
+    });
+
+    // Typewriter state
+    let typeTimer = null, charIndex = 0, cursorEl = null;
+
+    function startTypewriter() {
+      transcript.classList.add('active');
+      transcript.textContent = '';
+      charIndex = 0;
+      cursorEl = document.createElement('span');
+      cursorEl.className = 'voice-cursor';
+      transcript.appendChild(cursorEl);
+
+      typeTimer = setInterval(() => {
+        if (charIndex < TRANSCRIPT_TEXT.length) {
+          transcript.insertBefore(document.createTextNode(TRANSCRIPT_TEXT[charIndex]), cursorEl);
+          charIndex++;
+        } else {
+          clearInterval(typeTimer);
+        }
+      }, 38);
+    }
+
+    function stopTypewriter() {
+      clearInterval(typeTimer);
+    }
+
+    // Pause icon SVG path
+    const PAUSE_PATH = '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
+    const PLAY_PATH  = '<polygon points="5,3 19,12 5,21"/>';
+
+    window.toggleVoice = function() {
+      if (audio.paused) {
+        audio.play();
+        playIcon.innerHTML = PAUSE_PATH;
+        playBtn.classList.add('playing');
+        if (charIndex === 0) startTypewriter();
+      } else {
+        audio.pause();
+        playIcon.innerHTML = PLAY_PATH;
+        playBtn.classList.remove('playing');
+        stopTypewriter();
+      }
+    };
+
+    // Update waveform progress + duration counter
+    audio.addEventListener('timeupdate', () => {
+      const pct = audio.currentTime / (audio.duration || 1);
+      const passed = Math.round(pct * bars.length);
+      bars.forEach((b, i) => b.classList.toggle('passed', i < passed));
+      durationEl.textContent = fmt(audio.currentTime);
+    });
+
+    audio.addEventListener('ended', () => {
+      playIcon.innerHTML = PLAY_PATH;
+      playBtn.classList.remove('playing');
+      bars.forEach(b => b.classList.remove('passed'));
+      durationEl.textContent = fmt(audio.duration);
+    });
   })();
 
 </script>
