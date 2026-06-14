@@ -314,6 +314,7 @@
       background:var(--black-abyss);
       overflow:hidden;
     }
+    /* aurora hero effect — disabled
     .aurora-wrap {
       position:absolute; inset:0; pointer-events:none; z-index:0;
     }
@@ -360,6 +361,7 @@
       30%     { transform:translate(7%,-5%) scale(1.05); }
       60%     { transform:translate(-4%,6%) scale(.97); }
     }
+    */
     .hero-label {
       font-family:var(--sf); font-size:10px; font-weight:700;
       letter-spacing:.3em; text-transform:uppercase;
@@ -529,8 +531,7 @@
       position:absolute; top:0; left:0; width:100%; height:100%;
       object-fit:cover; pointer-events:none;
     }
-    /* After image starts revealed at 20%, clip-path controlled by JS */
-    .color-after { clip-path: inset(0 80% 0 0); }
+    .color-after { animation: slider-sweep 5s ease-in-out infinite; }
     .color-before-placeholder, .color-after-placeholder {
       position:absolute; top:0; left:0; width:100%; height:100%;
       display:flex; align-items:center; justify-content:center; flex-direction:column; gap:8px;
@@ -555,19 +556,11 @@
       position:absolute; top:0; left:0; width:50%; height:100%; overflow:hidden;
       transition:none; pointer-events:none;
     }
-    .color-slider-handle {
-      position:absolute; top:0; bottom:0; left:20%;
-      transform:translateX(-50%);
-      width:2px; background:var(--gold);
-      box-shadow:0 0 12px rgba(201,168,76,0.7); z-index:10; cursor:ew-resize;
-    }
-    .color-slider-handle::after {
-      content:'⟺'; position:absolute; top:50%; left:50%;
-      transform:translate(-50%,-50%);
-      width:36px; height:36px; background:var(--gold); color:#0A0A0A;
-      border-radius:50%; display:flex; align-items:center; justify-content:center;
-      font-size:14px; line-height:36px; text-align:center;
-      box-shadow:0 0 20px rgba(201,168,76,0.5);
+    .color-slider-handle { display:none; }
+    @keyframes slider-sweep {
+      0%   { clip-path: inset(0 98% 0 0); }
+      50%  { clip-path: inset(0 2%  0 0); }
+      100% { clip-path: inset(0 98% 0 0); }
     }
     /* Pillar 03 — centered full width */
     .pillar-center {
@@ -931,18 +924,20 @@
 ============================== -->
 <section id="hero-mentor">
 
+  <!-- aurora hero effect — disabled
   <div class="aurora-wrap">
     <div class="aurora-blob aurora-blob-1"></div>
     <div class="aurora-blob aurora-blob-2"></div>
     <div class="aurora-blob aurora-blob-3"></div>
     <div class="aurora-blob aurora-blob-4"></div>
   </div>
+  -->
 
   <div class="section-inner" style="position:relative;z-index:1;">
 
     <h1 class="hero-h1 reveal">
-      <span class="hero-h1-line1">You already edit.</span>
-      <span class="hero-h1-line2">Time to master it.</span>
+      <span class="hero-h1-line1">Stop learning alone.</span>
+      <span class="hero-h1-line2">Level up with me.</span>
     </h1>
 
     <p class="hero-subtitle reveal" style="transition-delay:.1s">
@@ -985,15 +980,15 @@
     <div class="who-cards">
       <div class="who-card glow-card reveal" style="transition-delay:.15s">
         <div class="who-card-icon">✦</div>
-        <p class="who-card-text">You already edit but your videos don't look the way you imagined them.</p>
+        <p class="who-card-text">You spend hours on YouTube tutorials but still can't get the result you're looking for.</p>
       </div>
       <div class="who-card glow-card reveal" style="transition-delay:.2s">
         <div class="who-card-icon">✦</div>
-        <p class="who-card-text">You struggle with color, motion or sound and can't figure out why.</p>
+        <p class="who-card-text">You're on DaVinci Resolve but feel like you're not using its full potential.</p>
       </div>
       <div class="who-card glow-card reveal" style="transition-delay:.25s">
         <div class="who-card-icon">✦</div>
-        <p class="who-card-text">You want to develop your own visual style and stop just copying references.</p>
+        <p class="who-card-text">You struggle getting clients, and keeping them once you do.</p>
       </div>
     </div>
 
@@ -1063,7 +1058,6 @@
             <video src="./assets/Showreel.mp4" autoplay muted loop playsinline
                    style="width:100%;height:100%;object-fit:cover;display:block;"></video>
           </div>
-          <video class="arrow-civa" src="./assets/Arrow_Civa.mov" autoplay muted loop playsinline aria-hidden="true"></video>
         </div>
 
         <!-- Color before/after slider -->
@@ -1318,40 +1312,7 @@
   /* ===========================
      COLOR BEFORE/AFTER SLIDER
   =========================== */
-  (function initColorSlider() {
-    const wrap     = document.getElementById('colorSlider');
-    const afterImg = document.getElementById('colorAfter');
-    const handle   = document.getElementById('colorHandle');
-    if(!wrap || !afterImg || !handle) return;
-
-    let dragging = false;
-
-    function setPos(x) {
-      const rect = wrap.getBoundingClientRect();
-      const pct  = Math.max(0, Math.min(100, (x - rect.left) / rect.width * 100));
-      /* clip-path reveals the after-image from the left: inset(top right bottom left) */
-      afterImg.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
-      handle.style.left       = pct + '%';
-    }
-
-    handle.addEventListener('mousedown',  e => { e.preventDefault(); dragging = true; });
-    document.addEventListener('mousemove', e => { if(dragging) setPos(e.clientX); });
-    document.addEventListener('mouseup',   () => dragging = false);
-
-    // Touch
-    handle.addEventListener('touchstart',  e => { e.preventDefault(); dragging = true; }, { passive:false });
-    document.addEventListener('touchmove',  e => { if(dragging) setPos(e.touches[0].clientX); }, { passive:true });
-    document.addEventListener('touchend',   () => dragging = false);
-
-    // Click anywhere on wrap
-    wrap.addEventListener('click', e => setPos(e.clientX));
-
-    // Start at 20%
-    requestAnimationFrame(() => {
-      const rect = wrap.getBoundingClientRect();
-      setPos(rect.left + rect.width * 0.20);
-    });
-  })();
+  /* Color slider — fully automatic via CSS animation (no handle) */
 
   /* ===========================
      WHO-CARDS TOUCH FOCUS

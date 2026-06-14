@@ -538,6 +538,8 @@
     }
     .work-play-icon svg { width:18px; height:18px; fill:var(--gold); margin-left:3px; }
     .work-card:hover .work-play-icon { opacity:1; translate:0 0; }
+    .svc-video-wrap .work-play-icon,
+    .svc-card .work-play-icon { opacity:1; translate:0 0; }
     /* Video lightbox modal */
     #vid-modal {
       position:fixed; inset:0; z-index:9000;
@@ -715,7 +717,9 @@
     .testi-col-1 .testi-track { animation:scroll-up 22s linear infinite; }
     .testi-col-2 .testi-track { animation:scroll-up 28s linear infinite; }
     .testi-col-3 .testi-track { animation:scroll-up 25s linear infinite; }
-    .testi-col:hover .testi-track { animation-play-state:paused; }
+    @media (hover:hover) {
+      .testi-col:hover .testi-track { animation-play-state:paused; }
+    }
     .testi-card {
       background:var(--black-surface);
       border:.5px solid rgba(201,168,76,.15);
@@ -734,6 +738,10 @@
     }
     .testi-divider { width:28px; height:1px; background:linear-gradient(90deg,var(--gold),transparent); opacity:.5; margin-bottom:14px; }
     .testi-author { display:flex; align-items:center; gap:10px; }
+    .testi-logo {
+      height:28px; width:auto; max-width:72px;
+      object-fit:contain; flex-shrink:0; opacity:.9;
+    }
     .testi-avatar {
       width:36px; height:36px; border-radius:50%;
       object-fit:cover; flex-shrink:0;
@@ -749,6 +757,12 @@
       background:linear-gradient(90deg,transparent,rgba(201,168,76,.1),transparent);
       animation:shimmer 2.5s infinite;
     }
+    .testi-card--empty { opacity:.35; }
+    .testi-insert {
+      font-family:var(--sf); font-size:12px; font-style:italic;
+      color:var(--ivory-ghost); line-height:1.6; flex:1;
+    }
+    .testi-name--ph, .testi-role--ph { color:var(--ivory-ghost); }
     .testi-name {
       font-family:var(--sf); font-weight:700; font-size:11px;
       letter-spacing:.1em; text-transform:uppercase; color:var(--gold);
@@ -1209,11 +1223,11 @@
   <!-- Centered content -->
   <div class="hero-center">
     <h1>
-      <span class="hero-h1-line1 reveal">Great stories deserve</span>
+      <span class="hero-h1-line1 reveal">Your content deserves</span>
       <span class="hero-h1-shiny reveal" style="transition-delay:.12s">to be felt.</span>
     </h1>
     <div class="hero-buttons reveal" style="transition-delay:.25s">
-      <a href="https://calendly.com/civavisuals20/30min" target="_blank" rel="noopener noreferrer" class="btn-primary"><span class="shiny-text">Request a Project</span></a>
+      <a href="https://calendly.com/civavisuals20/30min" target="_blank" rel="noopener noreferrer" class="btn-primary"><span class="shiny-text">Start a Project</span></a>
       <a href="#work"    class="btn-outline">See My Work</a>
     </div>
   </div>
@@ -1338,8 +1352,10 @@
       <div class="about-divider reveal" style="transition-delay:.2s"></div>
       <!-- Change 9: new bio text + SVG circle animation -->
       <p class="about-bio reveal" style="transition-delay:.3s">
-        For over 2 years I've been helping brands, agencies and creators turn their ideas into video content that actually hits.<br>
-        Every project is built with one goal&nbsp;: <span class="unforgettable-wrap"><span class="unforgettable-text">make it unforgettable</span><svg class="unforgettable-circle" viewBox="0 0 320 70" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path class="circle-path" d="M 18,38 C 28,12 100,4 160,6 C 220,4 292,12 302,38 C 312,56 300,66 278,70 C 240,76 190,78 160,78 C 130,78 80,76 42,70 C 20,66 8,56 18,38" fill="none" stroke="#C9A84C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        I'm Civa, your video editor and motion designer.<br>
+        For 2+ years, I've helped brands, agencies and creators turn raw ideas into content that actually performs.<br>
+        I don't just deliver a file, make sure every frame serves your vision.<br>
+        Every project is built with one goal : <span class="unforgettable-wrap"><span class="unforgettable-text">make it unforgettable</span><svg class="unforgettable-circle" viewBox="0 0 320 70" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path class="circle-path" d="M 18,38 C 28,12 100,4 160,6 C 220,4 292,12 302,38 C 312,56 300,66 278,70 C 240,76 190,78 160,78 C 130,78 80,76 42,70 C 20,66 8,56 18,38" fill="none" stroke="#C9A84C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </p>
       <div class="tools-row reveal" style="transition-delay:.4s">
         <div class="tool-pill tool-pill-davinci">
@@ -1366,251 +1382,231 @@
     </div>
 
     <div class="testi-outer">
-      <!-- Column 1 (fast) -->
+
+      <!-- Column 1 -->
       <div class="testi-col testi-col-1">
         <div class="testi-track">
           <!-- SET 1 -->
           <div class="testi-card">
             <div class="testi-stars">★★★★★</div>
-            <p class="testi-text">"From the very first draft, I knew this was going to be something special. The motion quality and attention to detail were unlike anything I'd seen."</p>
+            <p class="testi-text">"J'ai eu l'occasion de travailler avec Civa sur plusieurs projets vidéo, et son travail a toujours été irréprochable. Que ce soit en montage, en étalonnage ou en motion design, il apporte une vraie valeur ajoutée aux productions. Il est réactif, à l'écoute, force de proposition et surtout très rigoureux dans les détails. Les rendus sont toujours soignés, professionnels et livrés dans les délais. C'est le genre de collaborateur sur lequel on peut compter pour sublimer un projet et lui donner une dimension supplémentaire."</p>
             <div class="testi-divider"></div>
             <div class="testi-author">
-              <img class="testi-avatar" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Alex R.">
+              <img class="testi-logo" src="./assets/lumkineLogo.png" alt="Lumkine">
               <div>
-                <div class="testi-name">Alex R.</div>
-                <div class="testi-role">E-commerce Brand</div>
+                <div class="testi-name">Lumkine</div>
+                <div class="testi-role">CEO Filmmaker</div>
               </div>
             </div>
           </div>
-          <div class="testi-card">
-            <div class="testi-stars">★★★★★</div>
-            <p class="testi-text">"Fast, professional, and genuinely talented. CIVA understood the brief perfectly and delivered beyond expectations."</p>
-            <div class="testi-divider"></div>
-            <div class="testi-author">
-              <img class="testi-avatar" src="https://randomuser.me/api/portraits/women/44.jpg" alt="Marie L.">
-              <div>
-                <div class="testi-name">Marie L.</div>
-                <div class="testi-role">SaaS Startup</div>
-              </div>
-            </div>
-          </div>
-          <div class="testi-card">
-            <div class="testi-stars">★★★★★</div>
-            <!-- PLACEHOLDER: replace with real review -->
-            <p class="testi-text">"[PLACEHOLDER — add a client review here]"</p>
+          <div class="testi-card testi-card--empty">
+            <p class="testi-insert">Insert your testimonial</p>
             <div class="testi-divider"></div>
             <div class="testi-author">
               <div class="testi-avatar-ph"></div>
               <div>
-                <div class="testi-name">Lucas M.</div>
-                <div class="testi-role">Fashion Brand</div>
+                <div class="testi-name testi-name--ph">Your name</div>
+                <div class="testi-role testi-role--ph">Your role</div>
               </div>
             </div>
           </div>
-          <!-- SET 2 (duplicate) -->
-          <div class="testi-card">
-            <div class="testi-stars">★★★★★</div>
-            <p class="testi-text">"From the very first draft, I knew this was going to be something special. The motion quality and attention to detail were unlike anything I'd seen."</p>
-            <div class="testi-divider"></div>
-            <div class="testi-author">
-              <img class="testi-avatar" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Alex R.">
-              <div>
-                <div class="testi-name">Alex R.</div>
-                <div class="testi-role">E-commerce Brand</div>
-              </div>
-            </div>
-          </div>
-          <div class="testi-card">
-            <div class="testi-stars">★★★★★</div>
-            <p class="testi-text">"Fast, professional, and genuinely talented. CIVA understood the brief perfectly and delivered beyond expectations."</p>
-            <div class="testi-divider"></div>
-            <div class="testi-author">
-              <img class="testi-avatar" src="https://randomuser.me/api/portraits/women/44.jpg" alt="Marie L.">
-              <div>
-                <div class="testi-name">Marie L.</div>
-                <div class="testi-role">SaaS Startup</div>
-              </div>
-            </div>
-          </div>
-          <div class="testi-card">
-            <div class="testi-stars">★★★★★</div>
-            <p class="testi-text">"[PLACEHOLDER — add a client review here]"</p>
+          <div class="testi-card testi-card--empty">
+            <p class="testi-insert">Insert your testimonial</p>
             <div class="testi-divider"></div>
             <div class="testi-author">
               <div class="testi-avatar-ph"></div>
               <div>
-                <div class="testi-name">Lucas M.</div>
-                <div class="testi-role">Fashion Brand</div>
+                <div class="testi-name testi-name--ph">Your name</div>
+                <div class="testi-role testi-role--ph">Your role</div>
+              </div>
+            </div>
+          </div>
+          <!-- SET 2 (duplicate for infinite scroll) -->
+          <div class="testi-card">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">"J'ai eu l'occasion de travailler avec Civa sur plusieurs projets vidéo, et son travail a toujours été irréprochable. Que ce soit en montage, en étalonnage ou en motion design, il apporte une vraie valeur ajoutée aux productions. Il est réactif, à l'écoute, force de proposition et surtout très rigoureux dans les détails. Les rendus sont toujours soignés, professionnels et livrés dans les délais. C'est le genre de collaborateur sur lequel on peut compter pour sublimer un projet et lui donner une dimension supplémentaire."</p>
+            <div class="testi-divider"></div>
+            <div class="testi-author">
+              <img class="testi-logo" src="./assets/lumkineLogo.png" alt="Lumkine">
+              <div>
+                <div class="testi-name">Lumkine</div>
+                <div class="testi-role">CEO Filmmaker</div>
+              </div>
+            </div>
+          </div>
+          <div class="testi-card testi-card--empty">
+            <p class="testi-insert">Insert your testimonial</p>
+            <div class="testi-divider"></div>
+            <div class="testi-author">
+              <div class="testi-avatar-ph"></div>
+              <div>
+                <div class="testi-name testi-name--ph">Your name</div>
+                <div class="testi-role testi-role--ph">Your role</div>
+              </div>
+            </div>
+          </div>
+          <div class="testi-card testi-card--empty">
+            <p class="testi-insert">Insert your testimonial</p>
+            <div class="testi-divider"></div>
+            <div class="testi-author">
+              <div class="testi-avatar-ph"></div>
+              <div>
+                <div class="testi-name testi-name--ph">Your name</div>
+                <div class="testi-role testi-role--ph">Your role</div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Column 2 (slow) -->
+      <!-- Column 2 -->
       <div class="testi-col testi-col-2">
         <div class="testi-track">
           <!-- SET 1 -->
-          <div class="testi-card">
-            <div class="testi-stars">★★★★★</div>
-            <p class="testi-text">"Every single frame felt intentional. The final reel performed incredibly well — engagement was off the charts."</p>
-            <div class="testi-divider"></div>
-            <div class="testi-author">
-              <img class="testi-avatar" src="https://randomuser.me/api/portraits/men/55.jpg" alt="Jordan K.">
-              <div>
-                <div class="testi-name">Jordan K.</div>
-                <div class="testi-role">Content Creator</div>
-              </div>
-            </div>
-          </div>
-          <div class="testi-card">
-            <div class="testi-stars">★★★★★</div>
-            <!-- PLACEHOLDER: replace with real review -->
-            <p class="testi-text">"[PLACEHOLDER — add a client review here]"</p>
+          <div class="testi-card testi-card--empty">
+            <p class="testi-insert">Insert your testimonial</p>
             <div class="testi-divider"></div>
             <div class="testi-author">
               <div class="testi-avatar-ph"></div>
               <div>
-                <div class="testi-name">Sofia D.</div>
-                <div class="testi-role">Marketing Agency</div>
+                <div class="testi-name testi-name--ph">Your name</div>
+                <div class="testi-role testi-role--ph">Your role</div>
               </div>
             </div>
           </div>
-          <div class="testi-card">
-            <div class="testi-stars">★★★★★</div>
-            <!-- PLACEHOLDER: replace with real review -->
-            <p class="testi-text">"[PLACEHOLDER — add a client review here]"</p>
+          <div class="testi-card testi-card--empty">
+            <p class="testi-insert">Insert your testimonial</p>
             <div class="testi-divider"></div>
             <div class="testi-author">
               <div class="testi-avatar-ph"></div>
               <div>
-                <div class="testi-name">Emma T.</div>
-                <div class="testi-role">E-commerce Manager</div>
+                <div class="testi-name testi-name--ph">Your name</div>
+                <div class="testi-role testi-role--ph">Your role</div>
               </div>
             </div>
           </div>
-          <!-- SET 2 (duplicate) -->
-          <div class="testi-card">
-            <div class="testi-stars">★★★★★</div>
-            <p class="testi-text">"Every single frame felt intentional. The final reel performed incredibly well — engagement was off the charts."</p>
-            <div class="testi-divider"></div>
-            <div class="testi-author">
-              <img class="testi-avatar" src="https://randomuser.me/api/portraits/men/55.jpg" alt="Jordan K.">
-              <div>
-                <div class="testi-name">Jordan K.</div>
-                <div class="testi-role">Content Creator</div>
-              </div>
-            </div>
-          </div>
-          <div class="testi-card">
-            <div class="testi-stars">★★★★★</div>
-            <p class="testi-text">"[PLACEHOLDER — add a client review here]"</p>
+          <div class="testi-card testi-card--empty">
+            <p class="testi-insert">Insert your testimonial</p>
             <div class="testi-divider"></div>
             <div class="testi-author">
               <div class="testi-avatar-ph"></div>
               <div>
-                <div class="testi-name">Sofia D.</div>
-                <div class="testi-role">Marketing Agency</div>
+                <div class="testi-name testi-name--ph">Your name</div>
+                <div class="testi-role testi-role--ph">Your role</div>
               </div>
             </div>
           </div>
-          <div class="testi-card">
-            <div class="testi-stars">★★★★★</div>
-            <p class="testi-text">"[PLACEHOLDER — add a client review here]"</p>
+          <!-- SET 2 -->
+          <div class="testi-card testi-card--empty">
+            <p class="testi-insert">Insert your testimonial</p>
             <div class="testi-divider"></div>
             <div class="testi-author">
               <div class="testi-avatar-ph"></div>
               <div>
-                <div class="testi-name">Emma T.</div>
-                <div class="testi-role">E-commerce Manager</div>
+                <div class="testi-name testi-name--ph">Your name</div>
+                <div class="testi-role testi-role--ph">Your role</div>
+              </div>
+            </div>
+          </div>
+          <div class="testi-card testi-card--empty">
+            <p class="testi-insert">Insert your testimonial</p>
+            <div class="testi-divider"></div>
+            <div class="testi-author">
+              <div class="testi-avatar-ph"></div>
+              <div>
+                <div class="testi-name testi-name--ph">Your name</div>
+                <div class="testi-role testi-role--ph">Your role</div>
+              </div>
+            </div>
+          </div>
+          <div class="testi-card testi-card--empty">
+            <p class="testi-insert">Insert your testimonial</p>
+            <div class="testi-divider"></div>
+            <div class="testi-author">
+              <div class="testi-avatar-ph"></div>
+              <div>
+                <div class="testi-name testi-name--ph">Your name</div>
+                <div class="testi-role testi-role--ph">Your role</div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Column 3 (medium) -->
+      <!-- Column 3 -->
       <div class="testi-col testi-col-3">
         <div class="testi-track">
           <!-- SET 1 -->
-          <div class="testi-card">
-            <div class="testi-stars">★★★★★</div>
-            <!-- PLACEHOLDER: replace with real review -->
-            <p class="testi-text">"[PLACEHOLDER — add a client review here]"</p>
+          <div class="testi-card testi-card--empty">
+            <p class="testi-insert">Insert your testimonial</p>
             <div class="testi-divider"></div>
             <div class="testi-author">
               <div class="testi-avatar-ph"></div>
               <div>
-                <div class="testi-name">Noah B.</div>
-                <div class="testi-role">Startup Founder</div>
+                <div class="testi-name testi-name--ph">Your name</div>
+                <div class="testi-role testi-role--ph">Your role</div>
               </div>
             </div>
           </div>
-          <div class="testi-card">
-            <div class="testi-stars">★★★★★</div>
-            <!-- PLACEHOLDER: replace with real review -->
-            <p class="testi-text">"[PLACEHOLDER — add a client review here]"</p>
+          <div class="testi-card testi-card--empty">
+            <p class="testi-insert">Insert your testimonial</p>
             <div class="testi-divider"></div>
             <div class="testi-author">
               <div class="testi-avatar-ph"></div>
               <div>
-                <div class="testi-name">Théo B.</div>
-                <div class="testi-role">YouTube Creator</div>
+                <div class="testi-name testi-name--ph">Your name</div>
+                <div class="testi-role testi-role--ph">Your role</div>
               </div>
             </div>
           </div>
-          <div class="testi-card">
-            <div class="testi-stars">★★★★★</div>
-            <!-- PLACEHOLDER: replace with real review -->
-            <p class="testi-text">"[PLACEHOLDER — add a client review here]"</p>
+          <div class="testi-card testi-card--empty">
+            <p class="testi-insert">Insert your testimonial</p>
             <div class="testi-divider"></div>
             <div class="testi-author">
               <div class="testi-avatar-ph"></div>
               <div>
-                <div class="testi-name">Léa M.</div>
-                <div class="testi-role">Brand Director</div>
+                <div class="testi-name testi-name--ph">Your name</div>
+                <div class="testi-role testi-role--ph">Your role</div>
               </div>
             </div>
           </div>
-          <!-- SET 2 (duplicate) -->
-          <div class="testi-card">
-            <div class="testi-stars">★★★★★</div>
-            <p class="testi-text">"[PLACEHOLDER — add a client review here]"</p>
+          <!-- SET 2 -->
+          <div class="testi-card testi-card--empty">
+            <p class="testi-insert">Insert your testimonial</p>
             <div class="testi-divider"></div>
             <div class="testi-author">
               <div class="testi-avatar-ph"></div>
               <div>
-                <div class="testi-name">Noah B.</div>
-                <div class="testi-role">Startup Founder</div>
+                <div class="testi-name testi-name--ph">Your name</div>
+                <div class="testi-role testi-role--ph">Your role</div>
               </div>
             </div>
           </div>
-          <div class="testi-card">
-            <div class="testi-stars">★★★★★</div>
-            <p class="testi-text">"[PLACEHOLDER — add a client review here]"</p>
+          <div class="testi-card testi-card--empty">
+            <p class="testi-insert">Insert your testimonial</p>
             <div class="testi-divider"></div>
             <div class="testi-author">
               <div class="testi-avatar-ph"></div>
               <div>
-                <div class="testi-name">Théo B.</div>
-                <div class="testi-role">YouTube Creator</div>
+                <div class="testi-name testi-name--ph">Your name</div>
+                <div class="testi-role testi-role--ph">Your role</div>
               </div>
             </div>
           </div>
-          <div class="testi-card">
-            <div class="testi-stars">★★★★★</div>
-            <p class="testi-text">"[PLACEHOLDER — add a client review here]"</p>
+          <div class="testi-card testi-card--empty">
+            <p class="testi-insert">Insert your testimonial</p>
             <div class="testi-divider"></div>
             <div class="testi-author">
               <div class="testi-avatar-ph"></div>
               <div>
-                <div class="testi-name">Léa M.</div>
-                <div class="testi-role">Brand Director</div>
+                <div class="testi-name testi-name--ph">Your name</div>
+                <div class="testi-role testi-role--ph">Your role</div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -2222,10 +2218,12 @@
   })();
 </script>
 
-<!-- Language toggle bubble -->
+<!-- Language toggle bubble — disabled for now -->
+<!--
 <button id="lang-toggle" aria-label="Toggle language FR/EN">
   <span>FR</span>
 </button>
+-->
 
 </body>
 </html>
