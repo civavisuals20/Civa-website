@@ -635,6 +635,7 @@
     .voice-waveform {
       flex:1; display:flex; align-items:center; gap:2px; height:26px;
       position:relative; z-index:1;
+      cursor:ew-resize; user-select:none;
     }
     .voice-bar {
       flex:1; border-radius:1px; background:rgba(201,168,76,.25);
@@ -664,8 +665,13 @@
     .stat-block:last-child { border-right:none; }
     .stat-block:hover { background:rgba(201,168,76,0.03); }
     .stat-num {
-      font-family:var(--dela); font-size:52px; color:var(--gold);
+      font-family:var(--dela); font-size:52px;
       line-height:1; margin-bottom:12px; text-transform:uppercase;
+      background:linear-gradient(90deg,#7A5C1E 0%,#C9A84C 16%,#F0D97C 30%,#FFF9E8 46%,#F0D97C 62%,#C9A84C 78%,#7A5C1E 94%,#C9A84C 100%);
+      background-size:200% auto;
+      -webkit-background-clip:text; background-clip:text;
+      color:transparent; -webkit-text-fill-color:transparent;
+      animation:shiny-gold 4s linear infinite;
     }
     .stat-label {
       font-family:var(--sf); font-size:11px; font-weight:700;
@@ -763,9 +769,15 @@
     .why-check-body {}
     .why-check-title {
       font-family:var(--funnel); font-size:13px; font-weight:700;
-      color:var(--ivory); letter-spacing:.04em; margin-bottom:6px;
+      letter-spacing:.04em; margin-bottom:6px;
     }
-    .why-check-title .gold-em { color:var(--gold); }
+    .why-check-title .gold-em {
+      background:linear-gradient(90deg,#7A5C1E 0%,#C9A84C 16%,#F0D97C 30%,#FFF9E8 46%,#F0D97C 62%,#C9A84C 78%,#7A5C1E 94%,#C9A84C 100%);
+      background-size:200% auto;
+      -webkit-background-clip:text; background-clip:text;
+      color:transparent; -webkit-text-fill-color:transparent;
+      animation:shiny-gold 4s linear infinite;
+    }
     .why-check-desc {
       font-family:var(--sf); font-size:13px; font-weight:500;
       color:var(--ivory-muted); line-height:1.6;
@@ -1062,7 +1074,6 @@
 
         <!-- Color before/after slider -->
         <div style="margin-top:14px">
-          <p class="slider-label">Drag to see the difference</p>
           <div class="color-slider-wrap" id="colorSlider">
             <img class="color-before" src="./assets/Colo/Colo_before.jpg" alt="Before color grade">
             <img class="color-after" src="./assets/Colo/Colo_after.jpg" alt="After color grade" id="colorAfter">
@@ -1424,6 +1435,26 @@
       bars.forEach(b => b.classList.remove('passed'));
       durationEl.textContent = fmt(audio.duration);
     });
+
+    // ── SCRUBBING (drag on waveform to seek) ──
+    let scrubbing = false;
+
+    function scrubTo(clientX) {
+      const rect = waveform.getBoundingClientRect();
+      const pct  = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+      audio.currentTime = pct * (audio.duration || 0);
+      const passed = Math.round(pct * bars.length);
+      bars.forEach((b, i) => b.classList.toggle('passed', i < passed));
+      durationEl.textContent = fmt(audio.currentTime);
+    }
+
+    waveform.addEventListener('mousedown',  e => { scrubbing = true; scrubTo(e.clientX); });
+    document.addEventListener('mousemove',  e => { if (scrubbing) scrubTo(e.clientX); });
+    document.addEventListener('mouseup',    () => scrubbing = false);
+
+    waveform.addEventListener('touchstart', e => { scrubbing = true; scrubTo(e.touches[0].clientX); }, { passive:true });
+    document.addEventListener('touchmove',  e => { if (scrubbing) scrubTo(e.touches[0].clientX); }, { passive:true });
+    document.addEventListener('touchend',   () => scrubbing = false);
   })();
 
 </script>
