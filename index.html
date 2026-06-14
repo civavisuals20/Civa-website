@@ -203,7 +203,7 @@
     .nav-left { display:flex; align-items:center; gap:12px; flex:1; }
     /* Change 7: logo bigger */
     .nav-photo {
-      width:46px; height:46px; border-radius:50%;
+      width:53px; height:53px; border-radius:50%;
       border:1px solid rgba(201,168,76,.5);
       box-shadow:0 0 12px var(--gold-glow-soft);
       overflow:hidden; flex-shrink:0;
@@ -554,6 +554,36 @@
     }
     #vid-modal-close:hover { opacity:1; }
     #vid-modal-close svg { width:26px; height:26px; display:block; }
+    /* Language toggle button */
+    #lang-toggle {
+      position:fixed; bottom:28px; right:28px; z-index:9001;
+      width:50px; height:50px; border-radius:50%;
+      background:var(--black-deep); border:.5px solid rgba(201,168,76,.45);
+      cursor:pointer; display:flex; align-items:center; justify-content:center;
+      font-family:var(--sf); font-size:11px; font-weight:700; letter-spacing:.12em;
+      background-clip:text; -webkit-background-clip:text;
+      box-shadow:0 4px 20px rgba(0,0,0,.6);
+      transition:box-shadow .3s, border-color .3s, transform .2s;
+      overflow:hidden;
+    }
+    #lang-toggle::before {
+      content:''; position:absolute; inset:0; border-radius:50%;
+      background:var(--black-deep);
+    }
+    #lang-toggle::after {
+      content:''; position:absolute; top:0; left:-120%; width:80%; height:100%;
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);
+      transform:skewX(-18deg);
+    }
+    #lang-toggle:hover { box-shadow:0 0 20px var(--gold-glow-strong),0 0 40px var(--gold-glow-mid); border-color:rgba(201,168,76,.8); transform:scale(1.08); }
+    #lang-toggle:hover::after { animation:btn-sweep .6s ease forwards; }
+    #lang-toggle span {
+      position:relative; z-index:1;
+      background:linear-gradient(90deg,#C9A84C,#FFF9E8,#C9A84C);
+      background-size:200% auto; -webkit-background-clip:text; background-clip:text;
+      color:transparent; -webkit-text-fill-color:transparent;
+      animation:shiny-gold 2s linear infinite;
+    }
     #vid-modal-inner {
       width:90vw; max-width:1100px; aspect-ratio:16/9;
       border:.5px solid rgba(201,168,76,.18); border-radius:4px; overflow:hidden;
@@ -778,16 +808,38 @@
     }
     .svc-card-front { z-index:2; transform:translate(0,0) scale(1); opacity:1; }
     .svc-card-back  { z-index:1; transform:translate(10px,10px) scale(.93); opacity:.7; }
-    .svc-next-btn {
-      position:absolute; bottom:10px; right:10px; z-index:3;
-      width:32px; height:32px; border-radius:50%;
-      background:rgba(10,10,10,.7); border:.5px solid rgba(201,168,76,.5);
-      color:var(--gold); font-size:18px; cursor:pointer; line-height:1;
+    .svc-next-btn, .svc-prev-btn {
+      position:absolute; bottom:10px; z-index:3;
+      width:30px; height:30px; border-radius:50%;
+      background:rgba(10,10,10,.75); border:.5px solid rgba(201,168,76,.5);
+      color:var(--gold); cursor:pointer;
       display:flex; align-items:center; justify-content:center;
-      transition: background .2s, border-color .2s;
+      transition:background .2s, border-color .2s;
     }
-    .svc-next-btn:hover { background:rgba(201,168,76,.15); border-color:rgba(201,168,76,.8); }
-    .svc-info { padding:20px 20px 22px; position:relative; overflow:hidden; }
+    .svc-next-btn { right:10px; }
+    .svc-prev-btn { left:10px; }
+    .svc-next-btn svg, .svc-prev-btn svg { width:14px; height:14px; stroke:var(--gold); }
+    .svc-next-btn:hover, .svc-prev-btn:hover { background:rgba(201,168,76,.15); border-color:rgba(201,168,76,.8); }
+    .svc-info { padding:20px 20px 18px; position:relative; overflow:hidden; display:flex; flex-direction:column; }
+    .svc-want-btn {
+      align-self:flex-end; margin-top:14px;
+      padding:6px 14px; border-radius:2px;
+      font-family:var(--sf); font-size:9px; font-weight:700;
+      letter-spacing:.16em; text-transform:uppercase;
+      color:var(--gold); border:.5px solid rgba(201,168,76,.45);
+      background:var(--black-deep); cursor:pointer;
+      position:relative; overflow:hidden;
+      transition:box-shadow .3s, border-color .3s, transform .2s;
+      text-decoration:none;
+    }
+    .svc-want-btn::after {
+      content:''; position:absolute; top:0; left:-120%; width:55%; height:100%;
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);
+      transform:skewX(-18deg); pointer-events:none;
+      transition:left .45s ease;
+    }
+    .svc-want-btn:hover::after { left:130%; }
+    .svc-want-btn:hover { box-shadow:0 0 20px var(--gold-glow-strong),0 0 40px var(--gold-glow-mid); border-color:rgba(201,168,76,.8); transform:translateY(-1px); }
 
     .svc-box-title {
       font-family:var(--funnel); font-weight:700; font-size:26px;
@@ -1048,7 +1100,7 @@
       .services-big-title, .services-big-italic { font-size:38px; }
       .reviews-big-title, .reviews-big-italic { font-size:38px; }
       .contact-title-main, .contact-title-italic { font-size:34px; }
-      .hero-h1-line1, .hero-h1-shiny { font-size:44px !important; }
+      .hero-h1-line1, .hero-h1-shiny { font-size:40px !important; }
       /* Work grid — single column */
       .work-grid { grid-template-columns:1fr; gap:16px; }
       .work-thumb { aspect-ratio:16/9; }
@@ -1235,33 +1287,33 @@
           </div>
         </div>
       </div>
-      <div class="work-card reveal" data-ytid="3L8ej0zfCMg" style="transition-delay:.2s">
+      <div class="work-card reveal" data-ytid="fcfunbsP1Jk" style="transition-delay:.2s">
         <div style="display:block;cursor:pointer;">
-          <img src="https://img.youtube.com/vi/3L8ej0zfCMg/maxresdefault.jpg" alt="La boiserie" loading="lazy">
+          <img src="https://img.youtube.com/vi/fcfunbsP1Jk/maxresdefault.jpg" alt="Point Cut" loading="lazy">
           <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
           <div class="work-card-overlay">
-            <span class="work-category">Motion Design · Ads</span>
-            <span class="work-play">La boiserie</span>
+            <span class="work-category">Storytelling</span>
+            <span class="work-play">Point Cut</span>
           </div>
         </div>
       </div>
-      <div class="work-card reveal" data-ytid="AOU2b5-pxw0" style="transition-delay:.25s">
+      <div class="work-card reveal" data-ytid="SafVq7_UNY0" style="transition-delay:.25s">
         <div style="display:block;cursor:pointer;">
-          <img src="https://img.youtube.com/vi/AOU2b5-pxw0/maxresdefault.jpg" alt="MxShop" loading="lazy">
+          <img src="https://img.youtube.com/vi/SafVq7_UNY0/maxresdefault.jpg" alt="Point Cut" loading="lazy">
           <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
           <div class="work-card-overlay">
             <span class="work-category">Motion Design · Video Editing</span>
-            <span class="work-play">MxShop</span>
+            <span class="work-play">Point Cut</span>
           </div>
         </div>
       </div>
-      <div class="work-card reveal" data-ytid="ygjbuLDvwIY" style="transition-delay:.3s">
+      <div class="work-card reveal" data-ytid="bQ3RIK5fsx0" style="transition-delay:.3s">
         <div style="display:block;cursor:pointer;">
-          <img src="https://img.youtube.com/vi/ygjbuLDvwIY/maxresdefault.jpg" alt="Pathé" loading="lazy">
+          <img src="https://img.youtube.com/vi/bQ3RIK5fsx0/maxresdefault.jpg" alt="Point Cut" loading="lazy">
           <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
           <div class="work-card-overlay">
             <span class="work-category">Motion Design · Ads</span>
-            <span class="work-play">Pathé</span>
+            <span class="work-play">Point Cut</span>
           </div>
         </div>
       </div>
@@ -1590,34 +1642,39 @@
             <li>Premium 2D motion design</li>
             <li>Advanced sound design</li>
           </ul>
+          <a href="#contact" class="svc-want-btn"><span class="shiny-text">I want this ↗</span></a>
         </div>
       </div>
 
       <!-- Box 02 — Motion Design Ads (carousel) -->
       <div class="svc-box reveal" style="transition-delay:.2s">
         <div class="svc-video-wrap svc-carousel" id="carousel-02">
-          <div class="svc-card svc-card-front" data-ytid="FgZUZUY67D8">
+          <div class="svc-card svc-card-front" data-ytid="-m4E5zbTD8A">
             <div style="display:block;cursor:pointer;position:absolute;inset:0;">
-              <img src="https://img.youtube.com/vi/FgZUZUY67D8/maxresdefault.jpg" alt="Motion Design Ads" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+              <img src="https://img.youtube.com/vi/-m4E5zbTD8A/maxresdefault.jpg" alt="Motion Design Ads" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
               <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
             </div>
           </div>
-          <div class="svc-card svc-card-back" data-ytid="-m4E5zbTD8A">
+          <div class="svc-card svc-card-back" data-ytid="bQ3RIK5fsx0">
             <div style="display:block;cursor:pointer;position:absolute;inset:0;">
-              <img src="https://img.youtube.com/vi/-m4E5zbTD8A/maxresdefault.jpg" alt="Motion Design Ads 2" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+              <img src="https://img.youtube.com/vi/bQ3RIK5fsx0/maxresdefault.jpg" alt="Motion Design Ads 2" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
               <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
             </div>
           </div>
-          <button class="svc-next-btn" onclick="carouselNext(this)" aria-label="Next video">›</button>
+          <button class="svc-prev-btn" onclick="carouselPrev(this)" aria-label="Previous video" style="display:none">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15,18 9,12 15,6"/></svg>
+          </button>
+          <button class="svc-next-btn" onclick="carouselNext(this)" aria-label="Next video">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9,6 15,12 9,18"/></svg>
+          </button>
         </div>
         <div class="svc-info">
           <div class="svc-box-title">Motion Design Ads</div>
           <ul class="svc-points" id="carousel-02-points">
-            <li>Premium motion design</li>
-            <li>Advanced sound design</li>
-            <li>Artistic direction</li>
-            <li>Color grading</li>
+            <li>3D motion design</li>
+            <li>Immersive sound design</li>
           </ul>
+          <a href="#contact" class="svc-want-btn"><span class="shiny-text">I want this ↗</span></a>
         </div>
       </div>
 
@@ -1636,14 +1693,15 @@
             <li>UI motion &amp; animations</li>
             <li>Brand-aligned design</li>
           </ul>
+          <a href="#contact" class="svc-want-btn"><span class="shiny-text">I want this ↗</span></a>
         </div>
       </div>
 
       <!-- Box 04 — Reels & Storytelling -->
       <div class="svc-box reveal" style="transition-delay:.4s">
-        <div class="svc-video-wrap" data-ytid="uCPJXOlwoxw">
+        <div class="svc-video-wrap" data-ytid="fcfunbsP1Jk">
           <div style="display:block;cursor:pointer;position:absolute;inset:0;">
-            <img src="https://img.youtube.com/vi/uCPJXOlwoxw/maxresdefault.jpg" alt="Reels & Storytelling" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+            <img src="https://img.youtube.com/vi/fcfunbsP1Jk/maxresdefault.jpg" alt="Reels & Storytelling" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
             <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
           </div>
         </div>
@@ -1654,6 +1712,7 @@
             <li>Premium visuals &amp; b-rolls</li>
             <li>Advanced sound design</li>
           </ul>
+          <a href="#contact" class="svc-want-btn"><span class="shiny-text">I want this ↗</span></a>
         </div>
       </div>
 
@@ -1672,6 +1731,7 @@
             <li>Dynamic b-roll</li>
             <li>Clean motion graphics</li>
           </ul>
+          <a href="#contact" class="svc-want-btn"><span class="shiny-text">I want this ↗</span></a>
         </div>
       </div>
     </div>
@@ -2008,37 +2068,35 @@
     'carousel-02': {
       current: 0,
       pointSets: [
-        ['Premium motion design','Advanced sound design','Artistic direction','Color grading'],
-        ['3D motion design','Immersive sound design']
+        ['3D motion design','Immersive sound design'],
+        ['Premium motion design','Advanced sound design','Create your own Artistic direction']
       ]
     }
   };
-  function carouselNext(btn) {
-    var carousel = btn.closest('.svc-carousel');
+  function carouselSwap(carousel, toNext) {
     var id = carousel.id;
     var data = carouselData[id];
     if (!data) return;
     var front = carousel.querySelector('.svc-card-front');
     var back  = carousel.querySelector('.svc-card-back');
-    // Animate swap
-    front.style.zIndex = '1';
-    front.style.transform = 'translate(10px,10px) scale(.93)';
-    front.style.opacity = '.7';
-    back.style.zIndex = '2';
-    back.style.transform = 'translate(0,0) scale(1)';
-    back.style.opacity = '1';
-    setTimeout(function() {
+    front.style.zIndex='1'; front.style.transform='translate(10px,10px) scale(.93)'; front.style.opacity='.7';
+    back.style.zIndex='2';  back.style.transform='translate(0,0) scale(1)';          back.style.opacity='1';
+    setTimeout(function(){
       front.className = front.className.replace('svc-card-front','svc-card-back');
       back.className  = back.className.replace('svc-card-back','svc-card-front');
-      front.style.cssText = ''; back.style.cssText = '';
+      front.style.cssText=''; back.style.cssText='';
     }, 450);
-    // Update bullet points
     data.current = 1 - data.current;
     var pts = carousel.closest('.svc-box').querySelector('.svc-points');
-    if (pts) {
-      pts.innerHTML = data.pointSets[data.current].map(function(p){ return '<li>'+p+'</li>'; }).join('');
-    }
+    if (pts) pts.innerHTML = data.pointSets[data.current].map(function(p){ return '<li>'+p+'</li>'; }).join('');
+    // Toggle nav buttons
+    var prevBtn = carousel.querySelector('.svc-prev-btn');
+    var nextBtn = carousel.querySelector('.svc-next-btn');
+    if (prevBtn) prevBtn.style.display = data.current === 1 ? 'flex' : 'none';
+    if (nextBtn) nextBtn.style.display = data.current === 0 ? 'flex' : 'none';
   }
+  function carouselNext(btn) { carouselSwap(btn.closest('.svc-carousel'), true); }
+  function carouselPrev(btn) { carouselSwap(btn.closest('.svc-carousel'), false); }
 
   /* ===========================
      SVG CIRCLE ANIMATION (Change 9)
@@ -2135,8 +2193,39 @@
       });
     } catch(_){}
   });
+
+  /* ===========================
+     LANGUAGE TOGGLE
+  =========================== */
+  (function(){
+    var lang = 'en';
+    var btn = document.getElementById('lang-toggle');
+    var label = btn.querySelector('span');
+
+    // Add data-fr / data-en to elements you want translated.
+    // Format: <el data-en="English text" data-fr="French text">
+    // The JS will swap text content on toggle.
+    // Ask Civa to translate sections one by one — just say "translate [section] to FR".
+
+    function applyLang(l) {
+      document.querySelectorAll('[data-'+l+']').forEach(function(el){
+        el.textContent = el.getAttribute('data-'+l);
+      });
+      label.textContent = l === 'en' ? 'FR' : 'EN';
+      document.documentElement.lang = l;
+    }
+
+    btn.addEventListener('click', function(){
+      lang = lang === 'en' ? 'fr' : 'en';
+      applyLang(lang);
+    });
+  })();
 </script>
 
+<!-- Language toggle bubble -->
+<button id="lang-toggle" aria-label="Toggle language FR/EN">
+  <span>FR</span>
+</button>
 
 </body>
 </html>

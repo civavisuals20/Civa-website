@@ -112,7 +112,7 @@
     }
     .nav-left { display:flex; align-items:center; gap:12px; flex:1; }
     .nav-photo {
-      width:46px; height:46px; border-radius:50%;
+      width:53px; height:53px; border-radius:50%;
       border:1px solid rgba(201,168,76,.5);
       box-shadow:0 0 12px var(--gold-glow-soft);
       overflow:hidden; flex-shrink:0;
@@ -311,19 +311,54 @@
       text-align:center;
       padding:120px 32px 80px;
       position:relative;
-      background:
-        radial-gradient(ellipse at 50% 40%, rgba(201,168,76,0.08) 0%, transparent 60%),
-        var(--black-abyss);
+      background:var(--black-abyss);
       overflow:hidden;
     }
-    /* Ambient particles */
-    #hero-mentor::before {
-      content:'';
-      position:absolute; inset:0;
-      background:
-        radial-gradient(circle at 20% 80%, rgba(201,168,76,0.04) 0%, transparent 40%),
-        radial-gradient(circle at 80% 20%, rgba(0,180,216,0.03) 0%, transparent 35%);
-      pointer-events:none;
+    .aurora-wrap {
+      position:absolute; inset:0; pointer-events:none; z-index:0;
+    }
+    .aurora-blob {
+      position:absolute; border-radius:50%;
+      filter:blur(90px); opacity:.55;
+    }
+    .aurora-blob-1 {
+      width:65vw; height:55vw;
+      top:-15%; left:-10%;
+      background:radial-gradient(ellipse at center, rgba(201,168,76,0.55) 0%, rgba(201,168,76,0.18) 45%, transparent 70%);
+      animation:aurora-float-1 9s ease-in-out infinite;
+    }
+    .aurora-blob-2 {
+      width:55vw; height:60vw;
+      top:10%; right:-15%;
+      background:radial-gradient(ellipse at center, rgba(240,210,100,0.45) 0%, rgba(180,130,40,0.15) 50%, transparent 70%);
+      animation:aurora-float-2 11s ease-in-out infinite;
+    }
+    .aurora-blob-3 {
+      width:45vw; height:50vw;
+      bottom:-20%; left:25%;
+      background:radial-gradient(ellipse at center, rgba(201,168,76,0.35) 0%, rgba(255,230,120,0.12) 55%, transparent 70%);
+      animation:aurora-float-3 13s ease-in-out infinite;
+    }
+    .aurora-blob-4 {
+      width:35vw; height:40vw;
+      top:30%; left:40%;
+      background:radial-gradient(ellipse at center, rgba(255,235,140,0.25) 0%, transparent 65%);
+      animation:aurora-float-1 8s ease-in-out infinite reverse;
+    }
+    @keyframes aurora-float-1 {
+      0%,100% { transform:translate(0,0) scale(1); }
+      33%     { transform:translate(6%,8%) scale(1.07); }
+      66%     { transform:translate(-5%,4%) scale(.95); }
+    }
+    @keyframes aurora-float-2 {
+      0%,100% { transform:translate(0,0) scale(1); }
+      40%     { transform:translate(-8%,-6%) scale(1.1); }
+      70%     { transform:translate(5%,7%) scale(.92); }
+    }
+    @keyframes aurora-float-3 {
+      0%,100% { transform:translate(0,0) scale(1); }
+      30%     { transform:translate(7%,-5%) scale(1.05); }
+      60%     { transform:translate(-4%,6%) scale(.97); }
     }
     .hero-label {
       font-family:var(--sf); font-size:10px; font-weight:700;
@@ -467,7 +502,17 @@
       animation:shimmer 3s infinite;
     }
     /* Two visuals side by side */
-    .pillar-visual-double { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    .pillar-visual-double { display:grid; grid-template-columns:1fr 1fr; gap:14px; position:relative; }
+    /* Arrow Civa — floats above gap, takes no layout space */
+    .arrow-civa {
+      position:absolute; top:-38px; left:calc(50% - 44px);
+      width:88px; height:auto; pointer-events:none; z-index:5;
+      mix-blend-mode:screen;
+    }
+    /* Desktop: scale the whole visual column +25% */
+    @media (min-width:1024px) {
+      .pillar-visual--lg { zoom:1.25; }
+    }
     /* Color before/after slider */
     .slider-label {
       font-family:var(--sf); font-size:10px; font-style:italic; font-weight:300;
@@ -484,8 +529,8 @@
       position:absolute; top:0; left:0; width:100%; height:100%;
       object-fit:cover; pointer-events:none;
     }
-    /* After image starts revealed at 50%, clip-path controlled by JS */
-    .color-after { clip-path: inset(0 50% 0 0); }
+    /* After image starts revealed at 20%, clip-path controlled by JS */
+    .color-after { clip-path: inset(0 80% 0 0); }
     .color-before-placeholder, .color-after-placeholder {
       position:absolute; top:0; left:0; width:100%; height:100%;
       display:flex; align-items:center; justify-content:center; flex-direction:column; gap:8px;
@@ -511,7 +556,7 @@
       transition:none; pointer-events:none;
     }
     .color-slider-handle {
-      position:absolute; top:0; bottom:0; left:50%;
+      position:absolute; top:0; bottom:0; left:20%;
       transform:translateX(-50%);
       width:2px; background:var(--gold);
       box-shadow:0 0 12px rgba(201,168,76,0.7); z-index:10; cursor:ew-resize;
@@ -825,6 +870,8 @@
       .sec-title { font-size:34px; }
       .sec-title-italic { font-size:34px; }
       .pillar-visual-double { grid-template-columns:1fr; }
+      .arrow-civa { display:none; }
+      .pillar-visual--lg { zoom:1; }
       .final-title-line1, .final-title-line2 { font-size:34px; }
       .footer-main { flex-direction:column; text-align:center; gap:20px; }
       .nav-hamburger { display:flex; }
@@ -883,6 +930,13 @@
      HERO
 ============================== -->
 <section id="hero-mentor">
+
+  <div class="aurora-wrap">
+    <div class="aurora-blob aurora-blob-1"></div>
+    <div class="aurora-blob aurora-blob-2"></div>
+    <div class="aurora-blob aurora-blob-3"></div>
+    <div class="aurora-blob aurora-blob-4"></div>
+  </div>
 
   <div class="section-inner" style="position:relative;z-index:1;">
 
@@ -1000,7 +1054,7 @@
           <li>Hollywood-grade cinematic color grading</li>
         </ul>
       </div>
-      <div class="pillar-visual">
+      <div class="pillar-visual pillar-visual--lg">
         <div class="pillar-visual-double">
           <div class="pillar-placeholder" style="overflow:hidden;">
             <img src="./assets/FusionNodes.png" alt="Fusion nodes" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
@@ -1009,15 +1063,14 @@
             <video src="./assets/Showreel.mp4" autoplay muted loop playsinline
                    style="width:100%;height:100%;object-fit:cover;display:block;"></video>
           </div>
+          <video class="arrow-civa" src="./assets/Arrow_Civa.mov" autoplay muted loop playsinline aria-hidden="true"></video>
         </div>
 
         <!-- Color before/after slider -->
         <div style="margin-top:14px">
           <p class="slider-label">Drag to see the difference</p>
           <div class="color-slider-wrap" id="colorSlider">
-            <!-- Before — bottom layer, always full width -->
             <img class="color-before" src="./assets/Colo/Colo_before.jpg" alt="Before color grade">
-            <!-- After — top layer, revealed left-to-right via clip-path (image stays fixed) -->
             <img class="color-after" src="./assets/Colo/Colo_after.jpg" alt="After color grade" id="colorAfter">
             <div class="color-slider-handle" id="colorHandle"></div>
           </div>
@@ -1292,6 +1345,12 @@
 
     // Click anywhere on wrap
     wrap.addEventListener('click', e => setPos(e.clientX));
+
+    // Start at 20%
+    requestAnimationFrame(() => {
+      const rect = wrap.getBoundingClientRect();
+      setPos(rect.left + rect.width * 0.20);
+    });
   })();
 
   /* ===========================
