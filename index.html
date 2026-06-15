@@ -725,6 +725,7 @@
     @media (hover:hover) {
       .testi-col:hover .testi-track { animation-play-state:paused; }
     }
+    .testi-track.is-paused { animation-play-state:paused !important; }
     .testi-card {
       background:var(--black-surface);
       border:.5px solid rgba(201,168,76,.15);
@@ -2238,20 +2239,20 @@
   =========================== */
   (function() {
     document.querySelectorAll('.testi-card').forEach(function(card) {
-      card.addEventListener('click', function() {
+      card.addEventListener('touchstart', function(e) {
         var track = this.closest('.testi-col').querySelector('.testi-track');
         var isSelected = this.classList.contains('testi-selected');
-        // Deselect all
+        // Deselect all tracks
         document.querySelectorAll('.testi-card.testi-selected').forEach(function(c) {
           c.classList.remove('testi-selected');
-          c.closest('.testi-col').querySelector('.testi-track').style.animationPlayState = 'running';
+          c.closest('.testi-col').querySelector('.testi-track').classList.remove('is-paused');
         });
-        // If wasn't selected, select and pause
+        // Toggle: if wasn't selected, pause this track
         if (!isSelected) {
           this.classList.add('testi-selected');
-          track.style.animationPlayState = 'paused';
+          track.classList.add('is-paused');
         }
-      });
+      }, { passive: true });
     });
   })();
 </script>
