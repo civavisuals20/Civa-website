@@ -2238,19 +2238,38 @@
      TESTIMONIAL MOBILE TAP-TO-PAUSE
   =========================== */
   (function() {
+    /* Extract translateY from a computed matrix string */
+    function getTranslateY(el) {
+      var t = window.getComputedStyle(el).transform;
+      if (!t || t === 'none') return 0;
+      var m = t.match(/matrix\(([^)]+)\)/);
+      return m ? parseFloat(m[1].split(',')[5]) : 0;
+    }
+
+    function pauseTrack(track) {
+      var ty = getTranslateY(track);
+      track.style.animation  = 'none';
+      track.style.transform  = 'translateY(' + ty + 'px)';
+    }
+    function resumeTrack(track) {
+      track.style.animation = '';
+      track.style.transform = '';
+    }
+
     document.querySelectorAll('.testi-card').forEach(function(card) {
-      card.addEventListener('touchstart', function(e) {
-        var track = this.closest('.testi-col').querySelector('.testi-track');
+      card.addEventListener('touchstart', function() {
+        var track      = this.closest('.testi-col').querySelector('.testi-track');
         var isSelected = this.classList.contains('testi-selected');
-        // Deselect all tracks
+
+        /* always resume any currently-paused card first */
         document.querySelectorAll('.testi-card.testi-selected').forEach(function(c) {
           c.classList.remove('testi-selected');
-          c.closest('.testi-col').querySelector('.testi-track').classList.remove('is-paused');
+          resumeTrack(c.closest('.testi-col').querySelector('.testi-track'));
         });
-        // Toggle: if wasn't selected, pause this track
+
         if (!isSelected) {
           this.classList.add('testi-selected');
-          track.classList.add('is-paused');
+          pauseTrack(track);
         }
       }, { passive: true });
     });
