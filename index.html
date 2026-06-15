@@ -827,7 +827,10 @@
       transition: transform .45s cubic-bezier(.4,0,.2,1), opacity .45s;
     }
     .svc-card-front { z-index:2; transform:translate(0,0) scale(1); opacity:1; }
-    .svc-card-back  { z-index:1; transform:translate(10px,10px) scale(.93); opacity:.7; }
+    .svc-card-back  { z-index:1; transform:translate(16px,16px) scale(.90); opacity:.45; }
+    .svc-carousel-dots { position:absolute; bottom:-22px; left:50%; transform:translateX(-50%); display:flex; gap:5px; z-index:4; }
+    .svc-carousel-dot { width:5px; height:5px; border-radius:50%; background:rgba(201,168,76,.3); transition:background .3s; }
+    .svc-carousel-dot.active { background:var(--gold); }
     .svc-next-btn, .svc-prev-btn {
       position:absolute; bottom:10px; z-index:3;
       width:30px; height:30px; border-radius:50%;
@@ -1669,6 +1672,10 @@
           <button class="svc-next-btn" onclick="carouselNext(this)" aria-label="Next video">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9,6 15,12 9,18"/></svg>
           </button>
+          <div class="svc-carousel-dots">
+            <div class="svc-carousel-dot active"></div>
+            <div class="svc-carousel-dot"></div>
+          </div>
         </div>
         <div class="svc-info">
           <div class="svc-box-title">Motion Design Ads</div>
@@ -2081,8 +2088,8 @@
     if (!data) return;
     var front = carousel.querySelector('.svc-card-front');
     var back  = carousel.querySelector('.svc-card-back');
-    front.style.zIndex='1'; front.style.transform='translate(10px,10px) scale(.93)'; front.style.opacity='.7';
-    back.style.zIndex='2';  back.style.transform='translate(0,0) scale(1)';          back.style.opacity='1';
+    front.style.zIndex='1'; front.style.transform='translate(16px,16px) scale(.90)'; front.style.opacity='.45';
+    back.style.zIndex='2';  back.style.transform='translate(0,0) scale(1)';           back.style.opacity='1';
     setTimeout(function(){
       front.className = front.className.replace('svc-card-front','svc-card-back');
       back.className  = back.className.replace('svc-card-back','svc-card-front');
@@ -2096,6 +2103,9 @@
     var nextBtn = carousel.querySelector('.svc-next-btn');
     if (prevBtn) prevBtn.style.display = data.current === 1 ? 'flex' : 'none';
     if (nextBtn) nextBtn.style.display = data.current === 0 ? 'flex' : 'none';
+    // Update dots
+    var dots = carousel.querySelectorAll('.svc-carousel-dot');
+    dots.forEach(function(d, i) { d.classList.toggle('active', i === data.current); });
   }
   function carouselNext(btn) { carouselSwap(btn.closest('.svc-carousel'), true); }
   function carouselPrev(btn) { carouselSwap(btn.closest('.svc-carousel'), false); }
@@ -2220,6 +2230,28 @@
     btn.addEventListener('click', function(){
       lang = lang === 'en' ? 'fr' : 'en';
       applyLang(lang);
+    });
+  })();
+
+  /* ===========================
+     TESTIMONIAL MOBILE TAP-TO-PAUSE
+  =========================== */
+  (function() {
+    document.querySelectorAll('.testi-card').forEach(function(card) {
+      card.addEventListener('click', function() {
+        var track = this.closest('.testi-col').querySelector('.testi-track');
+        var isSelected = this.classList.contains('testi-selected');
+        // Deselect all
+        document.querySelectorAll('.testi-card.testi-selected').forEach(function(c) {
+          c.classList.remove('testi-selected');
+          c.closest('.testi-col').querySelector('.testi-track').style.animationPlayState = 'running';
+        });
+        // If wasn't selected, select and pause
+        if (!isSelected) {
+          this.classList.add('testi-selected');
+          track.style.animationPlayState = 'paused';
+        }
+      });
     });
   })();
 </script>
