@@ -112,11 +112,11 @@
     }
     /* Change 6: section-title bigger */
     .section-title {
-      font-family:var(--funnel); font-weight:400; font-size:60px; color:var(--ivory); line-height:1.05; letter-spacing:-.02em; display:block;
+      font-family:var(--dela); font-weight:400; font-size:60px; color:var(--ivory); line-height:1.05; letter-spacing:-.02em; display:block;
     }
     .section-title-italic {
-      display:block; font-family:var(--funnel); font-size:60px; font-weight:300;
-      font-style:italic; line-height:1.15;
+      display:block; font-family:var(--dela); font-size:60px; font-weight:400;
+      font-style:normal; line-height:1.15;
       background:linear-gradient(90deg,#7A5C1E 0%,#C9A84C 16%,#F0D97C 30%,#FFF9E8 46%,#F0D97C 62%,#C9A84C 78%,#7A5C1E 94%,#C9A84C 100%);
       background-size:200% auto;
       -webkit-background-clip:text; background-clip:text;
@@ -129,6 +129,34 @@
     }
     .reveal.visible { opacity:1; transform:translateY(0); }
     .sep { height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); opacity:.1; }
+
+    /* ============================
+       PROBLEM SECTION ("It's never the idea.")
+    ============================ */
+    #problem { background:var(--black-abyss); padding:110px 48px; }
+    .problem-inner { max-width:760px; margin:0 auto; }
+    .problem-header { text-align:center; margin-bottom:8px; }
+    .problem-body { margin-top:34px; }
+    .problem-body p {
+      font-family:var(--sf); font-weight:400; font-size:18px;
+      color:var(--ivory-muted); line-height:1.75;
+      margin:0 0 14px;
+    }
+    .problem-punchline {
+      font-family:var(--funnel); font-size:24px; font-weight:600;
+      color:var(--ivory); line-height:1.55;
+      margin-top:40px; padding:32px 36px;
+      background:var(--black-deep);
+      border-left:2px solid var(--gold);
+      border-radius:2px;
+    }
+    .problem-punchline .shiny-text { font-size:24px; font-weight:700; display:inline; }
+    @media (max-width:767px) {
+      #problem { padding:64px 20px; }
+      .problem-body p { font-size:16px; }
+      .problem-punchline { font-size:19px; padding:24px 22px; margin-top:30px; }
+      .problem-punchline .shiny-text { font-size:19px; }
+    }
 
     /* ============================
        SHINY TEXT CLASS (Change 1)
@@ -695,12 +723,12 @@
       text-align:center; margin-bottom:56px;
     }
     .reviews-big-title {
-      font-family:var(--funnel); font-weight:400; font-size:52px;
+      font-family:var(--dela); font-weight:400; font-size:52px;
       color:var(--ivory); line-height:1.1; letter-spacing:-.02em; display:inline-block;
     }
     .reviews-big-italic {
-      font-family:var(--funnel); font-size:52px; font-weight:300;
-      font-style:italic; display:inline-block; padding-bottom:24px; margin-bottom:-18px;
+      font-family:var(--dela); font-size:52px; font-weight:400;
+      font-style:normal; display:inline-block; padding-bottom:24px; margin-bottom:-18px;
       background:linear-gradient(90deg,#7A5C1E 0%,#C9A84C 16%,#F0D97C 30%,#FFF9E8 46%,#F0D97C 62%,#C9A84C 78%,#7A5C1E 94%,#C9A84C 100%);
       background-size:200% auto;
       -webkit-background-clip:text; background-clip:text;
@@ -784,12 +812,12 @@
     #services { background:var(--black-abyss); padding:90px 48px; }
     .services-title-wrap { margin-bottom:52px; text-align:center; }
     .services-big-title {
-      font-family:var(--funnel); font-weight:400; font-size:52px;
+      font-family:var(--dela); font-weight:400; font-size:52px;
       color:var(--ivory); line-height:1.1; letter-spacing:-.02em; display:block;
     }
     .services-big-italic {
-      font-family:var(--funnel); font-size:52px; font-weight:300;
-      font-style:italic; display:block; line-height:1.1;
+      font-family:var(--dela); font-size:52px; font-weight:400;
+      font-style:normal; display:block; line-height:1.1;
       background:linear-gradient(90deg,#7A5C1E 0%,#C9A84C 16%,#F0D97C 30%,#FFF9E8 46%,#F0D97C 62%,#C9A84C 78%,#7A5C1E 94%,#C9A84C 100%);
       background-size:200% auto;
       -webkit-background-clip:text; background-clip:text;
@@ -924,12 +952,12 @@
     .contact-inner { max-width:640px; margin:0 auto; position:relative; z-index:1; }
     .contact-header { text-align:center; margin-bottom:52px; }
     .contact-title-main {
-      font-family:var(--funnel); font-weight:400; font-size:52px;
+      font-family:var(--dela); font-weight:400; font-size:52px;
       color:var(--ivory); line-height:1.1; letter-spacing:-.02em; display:block;
     }
     .contact-title-italic {
-      font-family:var(--funnel); font-size:52px; font-weight:300;
-      font-style:italic; display:block; line-height:1.1;
+      font-family:var(--dela); font-size:52px; font-weight:400;
+      font-style:normal; display:block; line-height:1.1;
       background:linear-gradient(90deg,#7A5C1E 0%,#C9A84C 16%,#F0D97C 30%,#FFF9E8 46%,#F0D97C 62%,#C9A84C 78%,#7A5C1E 94%,#C9A84C 100%);
       background-size:200% auto;
       -webkit-background-clip:text; background-clip:text;
@@ -1233,8 +1261,8 @@
   <!-- Centered content -->
   <div class="hero-center">
     <h1>
-      <span class="hero-h1-line1 reveal">Your content deserves</span>
-      <span class="hero-h1-shiny reveal" style="transition-delay:.12s">to be felt.</span>
+      <span class="hero-h1-line1 reveal">Good ideas die</span>
+      <span class="hero-h1-shiny reveal" style="transition-delay:.12s">in bad edits.</span>
     </h1>
     <div class="hero-buttons reveal" style="transition-delay:.25s">
       <a href="https://calendly.com/civavisuals20/30min" target="_blank" rel="noopener noreferrer" class="btn-primary"><span class="shiny-text">Start a Project</span></a>
@@ -1266,6 +1294,31 @@
     <div class="ticker-item"><span class="ticker-text">SaaS Explainer</span><span class="ticker-sep">◆</span></div>
   </div>
 </div>
+
+<div class="sep"></div>
+
+<!-- ==============================
+     PROBLEM — "It's never the idea."
+============================== -->
+<section id="problem">
+  <div class="section-inner">
+    <div class="problem-inner reveal">
+      <div class="problem-header">
+        <span class="section-title">It's never</span>
+        <span class="section-title-italic">the idea.</span>
+      </div>
+      <div class="problem-body">
+        <p>Your product is great. Your offer is solid. Your story deserves to be heard.</p>
+        <p>But nobody sticks around to hear it?</p>
+        <p>People don't quit videos because the idea was bad.</p>
+        <p>They quit because they got bored.</p>
+        <p>And bored people scroll.</p>
+        <p>Maybe straight to a cat video 🐱</p>
+      </div>
+      <p class="problem-punchline"><span class="shiny-text">Rhythm + emotion</span> is the difference between content people watch, and content people actually remember.</p>
+    </div>
+  </div>
+</section>
 
 <div class="sep"></div>
 
@@ -1629,8 +1682,8 @@
 <section id="services">
   <div class="section-inner">
     <div class="services-title-wrap reveal">
-      <span class="services-big-title">See what's</span>
-      <span class="services-big-italic">possible for you</span>
+      <span class="services-big-title">See what</span>
+      <span class="services-big-italic">fits you</span>
     </div>
 
     <div class="services-boxes">
@@ -2238,38 +2291,39 @@
      TESTIMONIAL MOBILE TAP-TO-PAUSE
   =========================== */
   (function() {
-    /* Extract translateY from a computed matrix string */
-    function getTranslateY(el) {
-      var t = window.getComputedStyle(el).transform;
-      if (!t || t === 'none') return 0;
-      var m = t.match(/matrix\(([^)]+)\)/);
-      return m ? parseFloat(m[1].split(',')[5]) : 0;
-    }
+    /* Injected <style> tag — rules here override via !important,
+       bypassing the iOS compositor-thread animation issue */
+    var pauseStyle = document.createElement('style');
+    document.head.appendChild(pauseStyle);
 
-    function pauseTrack(track) {
-      var ty = getTranslateY(track);
-      track.style.animation  = 'none';
-      track.style.transform  = 'translateY(' + ty + 'px)';
+    var selectedCard = null;
+
+    function pause() {
+      pauseStyle.textContent =
+        '.testi-col-1 .testi-track,' +
+        '.testi-col-2 .testi-track,' +
+        '.testi-col-3 .testi-track {' +
+        '  -webkit-animation-play-state:paused!important;' +
+        '  animation-play-state:paused!important;' +
+        '}';
     }
-    function resumeTrack(track) {
-      track.style.animation = '';
-      track.style.transform = '';
+    function resume() {
+      pauseStyle.textContent = '';
     }
 
     document.querySelectorAll('.testi-card').forEach(function(card) {
       card.addEventListener('touchstart', function() {
-        var track      = this.closest('.testi-col').querySelector('.testi-track');
-        var isSelected = this.classList.contains('testi-selected');
-
-        /* always resume any currently-paused card first */
-        document.querySelectorAll('.testi-card.testi-selected').forEach(function(c) {
-          c.classList.remove('testi-selected');
-          resumeTrack(c.closest('.testi-col').querySelector('.testi-track'));
-        });
-
-        if (!isSelected) {
+        if (selectedCard === this) {
+          /* tap same card → resume */
+          this.classList.remove('testi-selected');
+          selectedCard = null;
+          resume();
+        } else {
+          /* tap new card → pause */
+          if (selectedCard) selectedCard.classList.remove('testi-selected');
           this.classList.add('testi-selected');
-          pauseTrack(track);
+          selectedCard = this;
+          pause();
         }
       }, { passive: true });
     });
