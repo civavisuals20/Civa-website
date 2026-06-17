@@ -1129,8 +1129,8 @@
       .nav-wordmark { font-size:12px; letter-spacing:.25em; }
       .nav-cta { padding:7px 11px; font-size:8px; }
       #hero { padding:96px 18px 60px; text-align:center; }
-      /* Allow hero title to wrap freely on mobile — 3 lines is fine */
-      .hero-h1-line1, .hero-h1-shiny { white-space:normal; }
+      /* Keep each line on a single row — shrink font instead of wrapping */
+      .hero-h1-line1, .hero-h1-shiny { white-space:nowrap; }
       .hero-body { font-size:14px; }
       .hero-buttons { flex-direction:column; align-items:center; }
       .hero-buttons .btn-primary, .hero-buttons .btn-outline { width:100%; text-align:center; }
@@ -1152,7 +1152,7 @@
       .services-big-title, .services-big-italic { font-size:38px; }
       .reviews-big-title, .reviews-big-italic { font-size:38px; }
       .contact-title-main, .contact-title-italic { font-size:34px; }
-      .hero-h1-line1, .hero-h1-shiny { font-size:40px !important; }
+      .hero-h1-line1, .hero-h1-shiny { font-size:clamp(20px, 8.5vw, 38px) !important; }
       /* Work grid — single column */
       .work-grid { grid-template-columns:1fr; gap:16px; }
       .work-thumb { aspect-ratio:16/9; }
@@ -1417,7 +1417,6 @@
       <p class="about-bio reveal" style="transition-delay:.3s">
         I'm Civa, your video editor and motion designer.<br>
         For 2+ years, I've helped brands, agencies and creators turn raw ideas into content that actually performs.<br>
-        I don't just deliver a file, I make sure every frame serves your vision.<br>
         Every project is built with one goal : <span class="unforgettable-wrap"><span class="unforgettable-text">make it unforgettable</span><svg class="unforgettable-circle" viewBox="0 0 320 70" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path class="circle-path" d="M 18,38 C 28,12 100,4 160,6 C 220,4 292,12 302,38 C 312,56 300,66 278,70 C 240,76 190,78 160,78 C 130,78 80,76 42,70 C 20,66 8,56 18,38" fill="none" stroke="#C9A84C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </p>
       <div class="tools-row reveal" style="transition-delay:.4s">
@@ -1827,7 +1826,7 @@
           <span>How much does a video cost?</span>
           <span class="faq-icon">+</span>
         </div>
-        <div class="faq-answer"><div class="faq-answer-inner">The final price is defined during our first call, based on the type of video, length, amount of animation and your specific needs.</div></div>
+        <div class="faq-answer"><div class="faq-answer-inner">The final price is defined during our first call, based on the type of video, length, amount of animation and your specific needs. No surprises, you'll know the exact price before we start.</div></div>
       </div>
       <div class="faq-item reveal" style="transition-delay:.2s">
         <div class="faq-question" data-faq>
@@ -1964,13 +1963,6 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <rect x="2" y="4" width="20" height="16" rx="2"/>
           <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-        </svg>
-      </a>
-      <!-- WhatsApp -->
-      <!-- PLACEHOLDER: replace [YOUR-WHATSAPP-NUMBER] with your number (e.g. 33612345678) -->
-      <a href="https://wa.me/[YOUR-WHATSAPP-NUMBER]" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="WhatsApp">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
         </svg>
       </a>
     </div>
