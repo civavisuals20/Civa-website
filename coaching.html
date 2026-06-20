@@ -395,6 +395,25 @@
     }
     .hero-subtitle strong { color:var(--ivory); font-weight:700; }
     .hero-cta-wrap { display:flex; flex-direction:column; align-items:center; gap:16px; }
+    .hero-cta-sub {
+      font-family:var(--funnel); font-weight:400; font-size:13px;
+      color:var(--ivory-muted); letter-spacing:.02em; margin-top:-4px;
+    }
+    .hero-insta-link {
+      color:var(--gold); font-weight:700; text-decoration:none;
+      position:relative; padding-bottom:1px; cursor:pointer;
+      transition:color .3s, text-shadow .3s;
+    }
+    .hero-insta-link::after {
+      content:''; position:absolute; left:0; right:0; bottom:-2px; height:1px;
+      background:var(--gold); transform:scaleX(0); transform-origin:left;
+      transition:transform .3s;
+    }
+    .hero-insta-link:hover {
+      color:#F0D97C;
+      text-shadow:0 0 10px var(--gold-glow-strong), 0 0 22px var(--gold-glow-mid);
+    }
+    .hero-insta-link:hover::after { transform:scaleX(1); }
     .hero-note {
       font-family:var(--funnel); font-weight:300; font-style:italic; font-size:13px;
       color:var(--ivory-ghost); max-width:380px; line-height:1.6;
@@ -868,7 +887,8 @@
     }
     @media (max-width:767px) {
       #hero-mentor { padding:110px 20px 72px; }
-      .hero-h1-line1, .hero-h1-line2 { font-size:31px; }
+      /* Keep each line on a single row — shrink font instead of wrapping */
+      .hero-h1-line1, .hero-h1-line2 { white-space:nowrap; font-size:clamp(17px, 5.8vw, 31px); }
       .hero-subtitle { font-size:14px; }
       #for-who, #pillars, #how-it-works, #why-me, #final-cta { padding:64px 20px; }
       footer { padding:36px 20px 24px; }
@@ -953,7 +973,8 @@
       <a href="https://calendly.com/civavisuals20/30min" target="_blank" rel="noopener noreferrer" class="btn-primary">
         <span class="shiny-text">Book a Free Call</span>
       </a>
-      <p class="hero-note">No commitment. Just a conversation about where you are and where you want to go.</p>
+      <p class="hero-cta-sub">Prefer to text first? DM me on <a href="https://www.instagram.com/civavisuals/" target="_blank" rel="noopener noreferrer" class="hero-insta-link">Instagram</a></p>
+      <p class="hero-note">No commitment either way. Just a conversation about where you are and where you want to go.</p>
       <div class="tool-pills hero-pills">
         <div class="tool-pill"><span class="tool-dot tool-dot-teal"></span>DaVinci Resolve</div>
         <div class="tool-pill"><span class="tool-dot tool-dot-gold"></span>Fusion</div>
@@ -1007,8 +1028,8 @@
 
     <div class="section-label reveal">What we work on</div>
     <div class="reveal" style="transition-delay:.05s">
-      <span class="sec-title">Three pillars.</span>
-      <span class="sec-title-italic">One complete editor.</span>
+      <span class="sec-title">What gets you</span>
+      <span class="sec-title-italic">to the next level.</span>
     </div>
 
     <!-- PILLAR 01 -->
@@ -1223,8 +1244,8 @@
 <section id="final-cta">
   <div class="final-cta-inner">
     <div class="final-title reveal">
-      <span class="final-title-line1">Ready to stop struggling?</span>
-      <span class="final-title-line2">Let's level up.</span>
+      <span class="final-title-line1">Ready for the next level?</span>
+      <span class="final-title-line2">Let's go.</span>
     </div>
     <p class="final-subtitle reveal" style="transition-delay:.1s">
       Book a free 30-min call. We'll talk about where you are, what's holding you back,
