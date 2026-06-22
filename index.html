@@ -136,6 +136,10 @@
     #problem { background:var(--black-abyss); padding:110px 48px; }
     .problem-inner { max-width:760px; margin:0 auto; }
     .problem-header { text-align:center; margin-bottom:8px; }
+    .problem-header .section-title,
+    .problem-header .section-title-italic {
+      white-space:nowrap; font-size:clamp(16px, 5.1vw, 44px);
+    }
     .problem-body { margin-top:34px; }
     .problem-body p {
       font-family:var(--sf); font-weight:400; font-size:18px;
@@ -415,13 +419,13 @@
     }
     .hero-h1-line1 {
       display:block; font-family:var(--dela);
-      font-size:clamp(22px, 7.2vw, 51px); color:var(--ivory); line-height:1.02;
+      font-size:clamp(20px, 6.2vw, 51px); color:var(--ivory); line-height:1.02;
       text-transform:uppercase; white-space:nowrap;
     }
     /* Shiny gold sweep on "to be felt." */
     .hero-h1-shiny {
       display:block;
-      font-family:var(--dela); font-size:clamp(20px, 6.7vw, 47px); line-height:1.12;
+      font-family:var(--dela); font-size:clamp(20px, 6.2vw, 51px); line-height:1.12;
       text-transform:uppercase; white-space:nowrap;
       background:linear-gradient(90deg,
         #7A5C1E 0%, #C9A84C 16%, #F0D97C 30%, #FFF9E8 46%,
@@ -1204,7 +1208,7 @@
       .services-big-title, .services-big-italic { font-size:38px; }
       .reviews-big-title, .reviews-big-italic { font-size:38px; }
       .contact-title-main, .contact-title-italic { font-size:34px; }
-      .hero-h1-line1, .hero-h1-shiny { font-size:clamp(20px, 8.5vw, 38px) !important; }
+      .hero-h1-line1, .hero-h1-shiny { font-size:clamp(17px, 6vw, 36px) !important; }
       /* Work grid — single column */
       .work-grid { grid-template-columns:1fr; gap:16px; }
       .work-thumb { aspect-ratio:16/9; }
