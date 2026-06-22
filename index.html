@@ -136,6 +136,12 @@
     #problem { background:var(--black-abyss); padding:110px 48px; }
     .problem-inner { max-width:760px; margin:0 auto; }
     .problem-header { text-align:center; margin-bottom:8px; }
+    @media (min-width:768px) {
+      .problem-header .section-title,
+      .problem-header .section-title-italic {
+        white-space:nowrap; font-size:clamp(28px, 5vw, 44px);
+      }
+    }
     .problem-body { margin-top:34px; }
     .problem-body p {
       font-family:var(--sf); font-weight:400; font-size:18px;
