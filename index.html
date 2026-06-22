@@ -1182,7 +1182,12 @@
       .nav-cta { padding:7px 11px; font-size:8px; }
       #hero { padding:96px 18px 60px; text-align:center; }
       /* Keep each line on a single row — shrink font instead of wrapping */
-      .hero-h1-line1, .hero-h1-shiny { white-space:nowrap; }
+      .hero-h1-line1, .hero-h1-shiny {
+        white-space: normal !important;
+        overflow-wrap: break-word;
+        word-break: break-word;
+        line-height: 1.15;
+      }
       .hero-body { font-size:14px; }
       .hero-buttons { flex-direction:column; align-items:center; }
       .hero-buttons .btn-primary, .hero-buttons .btn-outline { width:100%; text-align:center; }
@@ -1204,7 +1209,7 @@
       .services-big-title, .services-big-italic { font-size:38px; }
       .reviews-big-title, .reviews-big-italic { font-size:38px; }
       .contact-title-main, .contact-title-italic { font-size:34px; }
-      .hero-h1-line1, .hero-h1-shiny { font-size:clamp(20px, 8.5vw, 38px) !important; }
+      .hero-h1-line1, .hero-h1-shiny { font-size:clamp(18px, 7.5vw, 32px) !important; }
       /* Work grid — single column */
       .work-grid { grid-template-columns:1fr; gap:16px; }
       .work-thumb { aspect-ratio:16/9; }
