@@ -438,6 +438,31 @@
       color:transparent; -webkit-text-fill-color:transparent;
       animation:shiny-gold 3s linear infinite;
     }
+    .hero-h1-subtitle {
+      display: block;
+      font-family: var(--funnel);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(13px, 1.6vw, 17px);
+      color: var(--ivory-muted);
+      margin-top: 14px;
+      white-space: normal;
+    }
+    .hero-secondary-link {
+      margin-top: 14px;
+      font-family: var(--sf);
+      font-size: 12px;
+      color: var(--ivory-ghost);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      opacity: 0.7;
+      transition: opacity 0.25s;
+    }
+    .hero-secondary-link:hover { opacity: 1; }
+    .mini-cta-banner {
+      text-align: center;
+      padding: 24px 0;
+    }
     .hero-body {
       font-family:var(--sf); font-weight:400; font-size:16px;
       color:var(--ivory-muted); line-height:1.7;
@@ -1216,6 +1241,7 @@
       .reviews-big-title, .reviews-big-italic { font-size:38px; }
       .contact-title-main, .contact-title-italic { font-size:34px; }
       .hero-h1-line1, .hero-h1-shiny { font-size:clamp(18px, 7.5vw, 32px) !important; }
+      .hero-h1-subtitle { font-size: 13px; white-space: normal; }
       /* Work grid — single column */
       .work-grid { grid-template-columns:1fr; gap:16px; }
       .work-thumb { aspect-ratio:16/9; }
@@ -1326,10 +1352,11 @@
     <h1>
       <span class="hero-h1-line1 reveal">Your content deserves</span>
       <span class="hero-h1-shiny reveal" style="transition-delay:.12s">to be unforgettable.</span>
+      <span class="hero-h1-subtitle reveal" style="transition-delay:.18s">Video editing &amp; motion design that turns viewers into clients.</span>
     </h1>
     <div class="hero-buttons reveal" style="transition-delay:.25s">
       <a href="https://calendly.com/civavisuals20/30min" target="_blank" rel="noopener noreferrer" class="btn-primary"><span class="shiny-text">Start a Project</span></a>
-      <a href="#work"    class="btn-outline">See My Work</a>
+      <a href="#services" class="hero-secondary-link">See My Work ↓</a>
     </div>
   </div>
 </section>
@@ -1361,6 +1388,133 @@
 <div class="sep"></div>
 
 <!-- ==============================
+     SERVICES — 5 boxes, 3-col grid
+============================== -->
+<section id="services">
+  <div class="section-inner">
+    <div class="services-title-wrap reveal">
+      <span class="services-big-title">See what</span>
+      <span class="services-big-italic">fits you</span>
+    </div>
+
+    <div class="services-boxes">
+      <!-- Box 01 — VSL -->
+      <div class="svc-box reveal" style="transition-delay:.1s">
+        <div class="svc-video-wrap" data-ytid="wYgml-ZvuRI">
+          <div style="display:block;cursor:pointer;position:absolute;inset:0;">
+            <img src="https://img.youtube.com/vi/wYgml-ZvuRI/maxresdefault.jpg" alt="VSL" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+            <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          </div>
+        </div>
+        <div class="svc-info">
+          <div class="svc-box-title">VSL</div>
+          <ul class="svc-points">
+            <li>Premium 2D motion design</li>
+            <li>Advanced sound design</li>
+          </ul>
+          <a href="#contact" class="svc-want-btn"><span class="shiny-text">I want this ↗</span></a>
+        </div>
+      </div>
+
+      <!-- Box 02 — Motion Design Ads (carousel) -->
+      <div class="svc-box reveal" style="transition-delay:.2s">
+        <div class="svc-video-wrap svc-carousel" id="carousel-02">
+          <div class="svc-card svc-card-front" data-ytid="-m4E5zbTD8A">
+            <div style="display:block;cursor:pointer;position:absolute;inset:0;">
+              <img src="https://img.youtube.com/vi/-m4E5zbTD8A/maxresdefault.jpg" alt="Motion Design Ads" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+              <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+            </div>
+          </div>
+          <div class="svc-card svc-card-back" data-ytid="bQ3RIK5fsx0">
+            <div style="display:block;cursor:pointer;position:absolute;inset:0;">
+              <img src="https://img.youtube.com/vi/bQ3RIK5fsx0/maxresdefault.jpg" alt="Motion Design Ads 2" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+              <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+            </div>
+          </div>
+          <button class="svc-prev-btn" onclick="carouselPrev(this)" aria-label="Previous video" style="display:none">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15,18 9,12 15,6"/></svg>
+          </button>
+          <button class="svc-next-btn" onclick="carouselNext(this)" aria-label="Next video">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9,6 15,12 9,18"/></svg>
+          </button>
+          <div class="svc-carousel-dots">
+            <div class="svc-carousel-dot active"></div>
+            <div class="svc-carousel-dot"></div>
+          </div>
+        </div>
+        <div class="svc-info">
+          <div class="svc-box-title">Motion Design Ads</div>
+          <ul class="svc-points" id="carousel-02-points">
+            <li>3D motion design</li>
+            <li>Immersive sound design</li>
+          </ul>
+          <a href="#contact" class="svc-want-btn"><span class="shiny-text">I want this ↗</span></a>
+        </div>
+      </div>
+
+      <!-- Box 03 — SaaS Explainer -->
+      <div class="svc-box reveal" style="transition-delay:.3s">
+        <div class="svc-video-wrap" data-ytid="Vfv4awsWi3Q">
+          <div style="display:block;cursor:pointer;position:absolute;inset:0;">
+            <img src="https://img.youtube.com/vi/Vfv4awsWi3Q/maxresdefault.jpg" alt="SaaS Explainer" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+            <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          </div>
+        </div>
+        <div class="svc-info">
+          <div class="svc-box-title">SaaS Explainer</div>
+          <ul class="svc-points">
+            <li>Clear visual storytelling</li>
+            <li>UI motion &amp; animations</li>
+            <li>Brand-aligned design</li>
+          </ul>
+          <a href="#contact" class="svc-want-btn"><span class="shiny-text">I want this ↗</span></a>
+        </div>
+      </div>
+
+      <!-- Box 04 — Reels & Storytelling -->
+      <div class="svc-box reveal" style="transition-delay:.4s">
+        <div class="svc-video-wrap" data-ytid="fcfunbsP1Jk">
+          <div style="display:block;cursor:pointer;position:absolute;inset:0;">
+            <img src="https://img.youtube.com/vi/fcfunbsP1Jk/maxresdefault.jpg" alt="Reels &amp; Storytelling" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+            <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          </div>
+        </div>
+        <div class="svc-info">
+          <div class="svc-box-title">Reels &amp; Storytelling</div>
+          <ul class="svc-points">
+            <li>Cinematic color grading</li>
+            <li>Premium visuals &amp; b-rolls</li>
+            <li>Advanced sound design</li>
+          </ul>
+          <a href="#contact" class="svc-want-btn"><span class="shiny-text">I want this ↗</span></a>
+        </div>
+      </div>
+
+      <!-- Box 05 — YouTube Videos (centered in 3-col grid) -->
+      <div class="svc-box reveal" style="transition-delay:.5s; grid-column:2/3">
+        <div class="svc-video-wrap" data-ytid="6E_tLPf5XQ8">
+          <div style="display:block;cursor:pointer;position:absolute;inset:0;">
+            <img src="https://img.youtube.com/vi/6E_tLPf5XQ8/maxresdefault.jpg" alt="YouTube Videos" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+            <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          </div>
+        </div>
+        <div class="svc-info">
+          <div class="svc-box-title">YouTube Videos</div>
+          <ul class="svc-points">
+            <li>Retention-focused pacing</li>
+            <li>Dynamic b-roll</li>
+            <li>Clean motion graphics</li>
+          </ul>
+          <a href="#contact" class="svc-want-btn"><span class="shiny-text">I want this ↗</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ==============================
      PROBLEM — "It's never the idea."
 ============================== -->
 <section id="problem">
@@ -1371,11 +1525,8 @@
         <span class="section-title-italic">But nobody's watching.</span>
       </div>
       <div class="problem-body">
-        <p>Your product is great. Your offer is solid. Your story deserves to be heard.</p>
-        <p>But nobody sticks around to hear it.</p>
-        <p>People don't quit videos because the idea was bad.</p>
-        <p>They quit because they got bored.</p>
-        <p>And bored people scroll.</p>
+        <p>Your product is great. Your offer is solid.</p>
+        <p>But if people get bored, they scroll.</p>
         <p>It's never the idea. It's the execution.</p>
       </div>
       <p class="problem-punchline"><span class="shiny-text">Unforgettable video = Good story + Great editing.</span><br>And that's what most videos miss.</p>
@@ -1384,117 +1535,6 @@
 </section>
 
 <div class="sep"></div>
-
-<!-- ==============================
-     WORK — 3 cols × 2 rows
-============================== -->
-<section id="work">
-  <div class="section-inner">
-    <div class="work-header">
-      <div class="reveal">
-        <span class="section-title">My latest</span>
-        <span class="section-title-italic">creations</span>
-      </div>
-    </div>
-    <div class="work-grid">
-      <div class="work-card reveal" data-ytid="wYgml-ZvuRI" style="transition-delay:.05s">
-        <div style="display:block;cursor:pointer;">
-          <img src="https://img.youtube.com/vi/wYgml-ZvuRI/maxresdefault.jpg" alt="Vidéo presentation - Moonky" loading="lazy">
-          <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-          <div class="work-card-overlay">
-            <span class="work-category">Motion Design</span>
-            <span class="work-play">Vidéo presentation - Moonky</span>
-          </div>
-        </div>
-      </div>
-      <div class="work-card reveal" data-ytid="6E_tLPf5XQ8" style="transition-delay:.1s">
-        <div style="display:block;cursor:pointer;">
-          <img src="https://img.youtube.com/vi/6E_tLPf5XQ8/maxresdefault.jpg" alt="YouTube Production" loading="lazy">
-          <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-          <div class="work-card-overlay">
-            <span class="work-category">YouTube · Storytelling</span>
-            <span class="work-play">YouTube Production</span>
-          </div>
-        </div>
-      </div>
-      <div class="work-card reveal" data-ytid="Vfv4awsWi3Q" style="transition-delay:.15s">
-        <div style="display:block;cursor:pointer;">
-          <img src="https://img.youtube.com/vi/Vfv4awsWi3Q/maxresdefault.jpg" alt="Alejni" loading="lazy">
-          <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-          <div class="work-card-overlay">
-            <span class="work-category">SaaS Explainer</span>
-            <span class="work-play">Alejni</span>
-          </div>
-        </div>
-      </div>
-      <div class="work-card reveal" data-ytid="fcfunbsP1Jk" style="transition-delay:.2s">
-        <div style="display:block;cursor:pointer;">
-          <img src="https://img.youtube.com/vi/fcfunbsP1Jk/maxresdefault.jpg" alt="Point Cut" loading="lazy">
-          <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-          <div class="work-card-overlay">
-            <span class="work-category">Storytelling</span>
-            <span class="work-play">Point Cut</span>
-          </div>
-        </div>
-      </div>
-      <div class="work-card reveal" data-ytid="SafVq7_UNY0" style="transition-delay:.25s">
-        <div style="display:block;cursor:pointer;">
-          <img src="https://img.youtube.com/vi/SafVq7_UNY0/maxresdefault.jpg" alt="Point Cut" loading="lazy">
-          <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-          <div class="work-card-overlay">
-            <span class="work-category">Motion Design · Video Editing</span>
-            <span class="work-play">Point Cut</span>
-          </div>
-        </div>
-      </div>
-      <div class="work-card reveal" data-ytid="bQ3RIK5fsx0" style="transition-delay:.3s">
-        <div style="display:block;cursor:pointer;">
-          <img src="https://img.youtube.com/vi/bQ3RIK5fsx0/maxresdefault.jpg" alt="Point Cut" loading="lazy">
-          <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-          <div class="work-card-overlay">
-            <span class="work-category">Motion Design · Ads</span>
-            <span class="work-play">Point Cut</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="sep"></div>
-
-<!-- ==============================
-     ABOUT — compact redesign
-============================== -->
-<section id="about">
-  <div class="about-inner">
-    <!-- Change 8: object-position head/shoulders -->
-    <div class="about-photo-sm reveal">
-      <img src="./assets/CivaTof2.png" alt="Civa" style="width:100%;height:100%;object-fit:cover;object-position:center 18%;border-radius:4px;transform:scale(1.2);transform-origin:center 22%;">
-    </div>
-    <div class="about-text-col">
-      <h2 class="about-name reveal">Civa</h2>
-      <span class="about-role-label reveal" style="transition-delay:.1s">Video Editor &amp; Motion Designer</span>
-      <div class="about-divider reveal" style="transition-delay:.2s"></div>
-      <!-- Change 9: new bio text + SVG circle animation -->
-      <p class="about-bio reveal" style="transition-delay:.3s">
-        I'm Civa, your video editor and motion designer.<br>
-        For 2+ years, I've helped brands, agencies and creators turn raw ideas into content that actually performs.<br>
-        Every project is built with one goal : <span class="unforgettable-wrap"><span class="unforgettable-text">make it unforgettable</span><svg class="unforgettable-circle" viewBox="0 0 320 70" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path class="circle-path" d="M 18,38 C 28,12 100,4 160,6 C 220,4 292,12 302,38 C 312,56 300,66 278,70 C 240,76 190,78 160,78 C 130,78 80,76 42,70 C 20,66 8,56 18,38" fill="none" stroke="#C9A84C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-      </p>
-      <div class="tools-row reveal" style="transition-delay:.4s">
-        <div class="tool-pill tool-pill-davinci">
-          <span class="tool-dot tool-dot-davinci"></span>
-          DaVinci Resolve
-        </div>
-        <div class="tool-pill tool-pill-fusion">
-          <span class="tool-dot tool-dot-fusion"></span>
-          Fusion
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ==============================
      REVIEWS — scrolling columns
@@ -1636,127 +1676,37 @@
   </div>
 </section>
 
+<div class="mini-cta-banner reveal">
+  <a href="https://calendly.com/civavisuals20/30min" target="_blank" rel="noopener noreferrer" class="btn-outline"><span class="shiny-text">Book a Free Call</span></a>
+</div>
+
 <div class="sep"></div>
 
 <!-- ==============================
-     SERVICES — 5 boxes, 3-col grid (Changes 11 & 13)
+     ABOUT — compact redesign
 ============================== -->
-<section id="services">
-  <div class="section-inner">
-    <div class="services-title-wrap reveal">
-      <span class="services-big-title">See what</span>
-      <span class="services-big-italic">fits you</span>
+<section id="about">
+  <div class="about-inner">
+    <div class="about-photo-sm reveal">
+      <img src="./assets/CivaTof2.png" alt="Civa" style="width:100%;height:100%;object-fit:cover;object-position:center 18%;border-radius:4px;transform:scale(1.2);transform-origin:center 22%;">
     </div>
-
-    <div class="services-boxes">
-      <!-- Box 01 — VSL -->
-      <div class="svc-box reveal" style="transition-delay:.1s">
-        <div class="svc-video-wrap" data-ytid="wYgml-ZvuRI">
-          <div style="display:block;cursor:pointer;position:absolute;inset:0;">
-            <img src="https://img.youtube.com/vi/wYgml-ZvuRI/maxresdefault.jpg" alt="VSL" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
-            <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-          </div>
+    <div class="about-text-col">
+      <h2 class="about-name reveal">Civa</h2>
+      <span class="about-role-label reveal" style="transition-delay:.1s">Video Editor &amp; Motion Designer</span>
+      <div class="about-divider reveal" style="transition-delay:.2s"></div>
+      <p class="about-bio reveal" style="transition-delay:.3s">
+        I'm Civa, your video editor and motion designer.<br>
+        For 2+ years, I've helped brands, agencies and creators turn raw ideas into content that actually performs.<br>
+        Every project is built with one goal : <span class="unforgettable-wrap"><span class="unforgettable-text">make it unforgettable</span><svg class="unforgettable-circle" viewBox="0 0 320 70" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path class="circle-path" d="M 18,38 C 28,12 100,4 160,6 C 220,4 292,12 302,38 C 312,56 300,66 278,70 C 240,76 190,78 160,78 C 130,78 80,76 42,70 C 20,66 8,56 18,38" fill="none" stroke="#C9A84C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </p>
+      <div class="tools-row reveal" style="transition-delay:.4s">
+        <div class="tool-pill tool-pill-davinci">
+          <span class="tool-dot tool-dot-davinci"></span>
+          DaVinci Resolve
         </div>
-        <div class="svc-info">
-          <div class="svc-box-title">VSL</div>
-          <ul class="svc-points">
-            <li>Premium 2D motion design</li>
-            <li>Advanced sound design</li>
-          </ul>
-          <a href="#contact" class="svc-want-btn"><span class="shiny-text">I want this ↗</span></a>
-        </div>
-      </div>
-
-      <!-- Box 02 — Motion Design Ads (carousel) -->
-      <div class="svc-box reveal" style="transition-delay:.2s">
-        <div class="svc-video-wrap svc-carousel" id="carousel-02">
-          <div class="svc-card svc-card-front" data-ytid="-m4E5zbTD8A">
-            <div style="display:block;cursor:pointer;position:absolute;inset:0;">
-              <img src="https://img.youtube.com/vi/-m4E5zbTD8A/maxresdefault.jpg" alt="Motion Design Ads" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
-              <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-            </div>
-          </div>
-          <div class="svc-card svc-card-back" data-ytid="bQ3RIK5fsx0">
-            <div style="display:block;cursor:pointer;position:absolute;inset:0;">
-              <img src="https://img.youtube.com/vi/bQ3RIK5fsx0/maxresdefault.jpg" alt="Motion Design Ads 2" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
-              <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-            </div>
-          </div>
-          <button class="svc-prev-btn" onclick="carouselPrev(this)" aria-label="Previous video" style="display:none">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15,18 9,12 15,6"/></svg>
-          </button>
-          <button class="svc-next-btn" onclick="carouselNext(this)" aria-label="Next video">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9,6 15,12 9,18"/></svg>
-          </button>
-          <div class="svc-carousel-dots">
-            <div class="svc-carousel-dot active"></div>
-            <div class="svc-carousel-dot"></div>
-          </div>
-        </div>
-        <div class="svc-info">
-          <div class="svc-box-title">Motion Design Ads</div>
-          <ul class="svc-points" id="carousel-02-points">
-            <li>3D motion design</li>
-            <li>Immersive sound design</li>
-          </ul>
-          <a href="#contact" class="svc-want-btn"><span class="shiny-text">I want this ↗</span></a>
-        </div>
-      </div>
-
-      <!-- Box 03 — SaaS Explainer -->
-      <div class="svc-box reveal" style="transition-delay:.3s">
-        <div class="svc-video-wrap" data-ytid="Vfv4awsWi3Q">
-          <div style="display:block;cursor:pointer;position:absolute;inset:0;">
-            <img src="https://img.youtube.com/vi/Vfv4awsWi3Q/maxresdefault.jpg" alt="SaaS Explainer" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
-            <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-          </div>
-        </div>
-        <div class="svc-info">
-          <div class="svc-box-title">SaaS Explainer</div>
-          <ul class="svc-points">
-            <li>Clear visual storytelling</li>
-            <li>UI motion &amp; animations</li>
-            <li>Brand-aligned design</li>
-          </ul>
-          <a href="#contact" class="svc-want-btn"><span class="shiny-text">I want this ↗</span></a>
-        </div>
-      </div>
-
-      <!-- Box 04 — Reels & Storytelling -->
-      <div class="svc-box reveal" style="transition-delay:.4s">
-        <div class="svc-video-wrap" data-ytid="fcfunbsP1Jk">
-          <div style="display:block;cursor:pointer;position:absolute;inset:0;">
-            <img src="https://img.youtube.com/vi/fcfunbsP1Jk/maxresdefault.jpg" alt="Reels & Storytelling" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
-            <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-          </div>
-        </div>
-        <div class="svc-info">
-          <div class="svc-box-title">Reels &amp; Storytelling</div>
-          <ul class="svc-points">
-            <li>Cinematic color grading</li>
-            <li>Premium visuals &amp; b-rolls</li>
-            <li>Advanced sound design</li>
-          </ul>
-          <a href="#contact" class="svc-want-btn"><span class="shiny-text">I want this ↗</span></a>
-        </div>
-      </div>
-
-      <!-- Box 05 — YouTube Videos (centered in 3-col grid) -->
-      <div class="svc-box reveal" style="transition-delay:.5s; grid-column:2/3">
-        <div class="svc-video-wrap" data-ytid="6E_tLPf5XQ8">
-          <div style="display:block;cursor:pointer;position:absolute;inset:0;">
-            <img src="https://img.youtube.com/vi/6E_tLPf5XQ8/maxresdefault.jpg" alt="YouTube Videos" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
-            <div class="work-play-icon"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-          </div>
-        </div>
-        <div class="svc-info">
-          <div class="svc-box-title">YouTube Videos</div>
-          <ul class="svc-points">
-            <li>Retention-focused pacing</li>
-            <li>Dynamic b-roll</li>
-            <li>Clean motion graphics</li>
-          </ul>
-          <a href="#contact" class="svc-want-btn"><span class="shiny-text">I want this ↗</span></a>
+        <div class="tool-pill tool-pill-fusion">
+          <span class="tool-dot tool-dot-fusion"></span>
+          Fusion
         </div>
       </div>
     </div>
@@ -1766,7 +1716,7 @@
 <div class="sep"></div>
 
 <!-- ==============================
-     FAQ (Change 12: new content)
+     FAQ
 ============================== -->
 <section id="faq">
   <div class="faq-inner">
@@ -1890,7 +1840,6 @@
         <textarea class="form-textarea" id="f-message" rows="4" placeholder="Tell me about your project, goals, deadlines..."></textarea>
         <span class="form-error" id="e-message">Please describe your project.</span>
       </div>
-      <!-- Change 1: shiny-text span, no arrow -->
       <button type="submit" class="btn-submit"><span class="shiny-text">Send My Project</span></button>
     </form>
 
