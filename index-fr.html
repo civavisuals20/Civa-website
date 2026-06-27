@@ -353,13 +353,35 @@
       transform:translateY(-1px);
       filter:brightness(1.08);
     }
-    .lang-toggle {
-      font-family:var(--sf); font-size:10px; font-weight:700;
-      letter-spacing:.15em; text-transform:uppercase;
-      color:var(--ivory-muted); transition:color .3s;
-      padding:4px 2px; cursor:pointer;
+    /* Lang FAB — fixed bottom-right circle */
+    .lang-fab {
+      position:fixed; bottom:28px; right:28px; z-index:1001;
+      display:flex; align-items:center; justify-content:center;
+      width:44px; height:44px; border-radius:50%;
+      border:.5px solid rgba(201,168,76,.45);
+      background:rgba(10,10,10,0.80);
+      backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+      cursor:pointer; overflow:hidden;
+      transition:box-shadow .3s, transform .2s;
+      text-decoration:none;
     }
-    .lang-toggle:hover { color:var(--gold); }
+    .lang-fab::after {
+      content:''; position:absolute; top:0; left:-120%;
+      width:80%; height:100%;
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent);
+      transform:skewX(-14deg); pointer-events:none;
+    }
+    .lang-fab:hover { box-shadow:0 0 20px var(--gold-glow-strong),0 0 40px var(--gold-glow-mid); transform:translateY(-2px); }
+    .lang-fab:hover::after { animation:btn-sweep .6s ease forwards; }
+    .lang-fab-text {
+      font-family:var(--sf); font-size:11px; font-weight:700;
+      letter-spacing:.08em; text-transform:uppercase;
+      background:linear-gradient(90deg,#7A5C1E 0%,#C9A84C 16%,#F0D97C 30%,#FFF9E8 46%,#F0D97C 62%,#C9A84C 78%,#7A5C1E 94%,#C9A84C 100%);
+      background-size:200% auto;
+      -webkit-background-clip:text; background-clip:text;
+      color:transparent; -webkit-text-fill-color:transparent;
+      animation:shiny-gold 3s linear infinite;
+    }
     /* Instagram icon — no border circle, sweep glow like nav-cta */
     .nav-insta {
       display:flex; align-items:center; justify-content:center;
@@ -1309,7 +1331,6 @@
   </div>
   <div class="nav-right">
     <a href="https://calendly.com/civavisuals20/30min" target="_blank" rel="noopener noreferrer" class="nav-cta"><span class="shiny-text">Réserver un appel</span></a>
-    <a href="./index.html" class="lang-toggle" onclick="localStorage.setItem('civa_lang','en')">EN</a>
     <a href="https://www.instagram.com/civavisuals/" target="_blank" rel="noopener noreferrer" class="nav-insta" aria-label="Instagram">
       <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
         <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
@@ -2282,12 +2303,10 @@
   })();
 </script>
 
-<!-- Language toggle bubble — disabled for now -->
-<!--
-<button id="lang-toggle" aria-label="Toggle language FR/EN">
-  <span>FR</span>
-</button>
--->
+<!-- Lang FAB -->
+<a href="./index.html" class="lang-fab" onclick="localStorage.setItem('civa_lang','en')">
+  <span class="lang-fab-text">EN</span>
+</a>
 
 </body>
 </html>
