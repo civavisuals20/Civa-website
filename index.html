@@ -183,21 +183,26 @@
       display:inline-block; padding:14px 36px;
       font-family:var(--funnel); font-size:13px; font-weight:700;
       letter-spacing:.12em; text-transform:uppercase;
-      border:.5px solid rgba(201,168,76,.45); border-radius:2px; cursor:pointer;
+      border:none; border-radius:2px; cursor:pointer;
       position:relative; overflow:hidden;
-      background:var(--black-deep);
-      transition: box-shadow .3s, border-color .3s, transform .2s;
+      background:linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+      color:var(--black-abyss);
+      transition: box-shadow .3s, transform .2s, filter .2s;
+    }
+    .btn-primary .shiny-text {
+      color:var(--black-abyss);
+      -webkit-text-fill-color:var(--black-abyss);
     }
     .btn-primary::after {
       content:''; position:absolute; top:0; left:-120%;
       width:55%; height:100%;
-      background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);
       transform:skewX(-18deg); pointer-events:none; z-index:0;
     }
     .btn-primary:hover {
-      box-shadow:0 0 24px var(--gold-glow-strong),0 0 50px var(--gold-glow-mid);
-      border-color:rgba(201,168,76,.8);
+      box-shadow:0 0 28px var(--gold-glow-strong),0 0 60px var(--gold-glow-mid);
       transform:translateY(-1px);
+      filter:brightness(1.08);
     }
     .btn-primary:hover::after {
       animation:btn-sweep .6s ease forwards;
@@ -1338,7 +1343,7 @@
     <h1>
       <span class="hero-h1-line1 reveal">Your content deserves</span>
       <span class="hero-h1-shiny reveal" style="transition-delay:.12s">to be unforgettable.</span>
-      <span class="hero-h1-subtitle reveal" style="transition-delay:.18s">Video editing &amp; motion design that turns viewers into clients.</span>
+      <span class="hero-h1-subtitle reveal" style="transition-delay:.18s">More views. More trust. More clients.</span>
     </h1>
     <div class="hero-buttons reveal" style="transition-delay:.25s">
       <a href="https://calendly.com/civavisuals20/30min" target="_blank" rel="noopener noreferrer" class="btn-primary"><span class="shiny-text">Start a Project</span></a>
