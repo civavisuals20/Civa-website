@@ -185,13 +185,19 @@
       letter-spacing:.12em; text-transform:uppercase;
       border:none; border-radius:2px; cursor:pointer;
       position:relative; overflow:hidden;
-      background:linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+      background:linear-gradient(90deg,#7A5C1E 0%,#C9A84C 16%,#F0D97C 30%,#FFF9E8 46%,#F0D97C 62%,#C9A84C 78%,#7A5C1E 94%,#C9A84C 100%);
+      background-size:200% auto;
+      animation:shiny-gold 3s linear infinite;
       color:var(--black-abyss);
       transition: box-shadow .3s, transform .2s, filter .2s;
     }
     .btn-primary .shiny-text {
       color:var(--black-abyss);
       -webkit-text-fill-color:var(--black-abyss);
+      background:none;
+      -webkit-background-clip:unset;
+      background-clip:unset;
+      animation:none;
     }
     .btn-primary::after {
       content:''; position:absolute; top:0; left:-120%;
