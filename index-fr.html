@@ -160,16 +160,10 @@
         white-space:nowrap; font-size:clamp(28px, 5vw, 44px);
       }
     }
-    .problem-body { margin-top:34px; }
-    .problem-body p {
-      font-family:var(--sf); font-weight:400; font-size:18px;
-      color:var(--ivory-muted); line-height:1.75;
-      margin:0 0 14px;
-    }
     .problem-punchline {
       font-family:var(--funnel); font-size:24px; font-weight:600;
       color:var(--ivory); line-height:1.55;
-      margin-top:40px; padding:32px 36px;
+      margin-top:28px; padding:32px 36px;
       background:var(--black-deep);
       border-left:2px solid var(--gold);
       border-radius:2px;
@@ -177,8 +171,7 @@
     .problem-punchline .shiny-text { font-size:24px; font-weight:700; display:inline; }
     @media (max-width:767px) {
       #problem { padding:64px 20px; }
-      .problem-body p { font-size:16px; }
-      .problem-punchline { font-size:19px; padding:24px 22px; margin-top:30px; }
+      .problem-punchline { font-size:19px; padding:24px 22px; margin-top:22px; }
       .problem-punchline .shiny-text { font-size:19px; }
     }
 
@@ -238,14 +231,35 @@
       color: var(--ivory-muted);
       transition: all .3s ease;
       text-align:center;
+      position:relative; overflow:hidden;
+      display:flex; align-items:center; justify-content:center; gap:7px;
     }
+    .et-clip::after {
+      content:''; position:absolute; top:0; left:-120%; width:80%; height:100%;
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);
+      transform:skewX(-14deg); pointer-events:none;
+    }
+    .et-clip:hover::after { animation:btn-sweep .6s ease forwards; }
+    .et-clip-icon { width:13px; height:13px; flex-shrink:0; }
     .et-clip.active {
-      background: linear-gradient(135deg, rgba(201,168,76,0.85), rgba(232,213,163,0.85));
+      background:linear-gradient(90deg,#7A5C1E 0%,#C9A84C 16%,#F0D97C 30%,#FFF9E8 46%,#F0D97C 62%,#C9A84C 78%,#7A5C1E 94%,#C9A84C 100%);
+      background-size:200% auto;
+      animation:shiny-gold 3s linear infinite;
       color: var(--black-abyss);
       border-color: var(--gold);
-      box-shadow: 0 0 20px rgba(201,168,76,0.35);
+      box-shadow: 0 0 20px rgba(201,168,76,0.45);
     }
     .et-clip:not(.active) { opacity: 0.55; }
+    .editor-timeline.scrubbing .et-playhead { transition:none; }
+    .et-timecode {
+      font-family:'SF Mono',monospace; font-size:10px;
+      color:var(--gold); letter-spacing:.1em;
+    }
+    .et-circle-wrap { position:relative; display:inline-block; white-space:nowrap; }
+    .et-circle-wrap .et-circle-text { color:var(--ivory); font-weight:700; }
+    .et-circle-wrap .circle-path {
+      animation:hand-draw-circle 1.3s cubic-bezier(0.43,0.13,0.23,0.96) forwards;
+    }
     .et-audio-clip {
       padding:12px; border-radius:4px;
       background: rgba(201,168,76,0.04);
@@ -275,7 +289,8 @@
       font-size:12px; color: var(--ivory-ghost);
     }
     @media (max-width:767px) {
-      .et-clip { font-size:9px; padding:12px 4px; letter-spacing:.04em; }
+      .et-clip { font-size:8.5px; padding:9px 2px; letter-spacing:.02em; gap:3px; flex-direction:column; }
+      .et-clip-icon { width:12px; height:12px; }
       .et-ruler { padding-left:40px; }
       .et-track-label { width:40px; }
       .et-step-panel { padding:18px 16px; }
@@ -329,6 +344,23 @@
     .svc-cta .shiny-text {
       color:var(--black-abyss); -webkit-text-fill-color:var(--black-abyss);
       background:none; -webkit-background-clip:unset; background-clip:unset; animation:none;
+    }
+    .svc-video-wrap.svc-mystery-wrap { cursor:default; background:var(--black-abyss); }
+    .svc-mystery-inner {
+      position:absolute; inset:0;
+      display:flex; align-items:center; justify-content:center;
+    }
+    .svc-mystery-inner::before {
+      content:''; position:absolute; inset:14px;
+      border:1px dashed rgba(201,168,76,0.22); border-radius:4px;
+    }
+    .svc-mystery-q {
+      font-family:var(--dela); font-size:72px; line-height:1;
+      background:linear-gradient(90deg,#7A5C1E 0%,#C9A84C 16%,#F0D97C 30%,#FFF9E8 46%,#F0D97C 62%,#C9A84C 78%,#7A5C1E 94%,#C9A84C 100%);
+      background-size:200% auto;
+      -webkit-background-clip:text; background-clip:text;
+      color:transparent; -webkit-text-fill-color:transparent;
+      animation:shiny-gold 3s linear infinite;
     }
 
     /* ============================
@@ -1680,8 +1712,8 @@
         </div>
       </div>
 
-      <!-- Box 05 — YouTube Videos (centered in 3-col grid) -->
-      <div class="svc-box reveal" style="transition-delay:.5s; grid-column:2/3">
+      <!-- Box 05 — YouTube Videos -->
+      <div class="svc-box reveal" style="transition-delay:.5s">
         <div class="svc-video-wrap" data-ytid="6E_tLPf5XQ8">
           <div style="display:block;cursor:pointer;position:absolute;inset:0;">
             <img src="https://img.youtube.com/vi/6E_tLPf5XQ8/maxresdefault.jpg" alt="YouTube Videos" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
@@ -1689,7 +1721,7 @@
           </div>
         </div>
         <div class="svc-info">
-          <div class="svc-box-title">YouTube Videos</div>
+          <div class="svc-box-title">Vidéo YouTube</div>
           <ul class="svc-points">
             <li>Rythme optimisé pour la rétention</li>
             <li>B-roll dynamique</li>
@@ -1700,13 +1732,16 @@
       </div>
 
       <!-- Box 06 — Projet sur mesure -->
-      <div class="svc-box svc-box-custom reveal" style="transition-delay:.6s">
-        <div class="svc-box-content">
-          <div class="svc-num">06</div>
-          <div class="svc-gold-line"></div>
-          <h3 class="svc-title">Un projet qui rentre dans aucune case ?</h3>
+      <div class="svc-box reveal" style="transition-delay:.6s">
+        <div class="svc-video-wrap svc-mystery-wrap">
+          <div class="svc-mystery-inner">
+            <span class="svc-mystery-q">?</span>
+          </div>
+        </div>
+        <div class="svc-info">
+          <div class="svc-box-title">Un projet qui rentre dans aucune case ?</div>
           <p class="svc-desc">C'est souvent les plus intéressants. Parle-moi de ton idée.</p>
-          <a href="https://calendly.com/civavisuals20/30min" target="_blank" rel="noopener noreferrer" class="svc-cta"><span class="shiny-text">On en parle ↗</span></a>
+          <a href="https://calendly.com/civavisuals20/30min" target="_blank" rel="noopener noreferrer" class="svc-want-btn"><span class="shiny-text">On en parle ↗</span></a>
         </div>
       </div>
     </div>
@@ -1722,13 +1757,8 @@
   <div class="section-inner">
     <div class="problem-inner reveal">
       <div class="problem-header">
-        <span class="section-title">Ce que ça change,</span>
-        <span class="section-title-italic">concrètement.</span>
-      </div>
-      <div class="problem-body">
-        <p>Tu m'envoies tes rushs, ton script, ton idée — même brute.</p>
-        <p>Je m'occupe du reste : structure, rythme, motion, son, étalonnage.</p>
-        <p>Tu récupères une vidéo prête à publier, pensée pour ton objectif.</p>
+        <span class="section-title">Comment on va bosser</span>
+        <span class="section-title-italic">ensemble.</span>
       </div>
       <p class="problem-punchline"><span class="shiny-text">Toi tu crées. Moi je sublime. Ton audience retient.</span></p>
     </div>
@@ -1736,6 +1766,7 @@
     <div class="editor-timeline reveal" style="transition-delay:.15s">
       <div class="et-titlebar">
         <span class="et-title">TIMELINE : CIVA_PROCESS_01</span>
+        <span class="et-timecode" id="etTimecode">00:00:00</span>
         <div class="et-dots"><span></span><span></span><span></span></div>
       </div>
       <div class="et-ruler">
@@ -1745,10 +1776,10 @@
       <div class="et-track">
         <div class="et-track-label">V1</div>
         <div class="et-clips">
-          <div class="et-clip" data-step="0">📞 CALL</div>
-          <div class="et-clip" data-step="1">📁 RUSHS</div>
-          <div class="et-clip" data-step="2">✂️ MONTAGE</div>
-          <div class="et-clip" data-step="3">🚀 LIVRAISON</div>
+          <div class="et-clip" data-step="0"><svg class="et-clip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>CALL</div>
+          <div class="et-clip" data-step="1"><svg class="et-clip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>RUSHS</div>
+          <div class="et-clip" data-step="2"><svg class="et-clip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>MONTAGE</div>
+          <div class="et-clip" data-step="3"><svg class="et-clip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22,2 15,22 11,13 2,9"/></svg>LIVRAISON</div>
         </div>
       </div>
       <div class="et-track">
@@ -2503,54 +2534,94 @@
   (function(){
     const ET_STEPS = [
       { num:'01', title:"On s'appelle", desc:"30 min pour comprendre ton projet, ton objectif, ton audience. Tu repars avec un devis clair." },
-      { num:'02', title:"Tu m'envoies tout", desc:"Rushs, script, références, même des idées brutes. À partir de là, c'est mon problème." },
-      { num:'03', title:'Je crée, tu valides', desc:'Tu reçois une première version. On ajuste ensemble — 2 tours de retouches inclus.' },
+      { num:'02', title:"Tu m'envoies tout", desc:'Rushs, script, références, même des idées brutes. À partir de là, <span class="et-circle-wrap"><span class="et-circle-text">c\'est mon problème.</span><svg class="unforgettable-circle" viewBox="0 0 320 70" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path class="circle-path" d="M 18,38 C 28,12 100,4 160,6 C 220,4 292,12 302,38 C 312,56 300,66 278,70 C 240,76 190,78 160,78 C 130,78 80,76 42,70 C 20,66 8,56 18,38" fill="none" stroke="#C9A84C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>' },
+      { num:'03', title:'Je crée, tu valides', desc:'Tu reçois une première version. On ajuste ensemble jusqu\'à ce que ce soit exactement ce que tu veux.' },
       { num:'04', title:'Tu publies', desc:'Vidéo finale livrée dans le format exact dont tu as besoin. Prête à performer.' }
     ];
+    const timeline = document.querySelector('.editor-timeline');
     const clips    = document.querySelectorAll('.et-clip');
     const playhead = document.getElementById('etPlayhead');
+    const timecode = document.getElementById('etTimecode');
     const stepNum  = document.getElementById('etStepNum');
     const stepTitle= document.getElementById('etStepTitle');
     const stepDesc = document.getElementById('etStepDesc');
     const panel    = document.querySelector('.et-step-panel');
-    if (!clips.length || !playhead) return;
-    let current = 0, autoTimer = null;
+    if (!timeline || !clips.length || !playhead) return;
+    let current = -1, autoTimer = null, panelTimer = null;
 
-    function positionPlayhead(idx) {
-      const clip = clips[idx];
-      const tl   = clip.closest('.editor-timeline');
-      const cr   = clip.getBoundingClientRect();
-      const tr   = tl.getBoundingClientRect();
-      playhead.style.left = (cr.left - tr.left + cr.width / 2) + 'px';
+    function clipCenter(idx) {
+      const cr = clips[idx].getBoundingClientRect();
+      const tr = timeline.getBoundingClientRect();
+      return cr.left - tr.left + cr.width / 2;
     }
 
-    function activateStep(idx, instant) {
+    function setTimecode(x) {
+      if (!timecode) return;
+      const w = timeline.getBoundingClientRect().width;
+      const frames = Math.round(Math.min(Math.max(x / w, 0), 1) * 45 * 24);
+      const s = Math.floor(frames / 24);
+      timecode.textContent =
+        String(Math.floor(s / 60)).padStart(2,'0') + ':' +
+        String(s % 60).padStart(2,'0') + ':' +
+        String(frames % 24).padStart(2,'0');
+    }
+
+    function movePlayhead(x) { playhead.style.left = x + 'px'; setTimecode(x); }
+
+    /* The step panel height varies (mobile especially) — keep the playhead above it */
+    function fitPlayhead() { playhead.style.bottom = panel.offsetHeight + 'px'; }
+
+    function setStep(idx, instant) {
+      if (idx === current) return;
       current = idx;
       clips.forEach((c,i) => c.classList.toggle('active', i === idx));
-      positionPlayhead(idx);
       const s = ET_STEPS[idx];
+      clearTimeout(panelTimer);
       if (instant) {
         stepNum.textContent  = s.num;
         stepTitle.textContent= s.title;
-        stepDesc.textContent = s.desc;
+        stepDesc.innerHTML   = s.desc;
         panel.style.opacity  = '1';
+        fitPlayhead();
       } else {
         panel.style.transition = 'none';
         panel.style.opacity    = '0';
-        setTimeout(() => {
+        panelTimer = setTimeout(() => {
           stepNum.textContent  = s.num;
           stepTitle.textContent= s.title;
-          stepDesc.textContent = s.desc;
+          stepDesc.innerHTML   = s.desc;
           panel.style.transition = 'opacity .25s ease';
           panel.style.opacity    = '1';
+          fitPlayhead();
         }, 120);
       }
     }
 
+    function activateStep(idx, instant) {
+      setStep(idx, instant);
+      movePlayhead(clipCenter(idx));
+    }
+
     window.addEventListener('load', () => activateStep(0, true));
 
+    /* Desktop: the playhead follows the mouse anywhere on the timeline */
+    timeline.addEventListener('mousemove', (e) => {
+      if (window.matchMedia('(hover: none)').matches) return;
+      clearAuto();
+      timeline.classList.add('scrubbing');
+      const tr = timeline.getBoundingClientRect();
+      movePlayhead(Math.min(Math.max(e.clientX - tr.left, 0), tr.width));
+      clips.forEach((clip, idx) => {
+        const cr = clip.getBoundingClientRect();
+        if (e.clientX >= cr.left && e.clientX <= cr.right) setStep(idx);
+      });
+    });
+    timeline.addEventListener('mouseleave', () => {
+      timeline.classList.remove('scrubbing');
+      if (current >= 0) movePlayhead(clipCenter(current));
+    });
+
     clips.forEach((clip, idx) => {
-      clip.addEventListener('mouseenter', () => { clearAuto(); activateStep(idx); });
       clip.addEventListener('click', () => {
         clearAuto();
         activateStep(idx);
@@ -2567,6 +2638,7 @@
 
     if (window.matchMedia('(max-width:767px)').matches) startAuto();
     window.addEventListener('resize', () => {
+      fitPlayhead();
       if (window.matchMedia('(max-width:767px)').matches && !autoTimer) startAuto();
       else if (!window.matchMedia('(max-width:767px)').matches) clearAuto();
     });
