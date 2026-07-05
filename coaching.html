@@ -884,20 +884,110 @@
        TRANSFORMATION SECTION
     ============================ */
     #transformation { padding:96px 32px; }
-    .node-chain { max-width:640px; margin:56px auto 0; display:flex; flex-direction:column; align-items:flex-start; }
-    .nc-node { display:flex; align-items:center; gap:14px; }
-    .nc-node-in { opacity:0; }
-    .nc-square { width:16px; height:16px; border-radius:3px; border:1px solid rgba(201,168,76,0.5); background:transparent; flex-shrink:0; transition:border-color .3s, box-shadow .3s; }
-    .nc-square-filled { background:linear-gradient(135deg,rgba(201,168,76,0.9),rgba(232,213,163,0.9)); border-color:var(--gold); }
-    .nc-node-label { font-family:'SF Mono',monospace; font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--ivory-ghost); }
-    .nc-label-gold { color:var(--gold); }
-    .nc-line { width:1.5px; height:36px; margin-left:7px; background:linear-gradient(180deg,rgba(201,168,76,0.15),rgba(201,168,76,0.5)); transform:scaleY(0); transform-origin:top; transition:transform .3s ease; }
-    .nc-node.nc-step { align-items:flex-start; }
-    .nc-content { display:flex; flex-direction:column; opacity:0; transition:opacity .25s ease; }
-    .nc-step-title { font-family:var(--funnel); font-weight:700; font-size:13px; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); }
-    .nc-step-desc { font-family:var(--sf); font-weight:300; font-size:14.5px; color:var(--ivory-muted); line-height:1.6; margin:4px 0 0; }
-    .nc-node-out { opacity:0; transition:opacity .3s ease; }
-    .nc-node-out .nc-square-filled { transition:box-shadow .5s ease; }
+    .fusion-graph { max-width:960px; margin:56px auto 0; }
+    .fg-canvas {
+      display:flex; align-items:center; padding:52px 28px;
+      background:
+        radial-gradient(rgba(201,168,76,0.07) 1px, transparent 1px),
+        var(--black-deep);
+      background-size:22px 22px;
+      border:0.5px solid rgba(201,168,76,0.25); border-radius:10px;
+      box-shadow:0 0 40px rgba(201,168,76,0.06);
+      overflow:visible;
+    }
+    .fg-node {
+      position:relative; flex-shrink:0; padding:15px 20px;
+      background:rgba(201,168,76,0.05);
+      border:1px solid rgba(201,168,76,0.4); border-radius:6px;
+      transition:background .3s, border-color .3s, box-shadow .3s, opacity .4s, transform .4s;
+      opacity:0; transform:translateY(8px);
+    }
+    .fg-node.lit { opacity:1; transform:translateY(0); }
+    .fg-node-name {
+      font-family:var(--funnel); font-weight:700; font-size:11px;
+      letter-spacing:.08em; text-transform:uppercase;
+      color:var(--ivory-muted); white-space:nowrap; transition:color .3s;
+    }
+    .fg-step { cursor:pointer; }
+    .fg-step:hover { border-color:rgba(201,168,76,0.7); }
+    .fg-step.active {
+      background:linear-gradient(90deg,#7A5C1E 0%,#C9A84C 16%,#F0D97C 30%,#FFF9E8 46%,#F0D97C 62%,#C9A84C 78%,#7A5C1E 94%,#C9A84C 100%);
+      background-size:200% auto;
+      animation:shiny-gold 3s linear infinite;
+      border-color:var(--gold);
+      box-shadow:0 0 20px rgba(201,168,76,0.45);
+    }
+    .fg-step.active .fg-node-name { color:var(--black-abyss); }
+    .fg-port-out {
+      position:absolute; right:-5px; top:50%; transform:translateY(-50%);
+      width:9px; height:9px; border-radius:2px;
+      background:rgba(255,255,255,0.9); border:1px solid rgba(255,255,255,0.7);
+      z-index:2;
+    }
+    .fg-port-in {
+      position:absolute; left:-8px; top:50%; transform:translateY(-50%);
+      width:0; height:0;
+      border-top:5px solid transparent; border-bottom:5px solid transparent;
+      border-left:7px solid rgba(201,168,76,0.75);
+      z-index:2;
+    }
+    .fg-wire {
+      flex:1; min-width:22px; height:1.5px;
+      background:linear-gradient(90deg, rgba(201,168,76,0.55), rgba(201,168,76,0.2));
+      transform:scaleX(0); transform-origin:left; transition:transform .35s ease;
+    }
+    .fg-wire.lit { transform:scaleX(1); }
+    .fg-node-in { border-style:dashed; opacity:0.45; transition:none; }
+    .fg-node-in.lit { opacity:0.45; }
+    .fg-node-in .fg-node-name { color:var(--ivory-ghost); font-size:10px; letter-spacing:.14em; }
+    .fg-node-out { border-color:rgba(201,168,76,0.6); }
+    .fg-node-out.lit { box-shadow:0 0 22px rgba(201,168,76,0.25); }
+    .fg-node-out .fg-node-name {
+      font-size:10px; letter-spacing:.14em;
+      background:linear-gradient(90deg,#7A5C1E 0%,#C9A84C 16%,#F0D97C 30%,#FFF9E8 46%,#F0D97C 62%,#C9A84C 78%,#7A5C1E 94%,#C9A84C 100%);
+      background-size:200% auto;
+      -webkit-background-clip:text; background-clip:text;
+      color:transparent; -webkit-text-fill-color:transparent;
+      animation:shiny-gold 4s linear infinite;
+    }
+    .fg-inspector {
+      display:flex; gap:18px; align-items:flex-start;
+      margin-top:16px; padding:18px 22px;
+      border:0.5px solid rgba(201,168,76,0.18); border-radius:8px;
+      background:var(--black-deep);
+    }
+    .fg-insp-label {
+      font-family:'SF Mono',monospace; font-size:9px; letter-spacing:.2em;
+      text-transform:uppercase; color:var(--ivory-ghost);
+      padding-top:3px; flex-shrink:0;
+    }
+    .fg-insp-body { transition:opacity .25s ease; }
+    .fg-insp-title {
+      font-family:var(--funnel); font-weight:700; font-size:13px;
+      letter-spacing:.1em; text-transform:uppercase; color:var(--gold);
+      display:block; margin-bottom:5px;
+    }
+    .fg-insp-desc {
+      font-family:var(--sf); font-weight:300; font-size:14.5px;
+      color:var(--ivory-muted); line-height:1.6; margin:0;
+    }
+    .fg-hint {
+      text-align:center; margin-top:14px;
+      font-family:var(--funnel); font-style:italic; font-weight:300;
+      font-size:12px; color:var(--ivory-ghost);
+    }
+    @media (max-width:900px) {
+      .fg-canvas { flex-direction:column; padding:40px 20px; }
+      .fg-node { width:min(280px, 100%); text-align:center; }
+      .fg-wire { flex:none; width:1.5px; height:26px; min-width:0;
+        background:linear-gradient(180deg, rgba(201,168,76,0.55), rgba(201,168,76,0.2));
+        transform:scaleY(0); transform-origin:top; }
+      .fg-wire.lit { transform:scaleY(1); }
+      .fg-port-out { right:auto; top:auto; bottom:-5px; left:50%; transform:translateX(-50%); }
+      .fg-port-in { left:50%; top:-8px; transform:translateX(-50%) rotate(90deg); }
+      .fg-inspector { flex-direction:column; gap:8px; }
+    }
+    .nc-framing { font-family:var(--funnel); font-style:italic; font-weight:300; font-size:13px; color:var(--ivory-ghost); margin:18px auto 0; max-width:640px; }
 
     /* ============================
        FAQ SECTION
@@ -1008,7 +1098,7 @@
       }
       .hero-subtitle { font-size:14px; }
       #for-who, #pillars, #transformation, #how-it-works, #why-me, #faq, #final-cta { padding:64px 20px; }
-      .nc-step-desc { font-size:13.5px; }
+      .fg-insp-desc { font-size:13.5px; }
       footer { padding:36px 20px 24px; }
       .sec-title { font-size:34px; }
       .sec-title-italic { font-size:34px; }
@@ -1277,54 +1367,55 @@
       <span class="sec-title-italic">here's where you'll be.</span>
     </div>
 
-    <div class="node-chain">
-      <!-- Input node -->
-      <div class="nc-node nc-node-in">
-        <div class="nc-square"></div>
-        <span class="nc-node-label">YOU, TODAY</span>
-      </div>
-      <div class="nc-line"></div>
-      <!-- Step 1 -->
-      <div class="nc-node nc-step">
-        <div class="nc-square"></div>
-        <div class="nc-content">
-          <span class="nc-step-title">Storytelling</span>
-          <p class="nc-step-desc">You structure your videos like stories, not sequences of clips</p>
+    <p class="nc-framing">Your evolution, node by node.</p>
+    <div class="fusion-graph reveal">
+      <div class="fg-canvas" id="fgCanvas">
+        <!-- Input node -->
+        <div class="fg-node fg-node-in">
+          <span class="fg-node-name">You, today</span>
+          <span class="fg-port-out"></span>
+        </div>
+        <div class="fg-wire"></div>
+        <!-- Step nodes -->
+        <div class="fg-node fg-step" data-fgstep="0">
+          <span class="fg-port-in"></span>
+          <span class="fg-node-name">Storytelling</span>
+          <span class="fg-port-out"></span>
+        </div>
+        <div class="fg-wire"></div>
+        <div class="fg-node fg-step" data-fgstep="1">
+          <span class="fg-port-in"></span>
+          <span class="fg-node-name">Motion</span>
+          <span class="fg-port-out"></span>
+        </div>
+        <div class="fg-wire"></div>
+        <div class="fg-node fg-step" data-fgstep="2">
+          <span class="fg-port-in"></span>
+          <span class="fg-node-name">Color</span>
+          <span class="fg-port-out"></span>
+        </div>
+        <div class="fg-wire"></div>
+        <div class="fg-node fg-step" data-fgstep="3">
+          <span class="fg-port-in"></span>
+          <span class="fg-node-name">Clients</span>
+          <span class="fg-port-out"></span>
+        </div>
+        <div class="fg-wire"></div>
+        <!-- Output node -->
+        <div class="fg-node fg-node-out">
+          <span class="fg-port-in"></span>
+          <span class="fg-node-name">You, in 3 months</span>
         </div>
       </div>
-      <div class="nc-line"></div>
-      <!-- Step 2 -->
-      <div class="nc-node nc-step">
-        <div class="nc-square"></div>
-        <div class="nc-content">
-          <span class="nc-step-title">Motion</span>
-          <p class="nc-step-desc">You create motion in Fusion you thought was out of your reach</p>
+      <!-- Inspector panel -->
+      <div class="fg-inspector">
+        <span class="fg-insp-label">Inspector</span>
+        <div class="fg-insp-body" id="fgInspBody">
+          <span class="fg-insp-title" id="fgInspTitle">Storytelling</span>
+          <p class="fg-insp-desc" id="fgInspDesc">You structure your videos like stories, not sequences of clips.</p>
         </div>
       </div>
-      <div class="nc-line"></div>
-      <!-- Step 3 -->
-      <div class="nc-node nc-step">
-        <div class="nc-square"></div>
-        <div class="nc-content">
-          <span class="nc-step-title">Color</span>
-          <p class="nc-step-desc">You grade with a true cinematic look — not a preset</p>
-        </div>
-      </div>
-      <div class="nc-line"></div>
-      <!-- Step 4 -->
-      <div class="nc-node nc-step">
-        <div class="nc-square"></div>
-        <div class="nc-content">
-          <span class="nc-step-title">Clients</span>
-          <p class="nc-step-desc">You know how to get clients, and keep them</p>
-        </div>
-      </div>
-      <div class="nc-line"></div>
-      <!-- Output node -->
-      <div class="nc-node nc-node-out">
-        <div class="nc-square nc-square-filled"></div>
-        <span class="nc-node-label nc-label-gold">YOU, IN 3 MONTHS</span>
-      </div>
+      <p class="fg-hint">Hover the nodes.</p>
     </div>
 
   </div>
@@ -1716,45 +1807,74 @@
   })();
 
   /* ===========================
-     NODE CHAIN ANIMATION
+     FUSION NODE GRAPH
   =========================== */
   (function() {
-    const chain = document.querySelector('.node-chain');
-    if (!chain) return;
-    const nodeIn  = chain.querySelector('.nc-node-in');
-    const lines   = Array.from(chain.querySelectorAll('.nc-line'));
-    const steps   = Array.from(chain.querySelectorAll('.nc-step'));
-    const nodeOut = chain.querySelector('.nc-node-out');
+    const graph = document.querySelector('.fusion-graph');
+    if (!graph) return;
+
+    const FG_STEPS = [
+      { title:'Storytelling', desc:'You structure your videos like stories, not sequences of clips.' },
+      { title:'Motion',       desc:'You create motion in Fusion you thought was out of your reach.' },
+      { title:'Color',        desc:'You grade with a true cinematic look — not a preset.' },
+      { title:'Clients',      desc:'You know how to get clients, and keep them.' }
+    ];
+
+    const canvas    = graph.querySelector('#fgCanvas');
+    const elements  = Array.from(canvas.children); // nodes + wires in order
+    const steps     = Array.from(canvas.querySelectorAll('.fg-step'));
+    const inspBody  = graph.querySelector('#fgInspBody');
+    const inspTitle = graph.querySelector('#fgInspTitle');
+    const inspDesc  = graph.querySelector('#fgInspDesc');
+
+    /* Sequential light-up on scroll */
     let fired = false;
-    function run() {
+    function lightUp() {
       if (fired) return; fired = true;
-      const D = 250;
-      let t = 0;
-      setTimeout(() => { nodeIn.style.transition='opacity .3s ease'; nodeIn.style.opacity='0.45'; }, t); t += D;
-      lines.forEach((line, i) => {
-        setTimeout(() => { line.style.transform='scaleY(1)'; }, t); t += D;
-        if (steps[i]) {
-          const sq = steps[i].querySelector('.nc-square');
-          const ct = steps[i].querySelector('.nc-content');
-          setTimeout(() => {
-            sq.style.borderColor='var(--gold)';
-            sq.style.boxShadow='0 0 8px rgba(201,168,76,0.4)';
-            if (ct) ct.style.opacity='1';
-          }, t); t += D;
-        }
+      elements.forEach((el, i) => {
+        setTimeout(() => el.classList.add('lit'), i * 180);
       });
-      setTimeout(() => {
-        nodeOut.style.opacity='1';
-        const sq = nodeOut.querySelector('.nc-square-filled');
-        if (sq) {
-          setTimeout(() => {
-            sq.style.boxShadow='0 0 24px var(--gold-glow-strong), 0 0 8px var(--gold)';
-            setTimeout(() => { sq.style.boxShadow='0 0 16px var(--gold-glow-strong)'; }, 400);
-          }, 300);
-        }
-      }, t);
+      setTimeout(() => setActive(0), elements.length * 180 + 100);
     }
-    new IntersectionObserver(entries => { if (entries[0].isIntersecting) run(); }, { threshold:.25 }).observe(chain);
+    new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) lightUp();
+    }, { threshold:.25 }).observe(canvas);
+
+    /* Inspector update */
+    let current = -1;
+    function setActive(idx) {
+      if (idx === current) return;
+      current = idx;
+      steps.forEach((s, i) => s.classList.toggle('active', i === idx));
+      inspBody.style.opacity = '0';
+      setTimeout(() => {
+        inspTitle.textContent = FG_STEPS[idx].title;
+        inspDesc.textContent  = FG_STEPS[idx].desc;
+        inspBody.style.opacity = '1';
+      }, 200);
+    }
+
+    const isTouch = window.matchMedia('(hover: none)').matches;
+
+    /* Desktop: hover · Mobile: tap + auto-cycle */
+    let cycleTimer = null, pausedUntil = 0;
+    function startCycle() {
+      if (cycleTimer) return;
+      cycleTimer = setInterval(() => {
+        if (Date.now() < pausedUntil || current < 0) return;
+        setActive((current + 1) % FG_STEPS.length);
+      }, 3500);
+    }
+
+    steps.forEach((s, i) => {
+      if (isTouch) {
+        s.addEventListener('click', () => { pausedUntil = Date.now() + 10000; setActive(i); });
+      } else {
+        s.addEventListener('mouseenter', () => setActive(i));
+      }
+    });
+
+    if (isTouch) startCycle();
   })();
 
   /* ===========================
