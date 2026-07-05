@@ -881,6 +881,28 @@
     }
 
     /* ============================
+       TRANSFORMATION SECTION
+    ============================ */
+    #transformation { padding:96px 32px; }
+    .transform-list { list-style:none; margin:52px auto 0; max-width:720px; display:flex; flex-direction:column; gap:22px; padding:0; }
+    .transform-item { font-family:var(--sf); font-weight:300; font-size:17px; color:var(--ivory-muted); line-height:1.65; display:flex; gap:18px; align-items:flex-start; }
+    .transform-item::before { content:'→'; color:var(--gold); font-size:18px; flex-shrink:0; margin-top:2px; }
+
+    /* ============================
+       FAQ SECTION
+    ============================ */
+    #faq { padding:96px 32px; background:var(--black-deep); }
+    .faq-inner { max-width:800px; margin:0 auto; }
+    .faq-header { margin-bottom:48px; }
+    .faq-item { border-bottom:.5px solid rgba(245,240,232,.1); }
+    .faq-question { display:flex; justify-content:space-between; align-items:center; padding:22px 0; cursor:pointer; font-family:var(--sf); font-size:15px; font-weight:500; color:var(--ivory); gap:16px; user-select:none; transition:color .3s; }
+    .faq-question.open { color:var(--gold); }
+    .faq-icon { color:var(--gold); font-size:20px; font-weight:300; line-height:1; flex-shrink:0; transition:transform .3s; }
+    .faq-icon.open { transform:rotate(45deg); }
+    .faq-answer { max-height:0; overflow:hidden; transition:max-height .4s ease; }
+    .faq-answer-inner { font-family:var(--sf); font-weight:300; font-size:14px; color:var(--ivory-muted); line-height:1.75; padding-bottom:22px; }
+
+    /* ============================
        FINAL CTA
     ============================ */
     #final-cta {
@@ -974,7 +996,8 @@
         line-height: 1.15;
       }
       .hero-subtitle { font-size:14px; }
-      #for-who, #pillars, #how-it-works, #why-me, #final-cta { padding:64px 20px; }
+      #for-who, #pillars, #transformation, #how-it-works, #why-me, #faq, #final-cta { padding:64px 20px; }
+      .transform-item { font-size:15px; }
       footer { padding:36px 20px 24px; }
       .sec-title { font-size:34px; }
       .sec-title-italic { font-size:34px; }
@@ -1091,7 +1114,7 @@
     <div class="who-cards">
       <div class="who-card glow-card reveal" style="transition-delay:.15s">
         <div class="who-card-icon">✦</div>
-        <p class="who-card-text">You spend hours on YouTube tutorials but still can't get the result you're looking for.</p>
+        <p class="who-card-text">You binge YouTube tutorials, but your edits still miss that little something you see in the big creators' work.</p>
       </div>
       <div class="who-card glow-card reveal" style="transition-delay:.2s">
         <div class="who-card-icon">✦</div>
@@ -1152,7 +1175,7 @@
         <p class="pillar-desc">
           This is where your videos go from good to unforgettable. We dive deep into
           Fusion's node system, advanced compositing, and cinematic color grading,
-          the techniques behind the visuals people ask you about.
+          the techniques behind the visuals that make people ask "wait, how did you do that?"
         </p>
         <ul class="pillar-points">
           <li>Advanced motion design in DaVinci Fusion</li>
@@ -1191,7 +1214,7 @@
         <div class="pillar-title">Creativity &amp; Getting Clients</div>
         <p class="pillar-desc">
           Being technical is only half the job.
-          We also work on your creative vision and how to get clients that keep coming back.
+          We work on your creative vision and how to position yourself as your clients' creative right hand — the one they can't replace.
         </p>
         <ul class="pillar-points">
           <li>Always knowing how to illustrate any idea</li>
@@ -1227,6 +1250,28 @@
         </div>
       </div>
     </div>
+
+  </div>
+</section>
+
+<!-- ==============================
+     TRANSFORMATION
+============================== -->
+<section id="transformation">
+  <div class="section-inner">
+
+    <div class="section-label reveal">The transformation</div>
+    <div class="reveal" style="transition-delay:.05s">
+      <span class="sec-title">In 3 months,</span>
+      <span class="sec-title-italic">here's where you'll be.</span>
+    </div>
+
+    <ul class="transform-list">
+      <li class="transform-item reveal" style="transition-delay:.1s">You structure your videos like stories, not sequences of clips</li>
+      <li class="transform-item reveal" style="transition-delay:.15s">You create motion in Fusion you thought was reserved for the "big guys"</li>
+      <li class="transform-item reveal" style="transition-delay:.2s">You grade with a true cinematic look — not a preset</li>
+      <li class="transform-item reveal" style="transition-delay:.25s">You know how to get clients, and keep them</li>
+    </ul>
 
   </div>
 </section>
@@ -1320,6 +1365,65 @@
 
       </div>
 
+    </div>
+  </div>
+</section>
+
+<!-- ==============================
+     FAQ
+============================== -->
+<section id="faq">
+  <div class="faq-inner">
+    <div class="faq-header">
+      <div class="section-label reveal">FAQ</div>
+      <div class="reveal" style="transition-delay:.05s">
+        <span class="sec-title">Questions you</span>
+        <span class="sec-title-italic">might have.</span>
+      </div>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal" style="transition-delay:.1s">
+        <div class="faq-question" data-faq>
+          <span>How much does the coaching cost?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer"><div class="faq-answer-inner">The price is defined during our first call, based on your level and your goals. No surprises — you know everything before committing.</div></div>
+      </div>
+      <div class="faq-item reveal" style="transition-delay:.15s">
+        <div class="faq-question" data-faq>
+          <span>What level do I need to join?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer"><div class="faq-answer-inner">You already need to edit on DaVinci and know the basics. This coaching isn't for complete beginners — it's built to take you to the next level.</div></div>
+      </div>
+      <div class="faq-item reveal" style="transition-delay:.2s">
+        <div class="faq-question" data-faq>
+          <span>How much time does it take per week?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer"><div class="faq-answer-inner">We define the rhythm together based on your schedule. Count the calls, plus practice time between sessions.</div></div>
+      </div>
+      <div class="faq-item reveal" style="transition-delay:.25s">
+        <div class="faq-question" data-faq>
+          <span>Why pay for coaching when there are free tutorials?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer"><div class="faq-answer-inner">A tutorial teaches you an effect. A coaching teaches you to think like an editor: we work on your projects, your blocks, with direct feedback at every step. That's the difference between watching and progressing.</div></div>
+      </div>
+      <div class="faq-item reveal" style="transition-delay:.3s">
+        <div class="faq-question" data-faq>
+          <span>How do the sessions work?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer"><div class="faq-answer-inner">1-on-1 video calls, screen shared, working on your projects live. And between sessions, you message me on WhatsApp whenever you're stuck.</div></div>
+      </div>
+      <div class="faq-item reveal" style="transition-delay:.35s">
+        <div class="faq-question" data-faq>
+          <span>What if I'm on Premiere Pro or After Effects?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer"><div class="faq-answer-inner">This coaching is exclusively on DaVinci Resolve &amp; Fusion. If you're on another software, it's not the right fit.</div></div>
+      </div>
     </div>
   </div>
 </section>
@@ -1557,6 +1661,24 @@
     document.addEventListener('touchend',   () => scrubbing = false);
   })();
 
+  /* ===========================
+     FAQ ACCORDION
+  =========================== */
+  document.querySelectorAll('[data-faq]').forEach(q => {
+    q.addEventListener('click', () => {
+      const answer = q.closest('.faq-item').querySelector('.faq-answer');
+      const icon   = q.querySelector('.faq-icon');
+      const isOpen = q.classList.contains('open');
+      document.querySelectorAll('[data-faq]').forEach(qq => {
+        qq.classList.remove('open'); qq.querySelector('.faq-icon').classList.remove('open');
+        qq.closest('.faq-item').querySelector('.faq-answer').style.maxHeight = '0';
+      });
+      if (!isOpen) {
+        q.classList.add('open'); icon.classList.add('open');
+        answer.style.maxHeight = (answer.querySelector('.faq-answer-inner').offsetHeight + 32) + 'px';
+      }
+    });
+  });
 
 </script>
 
