@@ -884,9 +884,20 @@
        TRANSFORMATION SECTION
     ============================ */
     #transformation { padding:96px 32px; }
-    .transform-list { list-style:none; margin:52px auto 0; max-width:720px; display:flex; flex-direction:column; gap:22px; padding:0; }
-    .transform-item { font-family:var(--sf); font-weight:300; font-size:17px; color:var(--ivory-muted); line-height:1.65; display:flex; gap:18px; align-items:flex-start; }
-    .transform-item::before { content:'→'; color:var(--gold); font-size:18px; flex-shrink:0; margin-top:2px; }
+    .node-chain { max-width:640px; margin:56px auto 0; display:flex; flex-direction:column; align-items:flex-start; }
+    .nc-node { display:flex; align-items:center; gap:14px; }
+    .nc-node-in { opacity:0; }
+    .nc-square { width:16px; height:16px; border-radius:3px; border:1px solid rgba(201,168,76,0.5); background:transparent; flex-shrink:0; transition:border-color .3s, box-shadow .3s; }
+    .nc-square-filled { background:linear-gradient(135deg,rgba(201,168,76,0.9),rgba(232,213,163,0.9)); border-color:var(--gold); }
+    .nc-node-label { font-family:'SF Mono',monospace; font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--ivory-ghost); }
+    .nc-label-gold { color:var(--gold); }
+    .nc-line { width:1.5px; height:36px; margin-left:7px; background:linear-gradient(180deg,rgba(201,168,76,0.15),rgba(201,168,76,0.5)); transform:scaleY(0); transform-origin:top; transition:transform .3s ease; }
+    .nc-node.nc-step { align-items:flex-start; }
+    .nc-content { display:flex; flex-direction:column; opacity:0; transition:opacity .25s ease; }
+    .nc-step-title { font-family:var(--funnel); font-weight:700; font-size:13px; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); }
+    .nc-step-desc { font-family:var(--sf); font-weight:300; font-size:14.5px; color:var(--ivory-muted); line-height:1.6; margin:4px 0 0; }
+    .nc-node-out { opacity:0; transition:opacity .3s ease; }
+    .nc-node-out .nc-square-filled { transition:box-shadow .5s ease; }
 
     /* ============================
        FAQ SECTION
@@ -997,7 +1008,7 @@
       }
       .hero-subtitle { font-size:14px; }
       #for-who, #pillars, #transformation, #how-it-works, #why-me, #faq, #final-cta { padding:64px 20px; }
-      .transform-item { font-size:15px; }
+      .nc-step-desc { font-size:13.5px; }
       footer { padding:36px 20px 24px; }
       .sec-title { font-size:34px; }
       .sec-title-italic { font-size:34px; }
@@ -1266,12 +1277,55 @@
       <span class="sec-title-italic">voilà où tu en seras.</span>
     </div>
 
-    <ul class="transform-list">
-      <li class="transform-item reveal" style="transition-delay:.1s">Tu structures tes vidéos comme des histoires, pas comme des suites de clips</li>
-      <li class="transform-item reveal" style="transition-delay:.15s">Tu crées en Fusion des motions que tu pensais hors de ta portée</li>
-      <li class="transform-item reveal" style="transition-delay:.2s">Tu étalonnes avec un vrai rendu ciné — pas un preset</li>
-      <li class="transform-item reveal" style="transition-delay:.25s">Tu sais trouver des clients, et les garder</li>
-    </ul>
+    <div class="node-chain">
+      <!-- Input node -->
+      <div class="nc-node nc-node-in">
+        <div class="nc-square"></div>
+        <span class="nc-node-label">TOI, AUJOURD'HUI</span>
+      </div>
+      <div class="nc-line"></div>
+      <!-- Step 1 -->
+      <div class="nc-node nc-step">
+        <div class="nc-square"></div>
+        <div class="nc-content">
+          <span class="nc-step-title">Narration</span>
+          <p class="nc-step-desc">Tu structures tes vidéos comme des histoires, pas comme des suites de clips</p>
+        </div>
+      </div>
+      <div class="nc-line"></div>
+      <!-- Step 2 -->
+      <div class="nc-node nc-step">
+        <div class="nc-square"></div>
+        <div class="nc-content">
+          <span class="nc-step-title">Motion</span>
+          <p class="nc-step-desc">Tu crées en Fusion des motions que tu pensais hors de ta portée</p>
+        </div>
+      </div>
+      <div class="nc-line"></div>
+      <!-- Step 3 -->
+      <div class="nc-node nc-step">
+        <div class="nc-square"></div>
+        <div class="nc-content">
+          <span class="nc-step-title">Étalonnage</span>
+          <p class="nc-step-desc">Tu étalonnes avec un vrai rendu ciné — pas un preset</p>
+        </div>
+      </div>
+      <div class="nc-line"></div>
+      <!-- Step 4 -->
+      <div class="nc-node nc-step">
+        <div class="nc-square"></div>
+        <div class="nc-content">
+          <span class="nc-step-title">Clients</span>
+          <p class="nc-step-desc">Tu sais trouver des clients, et les garder</p>
+        </div>
+      </div>
+      <div class="nc-line"></div>
+      <!-- Output node -->
+      <div class="nc-node nc-node-out">
+        <div class="nc-square nc-square-filled"></div>
+        <span class="nc-node-label nc-label-gold">TOI, DANS 3 MOIS</span>
+      </div>
+    </div>
 
   </div>
 </section>
@@ -1659,6 +1713,48 @@
     waveform.addEventListener('touchstart', e => { scrubbing = true; scrubTo(e.touches[0].clientX); }, { passive:true });
     document.addEventListener('touchmove',  e => { if (scrubbing) scrubTo(e.touches[0].clientX); }, { passive:true });
     document.addEventListener('touchend',   () => scrubbing = false);
+  })();
+
+  /* ===========================
+     NODE CHAIN ANIMATION
+  =========================== */
+  (function() {
+    const chain = document.querySelector('.node-chain');
+    if (!chain) return;
+    const nodeIn  = chain.querySelector('.nc-node-in');
+    const lines   = Array.from(chain.querySelectorAll('.nc-line'));
+    const steps   = Array.from(chain.querySelectorAll('.nc-step'));
+    const nodeOut = chain.querySelector('.nc-node-out');
+    let fired = false;
+    function run() {
+      if (fired) return; fired = true;
+      const D = 250;
+      let t = 0;
+      setTimeout(() => { nodeIn.style.transition='opacity .3s ease'; nodeIn.style.opacity='0.45'; }, t); t += D;
+      lines.forEach((line, i) => {
+        setTimeout(() => { line.style.transform='scaleY(1)'; }, t); t += D;
+        if (steps[i]) {
+          const sq = steps[i].querySelector('.nc-square');
+          const ct = steps[i].querySelector('.nc-content');
+          setTimeout(() => {
+            sq.style.borderColor='var(--gold)';
+            sq.style.boxShadow='0 0 8px rgba(201,168,76,0.4)';
+            if (ct) ct.style.opacity='1';
+          }, t); t += D;
+        }
+      });
+      setTimeout(() => {
+        nodeOut.style.opacity='1';
+        const sq = nodeOut.querySelector('.nc-square-filled');
+        if (sq) {
+          setTimeout(() => {
+            sq.style.boxShadow='0 0 24px var(--gold-glow-strong), 0 0 8px var(--gold)';
+            setTimeout(() => { sq.style.boxShadow='0 0 16px var(--gold-glow-strong)'; }, 400);
+          }, 300);
+        }
+      }, t);
+    }
+    new IntersectionObserver(entries => { if (entries[0].isIntersecting) run(); }, { threshold:.25 }).observe(chain);
   })();
 
   /* ===========================
