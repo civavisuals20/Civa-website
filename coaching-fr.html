@@ -937,9 +937,9 @@
       transform:scaleX(0); transform-origin:left; transition:transform .35s ease;
     }
     .fg-wire.lit { transform:scaleX(1); }
-    .fg-node-in { border-style:dashed; opacity:0.45; transition:none; }
-    .fg-node-in.lit { opacity:0.45; }
-    .fg-node-in .fg-node-name { color:var(--ivory-ghost); font-size:10px; letter-spacing:.14em; }
+    .fg-node-in { opacity:0.45; transition:none; cursor:default; }
+    .fg-node-in.lit { opacity:1; }
+    .fg-node-in:hover { border-color:rgba(201,168,76,0.4); background:rgba(201,168,76,0.05); box-shadow:none; }
     .fg-node-out { border-color:rgba(201,168,76,0.6); }
     .fg-node-out.lit { box-shadow:0 0 22px rgba(201,168,76,0.25); }
     .fg-node-out .fg-node-name {
