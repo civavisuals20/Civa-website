@@ -283,6 +283,63 @@
     }
 
     /* ============================
+       MULTI-STEP FORM
+    ============================ */
+    .form-progress-bar {
+      height: 2px; background: rgba(201,168,76,0.15);
+      border-radius: 1px; margin-bottom: 24px; overflow: hidden;
+    }
+    .form-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg,#7A5C1E,#C9A84C,#F0D97C,#C9A84C);
+      background-size: 200% auto; animation: shiny-gold 3s linear infinite;
+      border-radius: 1px; transition: width 0.4s cubic-bezier(.4,0,.2,1);
+    }
+    .form-step-indicator {
+      font-family: var(--sf); font-size: 11px; font-weight: 700;
+      letter-spacing: .1em; color: var(--ivory-ghost);
+      margin-bottom: 20px; display: block;
+    }
+    .form-step { display: none; }
+    .form-step.active { display: block; animation: stepFadeIn .25s ease-out both; }
+    @keyframes stepFadeIn {
+      from { opacity:0; transform:translateX(12px); }
+      to   { opacity:1; transform:translateX(0); }
+    }
+    .btn-continue {
+      width: 100%; padding: 16px;
+      font-family: var(--funnel); font-size: 13px; font-weight: 700;
+      letter-spacing: .12em; text-transform: uppercase;
+      border: none; border-radius: 2px; cursor: pointer; margin-top: 8px;
+      position: relative; overflow: hidden;
+      background: linear-gradient(90deg,#7A5C1E 0%,#C9A84C 16%,#F0D97C 30%,#FFF9E8 46%,#F0D97C 62%,#C9A84C 78%,#7A5C1E 94%,#C9A84C 100%);
+      background-size: 200% auto; animation: shiny-gold 3s linear infinite;
+      color: var(--black-abyss);
+      transition: box-shadow .3s, transform .2s, filter .2s;
+    }
+    .btn-continue::after {
+      content:''; position:absolute; top:0; left:-120%;
+      width:55%; height:100%;
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);
+      transform:skewX(-18deg); pointer-events:none; z-index:0;
+    }
+    .btn-continue:hover {
+      box-shadow: 0 0 28px var(--gold-glow-strong), 0 0 60px var(--gold-glow-mid);
+      transform: translateY(-1px); filter: brightness(1.08);
+    }
+    .btn-continue:hover::after { animation: btn-sweep .6s ease forwards; }
+    .btn-continue:active { transform: scale(.98); }
+    .btn-back {
+      display: inline-block; margin-bottom: 20px;
+      font-family: var(--sf); font-size: 11px; font-weight: 500;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--ivory-ghost); cursor: pointer;
+      border: none; background: none; padding: 0;
+      transition: color .3s;
+    }
+    .btn-back:hover { color: var(--gold); }
+
+    /* ============================
        RESPONSIVE
     ============================ */
     @media (max-width:767px) {
@@ -314,34 +371,46 @@
     <span class="form-page-label">New project</span>
     <span class="form-page-title">Pitch</span>
     <span class="form-page-title-italic">your project.</span>
-    <p class="form-page-subtitle">1 minute, I reply within 24h.</p>
+    <p class="form-page-subtitle">One minute is enough. Reply within 24h.</p>
 
     <div class="form-divider"></div>
 
+    <div class="form-progress-bar">
+      <div class="form-progress-fill" id="formProgressFill" style="width:33%"></div>
+    </div>
+    <span class="form-step-indicator" id="formStepIndicator">1 / 3</span>
+
     <form id="contact-form" novalidate>
-      <div class="form-row">
-        <div class="form-group">
-          <label class="form-label" for="f-firstname">First Name</label>
-          <input type="text" class="form-input" id="f-firstname" placeholder="First name">
-          <span class="form-error" id="e-firstname">Please enter your first name.</span>
+      <!-- Step 1 — Who are you? -->
+      <div class="form-step active" id="step-1">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="f-firstname">First Name</label>
+            <input type="text" class="form-input" id="f-firstname" placeholder="First name">
+            <span class="form-error" id="e-firstname">Please enter your first name.</span>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="f-lastname">Last Name</label>
+            <input type="text" class="form-input" id="f-lastname" placeholder="Last name">
+            <span class="form-error" id="e-lastname">Please enter your last name.</span>
+          </div>
         </div>
         <div class="form-group">
-          <label class="form-label" for="f-lastname">Last Name</label>
-          <input type="text" class="form-input" id="f-lastname" placeholder="Last name">
-          <span class="form-error" id="e-lastname">Please enter your last name.</span>
+          <label class="form-label" for="f-email">Email Address</label>
+          <input type="email" class="form-input" id="f-email" placeholder="you@email.com">
+          <span class="form-error" id="e-email">Please enter a valid email address.</span>
         </div>
+        <div class="form-group">
+          <label class="form-label" for="f-phone">Phone</label>
+          <span class="form-label-helper">(optional, if you'd rather chat on WhatsApp)</span>
+          <input type="tel" class="form-input" id="f-phone" placeholder="+1 000 000 0000">
+        </div>
+        <button type="button" class="btn-continue" id="btn-next-1"><span class="shiny-text">Continue →</span></button>
       </div>
-      <div class="form-group">
-        <label class="form-label" for="f-email">Email Address</label>
-        <input type="email" class="form-input" id="f-email" placeholder="you@email.com">
-        <span class="form-error" id="e-email">Please enter a valid email address.</span>
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="f-phone">Phone</label>
-        <span class="form-label-helper">(optional, if you'd rather chat on WhatsApp)</span>
-        <input type="tel" class="form-input" id="f-phone" placeholder="+1 000 000 0000">
-      </div>
-      <div class="form-row">
+
+      <!-- Step 2 — Your project -->
+      <div class="form-step" id="step-2">
+        <button type="button" class="btn-back" id="btn-back-2">← Back</button>
         <div class="form-group">
           <label class="form-label" for="f-type">Project Type</label>
           <select class="form-select" id="f-type">
@@ -365,13 +434,24 @@
           </select>
           <span class="form-error" id="e-budget">Please select a budget range.</span>
         </div>
+        <button type="button" class="btn-continue" id="btn-next-2"><span class="shiny-text">Continue →</span></button>
       </div>
-      <div class="form-group">
-        <label class="form-label" for="f-message">Your Project</label>
-        <textarea class="form-textarea" id="f-message" rows="5" placeholder="Tell me about your project, goals, timeline..."></textarea>
-        <span class="form-error" id="e-message">Please describe your project.</span>
+
+      <!-- Step 3 — The details -->
+      <div class="form-step" id="step-3">
+        <button type="button" class="btn-back" id="btn-back-3">← Back</button>
+        <div class="form-group">
+          <label class="form-label" for="f-reference">A reference to show me?</label>
+          <span class="form-label-helper">(optional)</span>
+          <input type="text" class="form-input" id="f-reference" placeholder="An Insta link, YouTube, a website... whatever inspires you">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="f-message">Your Project</label>
+          <textarea class="form-textarea" id="f-message" rows="5" placeholder="The video topic, duration, number of videos, your deadlines..."></textarea>
+          <span class="form-error" id="e-message">Please describe your project.</span>
+        </div>
+        <button type="submit" class="btn-submit"><span class="shiny-text">Send My Project</span></button>
       </div>
-      <button type="submit" class="btn-submit"><span class="shiny-text">Send My Project</span></button>
     </form>
 
     <div id="form-success">
@@ -406,6 +486,7 @@
     document.getElementById(iid).classList.toggle('error',show);
     document.getElementById(eid).classList.toggle('show',show);
   }
+
   document.querySelectorAll('.form-input,.form-select,.form-textarea').forEach(el=>{
     el.addEventListener('focus',()=>{
       el.classList.remove('error');
@@ -414,36 +495,69 @@
     });
   });
 
+  let currentStep=1;
+
+  function goToStep(n){
+    document.getElementById('step-'+currentStep).classList.remove('active');
+    currentStep=n;
+    document.getElementById('step-'+currentStep).classList.add('active');
+    const pct=Math.round((currentStep/3)*100);
+    document.getElementById('formProgressFill').style.width=pct+'%';
+    document.getElementById('formStepIndicator').textContent=currentStep+' / 3';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+
+  document.getElementById('btn-next-1').addEventListener('click',()=>{
+    const fn=document.getElementById('f-firstname').value.trim();
+    const ln=document.getElementById('f-lastname').value.trim();
+    const em=document.getElementById('f-email').value.trim();
+    let ok=true;
+    setErr('f-firstname','e-firstname',!fn);          if(!fn) ok=false;
+    setErr('f-lastname','e-lastname',!ln);             if(!ln) ok=false;
+    setErr('f-email','e-email',!em||!isEmail(em));     if(!em||!isEmail(em)) ok=false;
+    if(ok) goToStep(2);
+  });
+
+  document.getElementById('btn-back-2').addEventListener('click',()=>goToStep(1));
+
+  document.getElementById('btn-next-2').addEventListener('click',()=>{
+    const tp=document.getElementById('f-type').value;
+    const bg=document.getElementById('f-budget').value;
+    let ok=true;
+    setErr('f-type','e-type',!tp);     if(!tp) ok=false;
+    setErr('f-budget','e-budget',!bg); if(!bg) ok=false;
+    if(ok) goToStep(3);
+  });
+
+  document.getElementById('btn-back-3').addEventListener('click',()=>goToStep(2));
+
   function showSuccess(){
     const form=document.getElementById('contact-form');
-    form.style.transition='opacity .4s'; form.style.opacity='0';
+    const bar=document.querySelector('.form-progress-bar');
+    const ind=document.getElementById('formStepIndicator');
+    [form,bar,ind].forEach(el=>{ if(el){ el.style.transition='opacity .4s'; el.style.opacity='0'; } });
     setTimeout(()=>{
-      form.style.display='none';
+      [form,bar,ind].forEach(el=>{ if(el) el.style.display='none'; });
       const suc=document.getElementById('form-success');
       suc.style.display='block';
-      requestAnimationFrame(()=> suc.classList.add('show'));
+      requestAnimationFrame(()=>suc.classList.add('show'));
     },400);
   }
 
   document.getElementById('contact-form').addEventListener('submit',async e=>{
     e.preventDefault();
+    const msg=document.getElementById('f-message').value.trim();
+    let ok=true;
+    setErr('f-message','e-message',!msg); if(!msg) ok=false;
+    if(!ok) return;
+
     const fn  = document.getElementById('f-firstname').value.trim();
     const ln  = document.getElementById('f-lastname').value.trim();
     const em  = document.getElementById('f-email').value.trim();
     const ph  = document.getElementById('f-phone').value.trim();
     const tp  = document.getElementById('f-type').value;
     const bg  = document.getElementById('f-budget').value;
-    const msg = document.getElementById('f-message').value.trim();
-    let ok=true;
-
-    setErr('f-firstname','e-firstname',!fn);   if(!fn)  ok=false;
-    setErr('f-lastname', 'e-lastname', !ln);   if(!ln)  ok=false;
-    setErr('f-email','e-email',!em||!isEmail(em)); if(!em||!isEmail(em)) ok=false;
-    setErr('f-type',   'e-type',   !tp); if(!tp)  ok=false;
-    setErr('f-budget', 'e-budget', !bg); if(!bg)  ok=false;
-    setErr('f-message','e-message',!msg); if(!msg) ok=false;
-
-    if(!ok) return;
+    const ref = document.getElementById('f-reference').value.trim();
 
     showSuccess();
 
@@ -452,14 +566,15 @@
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({
-          _subject: '📩 New project inquiry — ' + fn + ' ' + ln,
-          _captcha: 'false',
-          Name:    fn + ' ' + ln,
-          Email:   em,
-          Phone:   ph || '—',
-          Project: tp,
-          Budget:  bg,
-          Message: msg
+          _subject:  '📩 New project inquiry — ' + fn + ' ' + ln,
+          _captcha:  'false',
+          Name:      fn + ' ' + ln,
+          Email:     em,
+          Phone:     ph || '—',
+          Project:   tp,
+          Budget:    bg,
+          Reference: ref || '—',
+          Message:   msg
         })
       });
     } catch(_){}
