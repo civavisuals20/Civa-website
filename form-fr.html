@@ -232,17 +232,24 @@
       color: var(--black-abyss);
       transition: box-shadow .3s, transform .2s, filter .2s;
     }
+    .btn-submit::after {
+      content:''; position:absolute; top:0; left:-120%;
+      width:55%; height:100%;
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);
+      transform:skewX(-18deg); pointer-events:none; z-index:0;
+    }
     .btn-submit:hover {
       box-shadow: 0 0 28px var(--gold-glow-strong), 0 0 60px var(--gold-glow-mid);
       transform: translateY(-1px); filter: brightness(1.08);
     }
+    .btn-submit:hover::after { animation: btn-sweep .6s ease forwards; }
     .btn-submit:active { transform: scale(.98); }
     .shiny-text {
       color: var(--black-abyss); -webkit-text-fill-color: var(--black-abyss);
       background: none; -webkit-background-clip: unset; background-clip: unset; animation: none;
     }
     #form-success { text-align:center; padding:56px 0; display:none; opacity:0; transition:opacity .4s; }
-    #form-success.show { opacity:1; }
+    #form-success.show { opacity:1; box-shadow:0 0 24px rgba(201,168,76,0.25); border-radius:8px; }
     .success-icon {
       width: 56px; height: 56px; margin: 0 auto 20px;
       border-radius: 50%; background: rgba(201,168,76,0.1);
@@ -309,9 +316,9 @@
 <main>
   <div class="form-page-inner">
     <span class="form-page-label">Nouveau projet</span>
-    <span class="form-page-title">Parle-moi de</span>
+    <span class="form-page-title">Raconte</span>
     <span class="form-page-title-italic">ton projet.</span>
-    <p class="form-page-subtitle">≈ 1 minute · Je te réponds sous 24h</p>
+    <p class="form-page-subtitle">1 minute chrono, je te réponds sous 24h.</p>
 
     <div class="form-divider"></div>
 
@@ -335,7 +342,7 @@
       </div>
       <div class="form-group">
         <label class="form-label" for="f-phone">Téléphone</label>
-        <span class="form-label-helper">(optionnel — si tu préfères qu'on échange sur WhatsApp)</span>
+        <span class="form-label-helper">(optionnel, si tu préfères qu'on échange sur WhatsApp)</span>
         <input type="tel" class="form-input" id="f-phone" placeholder="+33 6 00 00 00 00">
       </div>
       <div class="form-row">
@@ -378,7 +385,7 @@
         </svg>
       </div>
       <p class="success-text">Reçu !</p>
-      <p class="success-sub">Je reviens vers toi sous 24h — par mail, ou sur WhatsApp si tu as laissé ton numéro.</p>
+      <p class="success-sub">Je reviens vers toi sous 24h, par mail ou sur WhatsApp si tu as laissé ton numéro.</p>
     </div>
   </div>
 </main>
@@ -394,7 +401,7 @@
     </div>
     <a href="./index-fr.html" style="font-family:var(--sf);font-size:11px;color:var(--ivory-ghost);letter-spacing:.12em;text-transform:uppercase;transition:color .3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--ivory-ghost)'">← Retour</a>
   </div>
-  <div class="footer-bottom">© 2025 Civa · Tous droits réservés</div>
+  <div class="footer-bottom">© 2026 Civa · Tous droits réservés</div>
 </footer>
 
 <script>
