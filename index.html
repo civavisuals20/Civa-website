@@ -1032,6 +1032,35 @@
       box-shadow:0 0 20px var(--gold-glow-mid);
     }
     .testi-card--audio { padding-bottom:64px; }
+    /* Video testimonial cards */
+    .testi-card--video { padding:0; overflow:hidden; cursor:default; }
+    .testi-video-wrap {
+      width:100%; aspect-ratio:9/16; max-height:260px;
+      background:var(--black-surface);
+      position:relative; cursor:pointer; overflow:hidden; flex-shrink:0;
+    }
+    .testi-video {
+      width:100%; height:100%; object-fit:cover; display:block;
+      transition:transform .3s;
+    }
+    .testi-video-wrap:hover .testi-video { transform:scale(1.02); }
+    .testi-video-overlay {
+      position:absolute; inset:0;
+      display:flex; align-items:center; justify-content:center;
+      background:rgba(10,10,10,.35);
+      transition:background .3s;
+    }
+    .testi-video-wrap.playing .testi-video-overlay { background:rgba(10,10,10,.0); }
+    .testi-video-play-btn {
+      width:52px; height:52px; border-radius:50%;
+      background:rgba(10,10,10,.6); border:.5px solid rgba(201,168,76,.5);
+      display:flex; align-items:center; justify-content:center;
+      color:var(--gold); transition:opacity .3s, box-shadow .3s;
+    }
+    .testi-video-play-btn svg { width:18px; height:18px; margin-left:3px; fill:var(--gold); }
+    .testi-video-wrap.playing .testi-video-play-btn { opacity:0; }
+    .testi-video-wrap:hover .testi-video-play-btn { box-shadow:0 0 16px var(--gold-glow-mid); }
+    .testi-card--video .testi-card-body { padding:18px 20px 20px; }
     .testi-audio-row {
       position:absolute; bottom:18px; left:24px; right:24px;
       display:flex; align-items:center; justify-content:space-between; gap:10px;
@@ -1878,6 +1907,68 @@
           </div>
         </div>
 
+        <!-- ============================================================
+             VIDEO TESTIMONIAL 1
+             ► Step 1 : put your video in ./assets/
+                        e.g. client_testimonial_1.mp4
+             ► Step 2 : replace the <video> src below
+             ► Step 3 : fill in the client name, role (and logo if any)
+             ============================================================ -->
+        <div class="testi-card testi-card--video">
+          <div class="testi-video-wrap" id="tvw-1">
+            <!-- ► REPLACE HERE : src="./assets/client_testimonial_1.mp4" -->
+            <video class="testi-video" id="tv-1" src="./assets/client_testimonial_1.mp4" preload="metadata" playsinline></video>
+            <div class="testi-video-overlay">
+              <div class="testi-video-play-btn">
+                <svg viewBox="0 0 24 24"><polygon points="6,4 20,12 6,20"/></svg>
+              </div>
+            </div>
+          </div>
+          <div class="testi-card-body">
+            <div class="testi-stars">★★★★★</div>
+            <div class="testi-divider"></div>
+            <div class="testi-author">
+              <div class="testi-avatar-ph"></div>
+              <div>
+                <!-- ► REPLACE HERE : client name and role -->
+                <div class="testi-name">Client 1</div>
+                <div class="testi-role">Role · Company</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================
+             VIDEO TESTIMONIAL 2
+             ► Step 1 : put your video in ./assets/
+                        e.g. client_testimonial_2.mp4
+             ► Step 2 : replace the <video> src below
+             ► Step 3 : fill in the client name, role (and logo if any)
+             ============================================================ -->
+        <div class="testi-card testi-card--video">
+          <div class="testi-video-wrap" id="tvw-2">
+            <!-- ► REPLACE HERE : src="./assets/client_testimonial_2.mp4" -->
+            <video class="testi-video" id="tv-2" src="./assets/client_testimonial_2.mp4" preload="metadata" playsinline></video>
+            <div class="testi-video-overlay">
+              <div class="testi-video-play-btn">
+                <svg viewBox="0 0 24 24"><polygon points="6,4 20,12 6,20"/></svg>
+              </div>
+            </div>
+          </div>
+          <div class="testi-card-body">
+            <div class="testi-stars">★★★★★</div>
+            <div class="testi-divider"></div>
+            <div class="testi-author">
+              <div class="testi-avatar-ph"></div>
+              <div>
+                <!-- ► REPLACE HERE : client name and role -->
+                <div class="testi-name">Client 2</div>
+                <div class="testi-role">Role · Company</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class="testi-card testi-card--empty">
           <p class="testi-insert">Insert your testimonial</p>
           <div class="testi-divider"></div>
@@ -2455,6 +2546,27 @@
       pauseIcon.style.display = 'none';
     });
   })();
+
+  /* ===========================
+     VIDEO TESTIMONIAL PLAYER
+  =========================== */
+  document.querySelectorAll('.testi-video-wrap').forEach(function(wrap) {
+    var video = wrap.querySelector('.testi-video');
+    if (!video) return;
+    wrap.addEventListener('click', function() {
+      if (video.paused) {
+        document.querySelectorAll('.testi-video').forEach(function(v) {
+          if (v !== video) { v.pause(); v.closest('.testi-video-wrap').classList.remove('playing'); }
+        });
+        video.play();
+        wrap.classList.add('playing');
+      } else {
+        video.pause();
+        wrap.classList.remove('playing');
+      }
+    });
+    video.addEventListener('ended', function() { wrap.classList.remove('playing'); });
+  });
 </script>
 
 <!-- Editor Timeline JS -->
