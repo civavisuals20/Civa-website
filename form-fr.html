@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Civa — Parle-moi de ton projet</title>
+  <meta name="description" content="Décris ton projet vidéo à Civa — motion designer et monteur freelance. Réponse sous 24h.">
+  <link rel="canonical" href="https://civa-website.vercel.app/form-fr.html">
+  <script>
+  (function(){
+    var currentLang = 'fr';
+    var stored = localStorage.getItem('civa_lang');
+    if (stored) {
+      if (stored !== currentLang) {
+        window.location.replace(stored === 'fr' ? './form-fr.html' : './form.html');
+      }
+      return;
+    }
+    var browserLang = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+    var preferred = browserLang.indexOf('fr') === 0 ? 'fr' : 'en';
+    localStorage.setItem('civa_lang', preferred);
+    if (preferred !== currentLang) {
+      window.location.replace('./form.html');
+    }
+  })();
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Funnel+Display:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="./assets/favicon.png">
+  <link rel="apple-touch-icon" href="./assets/favicon.png">
+
+  <style>
+    :root {
+      --black-abyss:   #0A0A0A;
+      --black-deep:    #111111;
+      --black-surface: #1A1A1A;
+      --gold:          #C9A84C;
+      --gold-light:    #E8D5A3;
+      --ivory:         #F5F0E8;
+      --ivory-muted:   rgba(245,240,232,0.67);
+      --ivory-ghost:   rgba(245,240,232,0.25);
+      --gold-glow-soft:   rgba(201,168,76,0.12);
+      --gold-glow-mid:    rgba(201,168,76,0.28);
+      --gold-glow-strong: rgba(201,168,76,0.50);
+      --sf: -apple-system, 'SF Pro Display', 'Helvetica Neue', sans-serif;
+      --dela: 'Dela Gothic One', sans-serif;
+      --funnel: 'Funnel Display', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    img, video, a, button { -webkit-user-select: none; user-select: none; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--black-abyss);
+      color: var(--ivory);
+      font-family: var(--sf);
+      font-weight: 400;
+      line-height: 1.7;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+
+    @keyframes shiny-gold {
+      0%   { background-position: 200% center; }
+      100% { background-position: -200% center; }
+    }
+    @keyframes shimmer {
+      0%   { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+    @keyframes btn-sweep {
+      0%   { left:-120%; }
+      100% { left:160%; }
+    }
+    @keyframes blink-gold {
+      0%,100% { opacity:1; box-shadow: 0 0 8px rgba(201,168,76,0.9), 0 0 16px rgba(201,168,76,0.5); }
+      50%     { opacity:0.3; box-shadow: none; }
+    }
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(24px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    /* ============================
+       NAV
+    ============================ */
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      height: 68px; padding: 0 32px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(10,10,10,0.55);
+      backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+      border-bottom: 0.5px solid rgba(201,168,76,0.12);
+    }
+    #nav::after {
+      content:''; position:absolute; bottom:0; left:0; right:0; height:1px;
+      background:linear-gradient(90deg,transparent,rgba(201,168,76,0.35),transparent);
+    }
+    .nav-left { display:flex; align-items:center; gap:12px; }
+    .nav-photo {
+      width:46px; height:46px; border-radius:50%;
+      border:1px solid rgba(201,168,76,.5);
+      box-shadow:0 0 12px var(--gold-glow-soft);
+      overflow:hidden; flex-shrink:0;
+    }
+    .nav-photo img { width:100%; height:100%; object-fit:contain; transform:scale(1.5); transform-origin:center; }
+    .nav-wordmark {
+      font-family:var(--sf); font-weight:700; font-size:15px;
+      letter-spacing:.35em; text-transform:uppercase; color:var(--ivory);
+    }
+    .lang-fab {
+      display:flex; align-items:center; justify-content:center;
+      width:40px; height:40px; border-radius:50%;
+      border:.5px solid rgba(201,168,76,.45);
+      background:rgba(10,10,10,0.80);
+      backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+      cursor:pointer; overflow:hidden;
+      transition:box-shadow .3s, transform .2s;
+      text-decoration:none; position:relative;
+    }
+    .lang-fab::after {
+      content:''; position:absolute; top:0; left:-120%; width:80%; height:100%;
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent);
+      transform:skewX(-14deg); pointer-events:none;
+    }
+    .lang-fab:hover { box-shadow:0 0 20px var(--gold-glow-strong),0 0 40px var(--gold-glow-mid); transform:translateY(-2px); }
+    .lang-fab:hover::after { animation:btn-sweep .6s ease forwards; }
+    .lang-fab-text {
+      font-family:var(--sf); font-size:11px; font-weight:700;
+      letter-spacing:.08em; text-transform:uppercase;
+      background:linear-gradient(90deg,#7A5C1E 0%,#C9A84C 16%,#F0D97C 30%,#FFF9E8 46%,#F0D97C 62%,#C9A84C 78%,#7A5C1E 94%,#C9A84C 100%);
+      background-size:200% auto;
+      -webkit-background-clip:text; background-clip:text;
+      color:transparent; -webkit-text-fill-color:transparent;
+      animation:shiny-gold 3s linear infinite;
+    }
+
+    /* ============================
+       MAIN FORM AREA
+    ============================ */
+    main {
+      flex: 1;
+      display: flex; align-items: flex-start; justify-content: center;
+      padding: 120px 24px 80px;
+    }
+    .form-page-inner {
+      width: 100%; max-width: 640px;
+      animation: fadeUp .55s ease-out both;
+    }
+    .form-page-label {
+      font-family: var(--sf); font-size: 10px; font-weight: 700;
+      letter-spacing: .22em; text-transform: uppercase;
+      color: var(--gold); opacity: .65; margin-bottom: 20px; display: block;
+    }
+    .form-page-title {
+      font-family: var(--dela); font-weight: 400;
+      font-size: clamp(34px, 6vw, 56px); line-height: 1.05;
+      letter-spacing: -.02em; color: var(--ivory);
+      display: block; margin-bottom: 4px;
+    }
+    .form-page-title-italic {
+      display: block;
+      font-family: var(--dela); font-size: clamp(34px, 6vw, 56px);
+      font-weight: 400; line-height: 1.15;
+      background: linear-gradient(90deg,#7A5C1E 0%,#C9A84C 16%,#F0D97C 30%,#FFF9E8 46%,#F0D97C 62%,#C9A84C 78%,#7A5C1E 94%,#C9A84C 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text; background-clip: text;
+      color: transparent; -webkit-text-fill-color: transparent;
+      animation: shiny-gold 3s linear infinite;
+      margin-bottom: 12px;
+    }
+    .form-page-subtitle {
+      font-family: var(--funnel); font-style: italic; font-weight: 300;
+      font-size: 14px; color: var(--ivory-ghost); margin-bottom: 48px;
+    }
+    .form-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: .18; margin-bottom: 36px;
+    }
+
+    /* ============================
+       FORM STYLES
+    ============================ */
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px; }
+    .form-group { margin-bottom:14px; position:relative; }
+    .form-label {
+      display: block; font-family: var(--sf); font-size: 11px; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase; color: var(--ivory-ghost);
+      margin-bottom: 7px;
+    }
+    .form-label-helper {
+      display: block; font-family: var(--sf); font-size: 11px; font-weight: 400;
+      font-style: italic; color: rgba(245,240,232,0.18); margin-bottom: 7px;
+      letter-spacing: 0;
+    }
+    .form-input, .form-select, .form-textarea {
+      background: var(--black-surface);
+      border: .5px solid rgba(201,168,76,.22);
+      border-radius: 2px; color: var(--ivory);
+      font-family: var(--sf); font-size: 14px; font-weight: 400;
+      padding: 13px 16px; width: 100%;
+      outline: none; transition: border-color .3s, box-shadow .3s;
+      appearance: none; -webkit-appearance: none;
+    }
+    .form-select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C9A84C' stroke-width='1' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 16px center; padding-right: 40px;
+    }
+    .form-select option { background: var(--black-surface); color: var(--ivory); }
+    .form-textarea { resize: vertical; min-height: 120px; }
+    .form-input::placeholder, .form-textarea::placeholder { color: var(--ivory-ghost); }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: rgba(201,168,76,.6);
+      box-shadow: 0 0 16px rgba(201,168,76,.1);
+    }
+    .form-input.error, .form-select.error, .form-textarea.error { border-color: rgba(220,80,80,.6); }
+    .form-error { font-family:var(--sf); font-size:11px; color:rgba(220,100,100,.8); margin-top:5px; display:none; }
+    .form-error.show { display:block; }
+    .btn-submit {
+      width: 100%; padding: 16px;
+      font-family: var(--funnel); font-size: 13px; font-weight: 700;
+      letter-spacing: .12em; text-transform: uppercase;
+      border: none; border-radius: 2px; cursor: pointer;
+      margin-top: 8px;
+      position: relative; overflow: hidden;
+      background: linear-gradient(90deg,#7A5C1E 0%,#C9A84C 16%,#F0D97C 30%,#FFF9E8 46%,#F0D97C 62%,#C9A84C 78%,#7A5C1E 94%,#C9A84C 100%);
+      background-size: 200% auto;
+      animation: shiny-gold 3s linear infinite;
+      color: var(--black-abyss);
+      transition: box-shadow .3s, transform .2s, filter .2s;
+    }
+    .btn-submit:hover {
+      box-shadow: 0 0 28px var(--gold-glow-strong), 0 0 60px var(--gold-glow-mid);
+      transform: translateY(-1px); filter: brightness(1.08);
+    }
+    .btn-submit:active { transform: scale(.98); }
+    .shiny-text {
+      color: var(--black-abyss); -webkit-text-fill-color: var(--black-abyss);
+      background: none; -webkit-background-clip: unset; background-clip: unset; animation: none;
+    }
+    #form-success { text-align:center; padding:56px 0; display:none; opacity:0; transition:opacity .4s; }
+    #form-success.show { opacity:1; }
+    .success-icon {
+      width: 56px; height: 56px; margin: 0 auto 20px;
+      border-radius: 50%; background: rgba(201,168,76,0.1);
+      border: 1px solid rgba(201,168,76,0.4);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .success-icon svg { width:24px; height:24px; stroke:var(--gold); }
+    .success-text { font-family:var(--funnel); font-size:22px; font-weight:300; font-style:italic; color:var(--gold); line-height:1.5; }
+    .success-sub { font-family:var(--sf); font-size:14px; color:var(--ivory-muted); margin-top:12px; line-height:1.6; }
+
+    /* ============================
+       FOOTER
+    ============================ */
+    footer {
+      background: var(--black-deep); padding: 28px 32px;
+      border-top: 0.5px solid rgba(201,168,76,0.08);
+    }
+    .footer-main {
+      max-width: 640px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between; gap: 20px;
+    }
+    .footer-left { display:flex; align-items:center; gap:10px; }
+    .footer-photo {
+      width:32px; height:32px; border-radius:50%;
+      border:.5px solid rgba(201,168,76,.5); overflow:hidden; flex-shrink:0;
+    }
+    .footer-photo img { width:100%; height:100%; object-fit:cover; transform:scale(1.25); transform-origin:center; }
+    .footer-wordmark {
+      font-family:var(--sf); font-weight:700; font-size:12px;
+      letter-spacing:.35em; text-transform:uppercase; color:var(--ivory);
+    }
+    .footer-bottom {
+      text-align:center; margin-top:16px;
+      font-family:var(--sf); font-weight:400; font-size:10px; color:var(--ivory-ghost);
+    }
+
+    /* ============================
+       RESPONSIVE
+    ============================ */
+    @media (max-width:767px) {
+      #nav { padding:0 16px; }
+      main { padding:100px 18px 60px; }
+      .form-row { grid-template-columns:1fr; }
+      .footer-main { flex-direction:column; text-align:center; gap:12px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-left">
+    <div class="nav-photo">
+      <img src="./assets/Logo_3.2.1.jpg" alt="Civa">
+    </div>
+    <a href="./index-fr.html" class="nav-wordmark" onclick="void(0)">CIVA</a>
+  </div>
+  <a href="./form.html" class="lang-fab" onclick="localStorage.setItem('civa_lang','en')">
+    <span class="lang-fab-text">EN</span>
+  </a>
+</nav>
+
+<!-- MAIN FORM -->
+<main>
+  <div class="form-page-inner">
+    <span class="form-page-label">Nouveau projet</span>
+    <span class="form-page-title">Parle-moi de</span>
+    <span class="form-page-title-italic">ton projet.</span>
+    <p class="form-page-subtitle">≈ 1 minute · Je te réponds sous 24h</p>
+
+    <div class="form-divider"></div>
+
+    <form id="contact-form" novalidate>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="f-firstname">Prénom</label>
+          <input type="text" class="form-input" id="f-firstname" placeholder="Prénom">
+          <span class="form-error" id="e-firstname">Merci d'entrer ton prénom.</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="f-lastname">Nom</label>
+          <input type="text" class="form-input" id="f-lastname" placeholder="Nom">
+          <span class="form-error" id="e-lastname">Merci d'entrer ton nom.</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="f-email">E-mail</label>
+        <input type="email" class="form-input" id="f-email" placeholder="ton@email.com">
+        <span class="form-error" id="e-email">Merci d'entrer une adresse e-mail valide.</span>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="f-phone">Téléphone</label>
+        <span class="form-label-helper">(optionnel — si tu préfères qu'on échange sur WhatsApp)</span>
+        <input type="tel" class="form-input" id="f-phone" placeholder="+33 6 00 00 00 00">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="f-type">Type de projet</label>
+          <select class="form-select" id="f-type">
+            <option value="" disabled selected>Sélectionner</option>
+            <option value="VSL Motion Design">VSL Motion Design</option>
+            <option value="Motion Design Ads">Motion Design Ads</option>
+            <option value="Reels / Storytelling">Reels / Storytelling</option>
+            <option value="YouTube Video">YouTube Video</option>
+            <option value="Autre chose">Autre chose</option>
+          </select>
+          <span class="form-error" id="e-type">Merci de sélectionner un type de projet.</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="f-budget">Budget estimé</label>
+          <select class="form-select" id="f-budget">
+            <option value="" disabled selected>Sélectionner</option>
+            <option value="Moins de 500€">Moins de 500€</option>
+            <option value="500€ – 1 500€">500€ – 1 500€</option>
+            <option value="1 500€ – 3 000€">1 500€ – 3 000€</option>
+            <option value="3 000€+">3 000€+</option>
+          </select>
+          <span class="form-error" id="e-budget">Merci de sélectionner une fourchette de budget.</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="f-message">Ton projet</label>
+        <textarea class="form-textarea" id="f-message" rows="5" placeholder="Parle-moi de ton projet, tes objectifs, tes délais..."></textarea>
+        <span class="form-error" id="e-message">Merci de décrire ton projet.</span>
+      </div>
+      <button type="submit" class="btn-submit"><span class="shiny-text">Envoyer mon projet</span></button>
+    </form>
+
+    <div id="form-success">
+      <div class="success-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20,6 9,17 4,12"/>
+        </svg>
+      </div>
+      <p class="success-text">Reçu !</p>
+      <p class="success-sub">Je reviens vers toi sous 24h — par mail, ou sur WhatsApp si tu as laissé ton numéro.</p>
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-main">
+    <div class="footer-left">
+      <div class="footer-photo">
+        <img src="./assets/Logo_3.2.1.jpg" alt="Civa">
+      </div>
+      <span class="footer-wordmark">CIVA</span>
+    </div>
+    <a href="./index-fr.html" style="font-family:var(--sf);font-size:11px;color:var(--ivory-ghost);letter-spacing:.12em;text-transform:uppercase;transition:color .3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--ivory-ghost)'">← Retour</a>
+  </div>
+  <div class="footer-bottom">© 2025 Civa · Tous droits réservés</div>
+</footer>
+
+<script>
+  function isEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+  function setErr(iid,eid,show){
+    document.getElementById(iid).classList.toggle('error',show);
+    document.getElementById(eid).classList.toggle('show',show);
+  }
+  document.querySelectorAll('.form-input,.form-select,.form-textarea').forEach(el=>{
+    el.addEventListener('focus',()=>{
+      el.classList.remove('error');
+      const e=el.closest('.form-group').querySelector('.form-error');
+      if(e) e.classList.remove('show');
+    });
+  });
+
+  function showSuccess(){
+    const form=document.getElementById('contact-form');
+    form.style.transition='opacity .4s'; form.style.opacity='0';
+    setTimeout(()=>{
+      form.style.display='none';
+      const suc=document.getElementById('form-success');
+      suc.style.display='block';
+      requestAnimationFrame(()=> suc.classList.add('show'));
+    },400);
+  }
+
+  document.getElementById('contact-form').addEventListener('submit',async e=>{
+    e.preventDefault();
+    const fn  = document.getElementById('f-firstname').value.trim();
+    const ln  = document.getElementById('f-lastname').value.trim();
+    const em  = document.getElementById('f-email').value.trim();
+    const ph  = document.getElementById('f-phone').value.trim();
+    const tp  = document.getElementById('f-type').value;
+    const bg  = document.getElementById('f-budget').value;
+    const msg = document.getElementById('f-message').value.trim();
+    let ok=true;
+
+    setErr('f-firstname','e-firstname',!fn);   if(!fn)  ok=false;
+    setErr('f-lastname', 'e-lastname', !ln);   if(!ln)  ok=false;
+    setErr('f-email','e-email',!em||!isEmail(em)); if(!em||!isEmail(em)) ok=false;
+    setErr('f-type',   'e-type',   !tp); if(!tp)  ok=false;
+    setErr('f-budget', 'e-budget', !bg); if(!bg)  ok=false;
+    setErr('f-message','e-message',!msg); if(!msg) ok=false;
+
+    if(!ok) return;
+
+    showSuccess();
+
+    try {
+      await fetch('https://formsubmit.co/ajax/civavisuals20@gmail.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          _subject: '📩 Nouveau projet — ' + fn + ' ' + ln,
+          _captcha: 'false',
+          Nom:      fn + ' ' + ln,
+          Email:    em,
+          Téléphone: ph || '(non renseigné)',
+          Projet:   tp,
+          Budget:   bg,
+          Message:  msg
+        })
+      });
+    } catch(_){}
+  });
+</script>
+
+</body>
+</html>
